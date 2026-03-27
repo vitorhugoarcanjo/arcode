@@ -1,0 +1,238 @@
+
+/* ==================== PROJETOS ==================== */
+.bloco-projetos {
+    background: var(--section-bg);
+}
+
+.section-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.section-subtitle {
+    text-align: center;
+    color: var(--text-secondary);
+    margin-bottom: 3rem;
+    font-size: 1.1rem;
+}
+
+.carrossel-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin: 2rem 0;
+}
+
+.carrossel-wrapper {
+    flex: 1;
+    overflow: hidden;
+    border-radius: 1.5rem;
+    box-shadow: var(--shadow);
+    background: var(--card-bg);
+}
+
+.carrossel-slides {
+    display: flex;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.carrossel-slide {
+    flex: 0 0 100%;
+}
+
+.projeto-card {
+    background: var(--card-bg);
+    border-radius: 1.5rem;
+    overflow: hidden;
+}
+
+.projeto-imagem {
+    position: relative;
+    height: auto;
+    max-height: 400px;  /* Limite máximo */
+    overflow: hidden;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+}
+
+.projeto-imagem img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.projeto-card:hover .projeto-imagem img {
+    transform: scale(1.05);
+}
+
+.projeto-overlay {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    z-index: 2;
+}
+
+.projeto-tag {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: white;
+    padding: 0.4rem 1rem;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.privado-tag {
+    background: var(--text-secondary);
+}
+
+.lock-icon {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    font-size: 1.2rem;
+    color: white;
+    background: rgba(0,0,0,0.5);
+    padding: 0.5rem;
+    border-radius: 50%;
+}
+
+.projeto-info {
+    padding: 1.8rem;
+}
+
+.projeto-info h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.8rem;
+    color: var(--text-primary);
+}
+
+.projeto-info p {
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+.projeto-tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 1rem 0;
+}
+
+.projeto-tech span {
+    background: var(--bg-primary);
+    color: var(--primary);
+    padding: 0.3rem 0.8rem;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    border: 1px solid var(--border-color);
+}
+
+.projeto-status {
+    font-size: 0.85rem;
+    color: var(--warning);
+    margin-top: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.projeto-status i {
+    font-size: 0.8rem;
+}
+
+.btn-detalhes {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: none;
+    border: none;
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    padding: 0.5rem 0;
+}
+
+.btn-detalhes:hover {
+    color: var(--primary-dark);
+    gap: 0.8rem;
+}
+
+.btn-detalhes.disabled {
+    color: var(--text-secondary);
+    cursor: not-allowed;
+}
+
+.carrossel-btn {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: var(--transition);
+    box-shadow: var(--shadow);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.carrossel-btn:hover {
+    background: var(--primary);
+    transform: scale(1.1);
+}
+
+.carrossel-btn i {
+    color: var(--text-primary);
+    font-size: 1.2rem;
+    transition: var(--transition);
+}
+
+.carrossel-btn:hover i {
+    color: white;
+}
+
+.carrossel-indicators {
+    display: flex;
+    justify-content: center;
+    gap: 0.8rem;
+    margin-top: 2rem;
+}
+
+.indicator {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--border-color);
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.indicator.active {
+    background: var(--primary);
+    width: 25px;
+    border-radius: 10px;
+}
+
+.indicator:hover {
+    background: var(--primary);
+    transform: scale(1.2);
+}
+
+.carrossel-info {
+    text-align: center;
+    margin-top: 1.5rem;
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+}

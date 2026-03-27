@@ -1,0 +1,215 @@
+/* ==================== RESET E VARIÁVEIS ==================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* TEMA CLARO (padrão) */
+:root {
+    --bg-primary: #f8fafc;
+    --bg-secondary: #ffffff;
+    --text-primary: #0f172a;
+    --text-secondary: #64748b;
+    --card-bg: #ffffff;
+    --border-color: #e2e8f0;
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    --shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.1);
+    --hero-bg: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    --section-bg: #f8fafc;
+    --input-bg: #ffffff;
+}
+
+/* TEMA ESCURO */
+[data-theme="dark"] {
+    --bg-primary: #0f172a;
+    --bg-secondary: #1e293b;
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --card-bg: #1e293b;
+    --border-color: #334155;
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    --shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.4);
+    --hero-bg: linear-gradient(135deg, #020617 0%, #0f172a 100%);
+    --section-bg: #0f172a;
+    --input-bg: #334155;
+}
+
+[data-theme="dark"] .hero-imagem img {
+    filter: drop-shadow(0 10px 20px rgba(0,0,0,0.3)) brightness(1.05);
+}
+
+/* CORES PRINCIPAIS (não mudam com tema) */
+:root {
+    --primary: #3b82f6;
+    --primary-dark: #2563eb;
+    --secondary: #8b5cf6;
+    --success: #10b981;
+    --warning: #f59e0b;
+    --danger: #ef4444;
+    --transition: all 0.3s ease;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 70px;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    line-height: 1.6;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    transition: background 0.3s ease, color 0.3s ease;
+    overflow-x: hidden;
+}
+
+/* Importar fonte Inter */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+/* ==================== CONTAINER ==================== */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* ==================== BLOCO PADRÃO ==================== */
+.bloco {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5rem 0;
+}
+
+
+
+/* ==================== FOOTER ==================== */
+.footer {
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    text-align: center;
+    padding: 2rem 0;
+    border-top: 1px solid var(--border-color);
+}
+
+.footer i {
+    color: var(--danger);
+}
+
+/* ==================== RESPONSIVIDADE ==================== */
+@media (max-width: 968px) {
+    .hero-grid, .sobre-grid, .contato-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .hero-texto {
+        text-align: center;
+        order: 1;
+    }
+    
+    .hero-texto h1 {
+        font-size: 2.5rem;
+    }
+    
+    .hero-imagem {
+        order: 0;
+    }
+    
+    .hero-imagem img {
+        max-width: 300px;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+    }
+    
+    .sobre-stats {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+        padding: 1.5rem;
+    }
+    
+    .projeto-imagem {
+        height: 280px;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 0 1.5rem;
+    }
+    
+    .menu-hamburger {
+        display: block;
+    }
+    
+    .menu-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: var(--bg-secondary);
+        flex-direction: column;
+        padding: 1rem 0;
+        gap: 0;
+        text-align: center;
+        border-bottom: 1px solid var(--border-color);
+    }
+    
+    .menu-links.active {
+        display: flex;
+    }
+    
+    .menu-links li {
+        padding: 1rem;
+    }
+    
+    .carrossel-container {
+        gap: 0.5rem;
+    }
+    
+    .carrossel-btn {
+        width: 35px;
+        height: 35px;
+    }
+    
+    .projeto-imagem {
+        height: 220px;
+    }
+    
+    .projeto-info h3 {
+        font-size: 1.2rem;
+    }
+    
+    .sobre-stats {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .bloco {
+        padding: 3rem 0;
+    }
+    
+    .theme-toggle {
+        width: 35px;
+        height: 35px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-texto h1 {
+        font-size: 1.8rem;
+    }
+    
+    .section-title {
+        font-size: 1.8rem;
+    }
+    
+    .projeto-imagem {
+        height: 180px;
+    }
+}
