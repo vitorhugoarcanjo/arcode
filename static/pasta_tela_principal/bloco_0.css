@@ -1,4 +1,3 @@
-
 /* ==================== MENU ==================== */
 .bloco-menu {
     position: fixed;
@@ -17,7 +16,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 20px;
+    gap: 30px;
+
 }
 
 .logo img {
@@ -33,6 +33,8 @@
     display: flex;
     gap: 2.5rem;
     list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
 .menu-links a {
@@ -96,4 +98,43 @@
     font-size: 1.5rem;
     color: var(--text-primary);
     cursor: pointer;
+    background: none;
+    border: none;
+    z-index: 1001;
+}
+
+/* ==================== RESPONSIVIDADE MENU MOBILE ==================== */
+@media (max-width: 768px) {
+    .menu-hamburger {
+        display: block;
+    }
+    
+    .menu-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: var(--bg-secondary);
+        flex-direction: column;
+        padding: 1rem 0;
+        gap: 0;
+        text-align: center;
+        border-bottom: 1px solid var(--border-color);
+        box-shadow: var(--shadow);
+    }
+    
+    .menu-links.active {
+        display: flex;
+    }
+    
+    .menu-links li {
+        padding: 1rem;
+        list-style: none;
+    }
+    
+    .menu-links a {
+        display: block;
+        padding: 0.5rem;
+    }
 }
