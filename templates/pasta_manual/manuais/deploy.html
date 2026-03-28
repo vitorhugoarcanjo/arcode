@@ -1,0 +1,163 @@
+<!-- ============================================ -->
+<!-- ÍNDICE RÁPIDO -->
+<!-- ============================================ -->
+<div class="indice-rapido">
+    <h2>📑 Índice Rápido</h2>
+    <div class="botoes-indice">
+        <a href="#checklist" class="botao-indice">📋 Checklist</a>
+        <a href="#clone" class="botao-indice">📥 1. Clonar</a>
+        <a href="#venv" class="botao-indice">🐍 2. Ambiente Virtual</a>
+        <a href="#nginx" class="botao-indice">🌐 3. Configurar Nginx</a>
+        <a href="#gunicorn" class="botao-indice">⚙️ 4. Iniciar Gunicorn</a>
+        <a href="#testar" class="botao-indice">🔍 5. Testar</a>
+        <a href="#ssl" class="botao-indice">🔐 6. SSL</a>
+        <a href="#auto" class="botao-indice">🔄 7. Auto-start</a>
+        <a href="#verificar" class="botao-indice">✅ Verificar</a>
+        <a href="#multi" class="botao-indice">📌 Vários Sites</a>
+    </div>
+</div>
+
+<!-- ============================================ -->
+<!-- CONTEÚDO -->
+<!-- ============================================ -->
+
+<h2 id="checklist">📋 Checklist antes de começar</h2>
+<div class="note">
+    <strong>Verifique:</strong>
+    <ul>
+        <li>☐ Código no GitHub (ou arquivos prontos para enviar)</li>
+        <li>☐ Acesso SSH ao servidor</li>
+        <li>☐ Se for usar domínio: ele já está apontando para o IP do servidor</li>
+    </ul>
+</div>
+
+<h2 id="clone">📥 1. Clonar repositório</h2>
+<pre><code>cd /var/www
+git clone https://github.com/seu-usuario/seu-repositorio.git nome-do-site
+cd nome-do-site</code></pre>
+<div class="note">
+    <strong>💡 Dica:</strong> Substitua "seu-usuario", "seu-repositorio" e "nome-do-site" pelos valores reais do seu projeto.
+</div>
+
+<h2 id="venv">🐍 2. Criar ambiente virtual</h2>
+<pre><code>sudo -u www-data python3 -m venv venv
+sudo -u www-data venv/bin/pip install -r requirements.txt</code></pre>
+
+<h2 id="nginx">🌐 3. Configurar Nginx</h2>
+
+<p><strong>Opção A: Acesso via Domínio (recomendado para produção)</strong></p>
+<pre><code>sudo nano /etc/nginx/sites-available/nome-do-site</code></pre>
+
+<p>Cole a configuração:</p>
+<pre><code>server {
+    listen 80;
+    listen [::]:80;
+    server_name seudominio.com.br www.seudominio.com.br;
+
+    location / {
+        include proxy_params;
+        proxy_pass http://unix:/var/www/nome-do-site/nome-do-site.sock;
+        
+        # CONFIGURAÇÕES DE BUFFERS (para respostas grandes)
+        proxy_buffer_size 128k;
+        proxy_buffers 4 256k;
+        proxy_busy_buffers_size 256k;
+        
+        # CONFIGURAÇÕES DE TIMEOUT (para operações demoradas)
+        proxy_connect_timeout 150s;
+        proxy_send_timeout 150s;
+        proxy_read_timeout 300s;      # Essencial para consultas SQL lentas
+        send_timeout 300s;
+    }
+
+    location /static {
+        alias /var/www/nome-do-site/static;
+        expires 30d;
+        add_header Cache-Control "public, immutable";
+    }
+
+    location /media {
+        alias /var/www/nome-do-site/media;
+        expires 30d;
+    }
+}</code></pre>
+
+<p><strong>Opção B: Acesso via IP (para testes, sem domínio)</strong></p>
+<pre><code>server {
+    listen 80;
+    listen [::]:80;
+    server_name _;  # Aceita qualquer domínio/IP
+
+    location / {
+        include proxy_params;
+        proxy_pass http://unix:/var/www/nome-do-site/nome-do-site.sock;
+        proxy_read_timeout 300s;
+    }
+
+    location /static {
+        alias /var/www/nome-do-site/static;
+    }
+}</code></pre>
+
+<div class="note">
+    <strong>📌 Explicação das configurações:</strong>
+    <ul>
+        <li><strong>server_name:</strong> Define qual domínio responde por este site</li>
+        <li><strong>server_name _;</strong> Aceita qualquer requisição (útil para testes via IP)</li>
+        <li><strong>proxy_read_timeout 300s:</strong> Aguarda até 5 minutos por resposta (essencial para queries SQL demoradas)</li>
+        <li><strong>expires 30d:</strong> Arquivos estáticos ficam em cache por 30 dias</li>
+        <li><strong>Vários sites no mesmo IP:</strong> O Nginx identifica pelo domínio, cada um tem seu arquivo em sites-available</li>
+    </ul>
+</div>
+
+<pre><code>sudo ln -s /etc/nginx/sites-available/nome-do-site /etc/nginx/sites-enabled/
+sudo nginx -t
+sudo systemctl reload nginx</code></pre>
+
+<h2 id="gunicorn">⚙️ 4. Iniciar Gunicorn</h2>
+<pre><code>cd /var/www/nome-do-site
+sudo -u www-data venv/bin/gunicorn --workers 3 --bind unix:/var/www/nome-do-site/nome-do-site.sock app:app --daemon</code></pre>
+<div class="note">
+    <strong>📌 Para Django:</strong> Substitua <code>app:app</code> por <code>seu_projeto.wsgi:application</code>
+</div>
+
+<h2 id="testar">🔍 5. Testar o site</h2>
+<p><strong>Se usou domínio (Opção A):</strong></p>
+<pre><code>curl -I http://seudominio.com.br</code></pre>
+<p><strong>Se usou IP (Opção B):</strong></p>
+<pre><code>curl -I http://seu-ip-do-servidor</code></pre>
+
+<h2 id="ssl">🔐 6. Configurar SSL (somente se tiver domínio)</h2>
+<div class="warning">
+    <strong>⚠️ Importante:</strong> Antes de executar o Certbot, aguarde o DNS propagar (pode levar de 5 a 30 minutos).
+    <br><br>
+    Verifique se o domínio já está apontando:
+    <code>dig seudominio.com.br</code>
+</div>
+<pre><code>sudo certbot --nginx -d seudominio.com.br -d www.seudominio.com.br</code></pre>
+<p>Após o SSL, seu site será acessível via HTTPS:</p>
+<pre><code>curl -I https://seudominio.com.br</code></pre>
+
+<h2 id="auto">🔄 7. Configurar inicialização automática (reboot)</h2>
+<pre><code>sudo crontab -e</code></pre>
+<p>Adicionar a linha:</p>
+<pre><code>@reboot sleep 30 && cd /var/www/nome-do-site && sudo -u www-data venv/bin/gunicorn --workers 3 --bind unix:/var/www/nome-do-site/nome-do-site.sock app:app --daemon</code></pre>
+
+<h2 id="verificar">✅ 8. Verificar se tudo funcionou</h2>
+<div class="success">
+    <strong>🔍 Comandos de verificação:</strong><br>
+    <code>ps aux | grep gunicorn | grep nome-do-site</code><br>
+    <code>ls -la /var/www/nome-do-site/nome-do-site.sock</code><br>
+    <code>curl -I https://seudominio.com.br</code> (ou http://seu-ip)
+</div>
+
+<h2 id="multi">📌 Vários sites no mesmo servidor</h2>
+<div class="note">
+    <ul>
+        <li>Cada site tem sua própria pasta: <code>/var/www/site1</code>, <code>/var/www/site2</code>, etc</li>
+        <li>Cada site tem seu próprio socket: <code>site1.sock</code>, <code>site2.sock</code></li>
+        <li>Cada site tem seu arquivo no Nginx: <code>/etc/nginx/sites-available/site1</code>, <code>/etc/nginx/sites-available/site2</code></li>
+        <li>O Nginx identifica qual site atender pelo domínio informado na requisição</li>
+        <li>Todos compartilham o mesmo IP, mas portas diferentes (80 para HTTP, 443 para HTTPS)</li>
+    </ul>
+</div>
