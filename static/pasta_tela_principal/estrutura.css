@@ -191,3 +191,158 @@ button {
 .fade-in-up {
     animation: fadeInUp 0.6s ease-out;
 }
+
+
+
+/* ==================== MOBILE FIRST ==================== */
+/* Tablet e Desktop pequeno (768px - 1024px) */
+@media (min-width: 768px) {
+    .carrossel-container {
+        padding: 0 50px;
+    }
+    
+    .carrossel-slide {
+        flex: 0 0 100%;
+    }
+    
+    .projeto-imagem {
+        height: 300px;
+    }
+    
+    .projeto-info h3 {
+        font-size: 1.35rem;
+    }
+    
+    .projeto-info p {
+        font-size: 0.95rem;
+    }
+}
+
+/* Desktop grande (1024px+) */
+@media (min-width: 1024px) {
+    .carrossel-container {
+        padding: 0 60px;
+    }
+    
+    .carrossel-slide {
+        padding: 0 20px;
+    }
+    
+    .projeto-imagem {
+        height: 350px;
+    }
+    
+    .carrossel-btn {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .carrossel-btn i {
+        font-size: 1.3rem;
+    }
+}
+
+/* Mobile pequeno (até 480px) */
+@media (max-width: 480px) {
+    .carrossel-container {
+        padding: 0 30px;
+    }
+    
+    .carrossel-slide {
+        padding: 0 10px;
+    }
+    
+    .projeto-imagem {
+        height: 200px;
+    }
+    
+    .projeto-info {
+        padding: 1rem;
+    }
+    
+    .projeto-info h3 {
+        font-size: 1.1rem;
+    }
+    
+    .projeto-info p {
+        font-size: 0.85rem;
+    }
+    
+    .projeto-tech span {
+        font-size: 0.7rem;
+        padding: 3px 10px;
+    }
+    
+    .btn-detalhes {
+        padding: 8px 16px;
+        font-size: 0.85rem;
+    }
+    
+    .carrossel-btn {
+        width: 36px;
+        height: 36px;
+    }
+    
+    .carrossel-btn i {
+        font-size: 1rem;
+    }
+    
+    .indicator {
+        width: 8px;
+        height: 8px;
+    }
+    
+    .indicator.active {
+        width: 24px;
+    }
+}
+
+/* Suporte para touch (melhor experiência mobile) */
+@media (hover: none) and (pointer: coarse) {
+    .carrossel-btn {
+        background: rgba(255, 255, 255, 0.95);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    }
+    
+    .projeto-card:hover {
+        transform: none;
+    }
+    
+    .projeto-card:hover .projeto-imagem img {
+        transform: none;
+    }
+}
+
+/* Tema escuro (caso você tenha) */
+[data-theme="dark"] .projeto-card {
+    background: #1e1e2e;
+}
+
+[data-theme="dark"] .projeto-info h3 {
+    color: #fff;
+}
+
+[data-theme="dark"] .projeto-info p {
+    color: #aaa;
+}
+
+[data-theme="dark"] .projeto-tech span {
+    background: #2a2a3a;
+    color: #ccc;
+}
+
+[data-theme="dark"] .carrossel-btn {
+    background: #2a2a3a;
+}
+
+[data-theme="dark"] .carrossel-btn i {
+    color: #fff;
+}
+
+[data-theme="dark"] .indicator {
+    background: #444;
+}
+
+[data-theme="dark"] .carrossel-info {
+    color: #aaa;
+}

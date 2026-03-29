@@ -1,6 +1,5 @@
 /* ==================== BLOCO_0.CSS ==================== */
 /* Este arquivo contém: Menu, Logo e Tema Toggle */
-/* Deve ser o SEGUNDO arquivo CSS importado (depois da estrutura) */
 
 /* ==================== 1. MENU PRINCIPAL ==================== */
 .bloco-menu {
@@ -23,16 +22,22 @@
     gap: 1rem;
 }
 
-/* ==================== 2. LOGO ==================== */
+/* ==================== 2. LOGO - CORRIGIDO ==================== */
 .logo {
     flex-shrink: 0;
+    /* Garante que o logo não seja comprimido */
+    min-width: 0;
+    max-width: 100%;
 }
 
 .logo img {
     height: 40px;
-    width: auto;
+    width: auto; /* Mantém proporção */
+    max-width: 100%; /* Não ultrapassa o container */
     display: block;
     transition: transform 0.3s ease;
+    /* CORREÇÃO: Garante que o SVG não corte */
+    overflow: visible;
 }
 
 .logo img:hover {
@@ -102,15 +107,8 @@
     transform: rotate(15deg);
 }
 
-/* Ícones do botão tema - serão trocados pelo JS */
-.theme-toggle .fa-moon,
-.theme-toggle .fa-sun {
-    pointer-events: none;
-}
-
-/* ==================== 5. MENU HAMBURGER (MOBILE) ==================== */
+/* ==================== 5. MENU HAMBURGER ==================== */
 .menu-hamburger {
-    display: none;
     cursor: pointer;
     font-size: 1.5rem;
     color: var(--text-primary);
@@ -121,7 +119,7 @@
     border: none;
     width: 40px;
     height: 40px;
-    display: none; /* Inicialmente escondido no desktop */
+    display: none;
     align-items: center;
     justify-content: center;
 }
@@ -130,11 +128,7 @@
     color: var(--accent-primary);
 }
 
-.menu-hamburger i {
-    pointer-events: none;
-}
-
-/* ==================== 6. RESPONSIVIDADE ==================== */
+/* ==================== 6. RESPONSIVIDADE CORRIGIDA ==================== */
 @media (max-width: 768px) {
     /* Mostra o hamburger no mobile */
     .menu-hamburger {
@@ -144,10 +138,29 @@
     
     .theme-toggle {
         order: 1;
-        margin-right: auto;
     }
     
-    /* Menu mobile - escondido inicialmente */
+    /* CORREÇÃO: Ajusta o container para não cortar o logo */
+    .bloco-menu .container {
+        padding: 0.8rem 15px;
+        gap: 0.8rem;
+    }
+    
+    /* CORREÇÃO: Logo não corta e mantém espaço */
+    .logo {
+        order: 0;
+        flex: 0 0 auto; /* Não cresce nem encolhe */
+        max-width: calc(100% - 100px); /* Reserva espaço para hamburger + tema */
+    }
+    
+    .logo img {
+        height: 35px;
+        width: auto;
+        max-width: 100%;
+        object-fit: contain; /* Garante que a imagem inteira apareça */
+    }
+    
+    /* Menu mobile */
     .menu-links {
         position: fixed;
         top: 70px;
@@ -166,12 +179,10 @@
         box-shadow: var(--shadow);
     }
     
-    /* Menu aberto */
     .menu-links.active {
         left: 0;
     }
     
-    /* Estilo dos links no mobile */
     .menu-links li a {
         font-size: 1.2rem;
         padding: 0.8rem 1rem;
@@ -181,26 +192,17 @@
     .menu-links li a::after {
         display: none;
     }
-    
-    .menu-links li a:hover {
-        color: var(--accent-primary);
-        transform: translateX(10px);
-    }
-    
-    /* Ajuste do container do menu */
-    .bloco-menu .container {
-        padding: 0.8rem 15px;
-    }
-    
-    /* Logo menor no mobile */
-    .logo img {
-        height: 35px;
-    }
 }
 
 @media (max-width: 480px) {
     .bloco-menu .container {
-        padding: 0.7rem 15px;
+        padding: 0.7rem 12px;
+        gap: 0.5rem;
+    }
+    
+    /* CORREÇÃO: Ajuste fino para tela muito pequena */
+    .logo {
+        max-width: calc(100% - 85px);
     }
     
     .logo img {
@@ -224,14 +226,19 @@
         height: calc(100vh - 60px);
         gap: 1.5rem;
     }
-    
-    .menu-links li a {
-        font-size: 1.1rem;
+}
+
+/* CORREÇÃO EXTRA: Se o SVG ainda cortar, force o viewBox */
+@media (max-width: 768px) {
+    .logo img {
+        /* Força o SVG a respeitar os limites */
+        min-width: 0;
+        min-height: 0;
+        overflow: visible;
     }
 }
 
 /* ==================== 7. SCROLL PROTECTION ==================== */
-/* Quando o menu mobile está aberto, impede o scroll do body */
 body.menu-open {
     overflow: hidden;
 }
