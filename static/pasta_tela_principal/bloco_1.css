@@ -1,165 +1,80 @@
-/* ==================== HERO IMG E MEU NOME ==================== */
+
+/* ==================== BLOCO 1 - HERO ==================== */
 .bloco-hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
     position: relative;
-    overflow: hidden;
-    transition: background 0.3s ease;
+    padding: 80px 0;
+    background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
 }
 
-/* TEMA CLARO - Hero (fundo claro elegante) */
-[data-theme="light"] .bloco-hero {
-    background: linear-gradient(135deg, #f8fafc 0%, #eef2ff 100%);
-    color: var(--dark);
-}
-
-[data-theme="light"] .bloco-hero::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: radial-gradient(circle at 80% 20%, rgba(59,130,246,0.08) 0%, transparent 60%);
-    pointer-events: none;
-}
-
-[data-theme="light"] .hero-texto p {
-    color: #475569;
-}
-
-[data-theme="light"] .scroll-indicator {
-    background: rgba(59,130,246,0.1);
-    border: 1px solid rgba(59,130,246,0.2);
-}
-
-[data-theme="light"] .scroll-indicator:hover {
-    background: rgba(59,130,246,0.2);
-}
-
-/* TEMA ESCURO - Hero (fundo escuro profissional) */
-[data-theme="dark"] .bloco-hero {
-    background: linear-gradient(135deg, #020617 0%, #0f172a 100%);
-    color: white;
-}
-
-[data-theme="dark"] .bloco-hero::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: radial-gradient(circle at 80% 20%, rgba(59,130,246,0.15) 0%, transparent 60%);
-    pointer-events: none;
-}
-
-[data-theme="dark"] .hero-texto p {
-    color: #94a3b8;
-}
-
-[data-theme="dark"] .scroll-indicator {
-    background: rgba(255,255,255,0.08);
-    border: 1px solid rgba(255,255,255,0.1);
-}
-
-[data-theme="dark"] .scroll-indicator:hover {
-    background: rgba(255,255,255,0.15);
-}
-
-/* Estilos comuns */
 .hero-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 4rem;
     align-items: center;
-    position: relative;
-    z-index: 1;
-    padding: 4rem 0;
 }
 
 .hero-texto h1 {
-    font-size: 3.5rem;
-    font-weight: 800;
+    font-size: 3rem;
+    margin-bottom: 1rem;
     line-height: 1.2;
-    margin-bottom: 1.5rem;
 }
 
 .hero-texto h1 span {
-    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
 }
 
 .hero-texto p {
-    font-size: 1.2rem;
-    margin-bottom: 2rem;
-    line-height: 1.6;
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
 }
 
 .btn-primary {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    background: linear-gradient(135deg, var(--primary), var(--secondary));
-    color: white;
     padding: 1rem 2rem;
-    border-radius: 50px;
+    background: var(--accent-primary);
+    color: white;
     text-decoration: none;
+    border-radius: 50px;
     font-weight: 600;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(59,130,246,0.3);
+    border: none;
+    cursor: pointer;
 }
 
 .btn-primary:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(59,130,246,0.4);
-}
-
-.hero-imagem {
-    text-align: center;
+    background: var(--accent-hover);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-hover);
 }
 
 .hero-imagem img {
     width: 100%;
-    max-width: 450px;
-    animation: float 4s ease-in-out infinite;
-    transition: filter 0.3s ease;
-    border-radius: 55px;
-}
-
-/* Sombra da imagem por tema */
-[data-theme="light"] .hero-imagem img {
-    filter: drop-shadow(0 10px 20px rgba(0,0,0,0.08));
-}
-
-[data-theme="dark"] .hero-imagem img {
-    filter: drop-shadow(0 10px 20px rgba(0,0,0,0.3));
+    max-width: 400px;
+    border-radius: 50%;
+    animation: float 3s ease-in-out infinite;
 }
 
 @keyframes float {
-    0%, 100% { transform: translateY(0); }
+    0%, 100% { transform: translateY(0px); }
     50% { transform: translateY(-20px); }
 }
 
 .scroll-indicator {
     position: absolute;
-    bottom: 2rem;
+    bottom: 30px;
     left: 50%;
     transform: translateX(-50%);
     animation: bounce 2s infinite;
-    cursor: pointer;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s ease;
-}
-
-.scroll-indicator i {
-    font-size: 1.2rem;
-    color: var(--primary);
+    color: var(--accent-primary);
+    font-size: 1.5rem;
 }
 
 @keyframes bounce {

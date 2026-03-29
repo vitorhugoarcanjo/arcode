@@ -1,123 +1,90 @@
 
-/* ==================== PROJETOS ==================== */
+/* ==================== BLOCO 2 - PROJETOS ==================== */
 .bloco-projetos {
-    background: var(--section-bg);
-}
-
-.section-title {
-    font-size: 2.5rem;
-    font-weight: 700;
-    text-align: center;
-    margin-bottom: 1rem;
-    background: linear-gradient(135deg, var(--primary), var(--secondary));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
-.section-subtitle {
-    text-align: center;
-    color: var(--text-secondary);
-    margin-bottom: 3rem;
-    font-size: 1.1rem;
+    padding: 80px 0;
+    background: var(--bg-secondary);
 }
 
 .carrossel-container {
     position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
-    margin: 2rem 0;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 60px;
 }
 
 .carrossel-wrapper {
-    flex: 1;
     overflow: hidden;
-    border-radius: 1.5rem;
-    box-shadow: var(--shadow);
-    background: var(--card-bg);
+    border-radius: 20px;
 }
 
 .carrossel-slides {
     display: flex;
-    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: transform 0.5s ease-in-out;
 }
 
 .carrossel-slide {
-    flex: 0 0 100%;
+    min-width: 100%;
+    padding: 20px;
 }
 
 .projeto-card {
-    background: var(--card-bg);
-    border-radius: 1.5rem;
+    background: var(--bg-card);
+    border-radius: 20px;
     overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: all 0.3s ease;
+}
+
+.projeto-card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-hover);
 }
 
 .projeto-imagem {
     position: relative;
-    height: auto;
-    max-height: 400px;  /* Limite máximo */
     overflow: hidden;
-    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    height: 250px;
 }
 
 .projeto-imagem img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.5s ease;
+    transition: transform 0.3s ease;
 }
 
 .projeto-card:hover .projeto-imagem img {
-    transform: scale(1.05);
+    transform: scale(1.1);
 }
 
 .projeto-overlay {
     position: absolute;
-    top: 1rem;
-    right: 1rem;
-    z-index: 2;
+    top: 20px;
+    right: 20px;
 }
 
 .projeto-tag {
-    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    background: var(--accent-primary);
     color: white;
-    padding: 0.4rem 1rem;
+    padding: 0.3rem 1rem;
     border-radius: 50px;
     font-size: 0.8rem;
     font-weight: 600;
 }
 
-.privado-tag {
-    background: var(--text-secondary);
-}
-
-.lock-icon {
-    position: absolute;
-    top: 1rem;
-    left: 1rem;
-    font-size: 1.2rem;
-    color: white;
-    background: rgba(0,0,0,0.5);
-    padding: 0.5rem;
-    border-radius: 50%;
-}
-
 .projeto-info {
-    padding: 1.8rem;
+    padding: 1.5rem;
 }
 
 .projeto-info h3 {
-    font-size: 1.5rem;
-    margin-bottom: 0.8rem;
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
     color: var(--text-primary);
 }
 
 .projeto-info p {
     color: var(--text-secondary);
     margin-bottom: 1rem;
-    line-height: 1.6;
 }
 
 .projeto-tech {
@@ -128,111 +95,92 @@
 }
 
 .projeto-tech span {
-    background: var(--bg-primary);
-    color: var(--primary);
+    background: var(--bg-secondary);
+    color: var(--accent-primary);
     padding: 0.3rem 0.8rem;
     border-radius: 50px;
-    font-size: 0.75rem;
+    font-size: 0.8rem;
     font-weight: 500;
-    border: 1px solid var(--border-color);
 }
 
 .projeto-status {
-    font-size: 0.85rem;
-    color: var(--warning);
-    margin-top: 0.5rem;
-    display: flex;
-    align-items: center;
-    gap: 0.3rem;
-}
-
-.projeto-status i {
-    font-size: 0.8rem;
+    margin: 1rem 0;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
 }
 
 .btn-detalhes {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    background: none;
-    border: none;
-    color: var(--primary);
+    padding: 0.6rem 1.2rem;
+    background: transparent;
+    color: var(--accent-primary);
     text-decoration: none;
+    border: 2px solid var(--accent-primary);
+    border-radius: 50px;
     font-weight: 600;
-    cursor: pointer;
-    transition: var(--transition);
-    padding: 0.5rem 0;
+    transition: all 0.3s ease;
 }
 
 .btn-detalhes:hover {
-    color: var(--primary-dark);
-    gap: 0.8rem;
-}
-
-.btn-detalhes.disabled {
-    color: var(--text-secondary);
-    cursor: not-allowed;
+    background: var(--accent-primary);
+    color: white;
 }
 
 .carrossel-btn {
-    background: var(--card-bg);
-    border: 1px solid var(--border-color);
-    width: 45px;
-    height: 45px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--accent-primary);
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     cursor: pointer;
-    transition: var(--transition);
-    box-shadow: var(--shadow);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    transition: all 0.3s ease;
+    z-index: 10;
 }
 
 .carrossel-btn:hover {
-    background: var(--primary);
-    transform: scale(1.1);
+    background: var(--accent-hover);
+    transform: translateY(-50%) scale(1.1);
 }
 
-.carrossel-btn i {
-    color: var(--text-primary);
-    font-size: 1.2rem;
-    transition: var(--transition);
+.prev {
+    left: 0;
 }
 
-.carrossel-btn:hover i {
-    color: white;
+.next {
+    right: 0;
 }
 
 .carrossel-indicators {
     display: flex;
     justify-content: center;
-    gap: 0.8rem;
+    gap: 0.5rem;
     margin-top: 2rem;
 }
 
 .indicator {
-    width: 8px;
-    height: 8px;
+    width: 10px;
+    height: 10px;
     border-radius: 50%;
-    background: var(--border-color);
+    background: var(--text-secondary);
     cursor: pointer;
-    transition: var(--transition);
+    transition: all 0.3s ease;
 }
 
 .indicator.active {
-    background: var(--primary);
-    width: 25px;
+    width: 30px;
     border-radius: 10px;
-}
-
-.indicator:hover {
-    background: var(--primary);
-    transform: scale(1.2);
+    background: var(--accent-primary);
 }
 
 .carrossel-info {
     text-align: center;
-    margin-top: 1.5rem;
+    margin-top: 1rem;
     color: var(--text-secondary);
-    font-size: 0.85rem;
+    font-size: 0.9rem;
 }

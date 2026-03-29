@@ -1,19 +1,22 @@
 
-/* ==================== CONTATO ==================== */
+/* ==================== BLOCO 4 - CONTATO ==================== */
 .bloco-contato {
-    background: var(--section-bg);
+    padding: 80px 0;
+    background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
 }
 
 .contato-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 4rem;
+    max-width: 900px;
+    margin: 0 auto;
 }
 
 .redes-sociais h3, .contato-info h3 {
     font-size: 1.5rem;
     margin-bottom: 1.5rem;
-    color: var(--text-primary);
+    color: var(--accent-primary);
 }
 
 .redes-links {
@@ -26,25 +29,25 @@
     display: flex;
     align-items: center;
     gap: 1rem;
-    padding: 1rem 1.5rem;
-    background: var(--card-bg);
-    border-radius: 1rem;
-    text-decoration: none;
+    padding: 1rem;
+    background: var(--bg-card);
     color: var(--text-primary);
-    transition: var(--transition);
-    box-shadow: var(--shadow);
+    text-decoration: none;
+    border-radius: 10px;
+    transition: all 0.3s ease;
     border: 1px solid var(--border-color);
 }
 
 .rede-link:hover {
-    background: var(--primary);
-    color: white;
     transform: translateX(10px);
-    border-color: var(--primary);
+    background: var(--accent-primary);
+    color: white;
+    border-color: var(--accent-primary);
 }
 
 .rede-link i {
     font-size: 1.5rem;
+    width: 30px;
 }
 
 .contato-info p {
@@ -53,14 +56,13 @@
     gap: 1rem;
     margin-bottom: 1rem;
     padding: 0.8rem;
-    background: var(--card-bg);
-    border-radius: 1rem;
-    border: 1px solid var(--border-color);
-    color: var(--text-primary);
+    background: var(--bg-card);
+    border-radius: 10px;
+    color: var(--text-secondary);
 }
 
 .contato-info i {
-    width: 1.8rem;
-    color: var(--primary);
+    width: 30px;
+    color: var(--accent-primary);
     font-size: 1.2rem;
 }
