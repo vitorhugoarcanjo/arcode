@@ -1,56 +1,45 @@
-// carrossel.js - VERSÃO SIMPLIFICADA
-document.addEventListener('DOMContentLoaded', function() {
-    const slides = document.getElementById('carrosselSlides');
-    const prev = document.getElementById('prevBtn');
-    const next = document.getElementById('nextBtn');
-    const indicators = document.getElementById('indicators');
+document.addEventListener('DOMContentLoaded', () => {
+    const slides = document.querySelector('.carrossel-slides');
+    const prevBtn = document.querySelector('.prev');
+    const nextBtn = document.querySelector('.next');
+    const indicatorsEl = document.querySelector('.carrossel-indicators');
     
-    if (!slides) {
-        console.log('Carrossel não encontrado');
-        return;
-    }
+    const totalSlides = slides.children.length;
+    let currentSlide = 0;
     
-    const total = slides.children.length;
-    let current = 0;
-    
-    function update() {
-        slides.style.transform = `translateX(-${current * 100}%)`;
+    function updateCarousel() {
+        slides.style.transform = `translateX(-${currentSlide * 100}%)`;
         
-        if (indicators) {
-            const dots = indicators.querySelectorAll('.indicator');
-            dots.forEach((dot, i) => {
-                dot.classList.toggle('active', i === current);
-            });
-        }
+        // Update indicators
+        document.querySelectorAll('.indicator').forEach((dot, index) => {
+            dot.classList.toggle('active', index === currentSlide);
+        });
     }
     
-    function nextSlide() {
-        current = (current + 1) % total;
-        update();
+    // Next
+    nextBtn.onclick = () => {
+        currentSlide = (currentSlide + 1) % totalSlides;
+        updateCarousel();
+    };
+    
+    // Prev
+    prevBtn.onclick = () => {
+        currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+        updateCarousel();
+    };
+    
+    // Indicators
+    indicatorsEl.innerHTML = '';
+    for(let i = 0; i < totalSlides; i++) {
+        const dot = document.createElement('div');
+        dot.className = 'indicator';
+        dot.onclick = () => {
+            currentSlide = i;
+            updateCarousel();
+        };
+        indicatorsEl.appendChild(dot);
     }
     
-    function prevSlide() {
-        current = (current - 1 + total) % total;
-        update();
-    }
-    
-    if (prev) prev.onclick = prevSlide;
-    if (next) next.onclick = nextSlide;
-    
-    // Criar indicadores
-    if (indicators) {
-        indicators.innerHTML = '';
-        for (let i = 0; i < total; i++) {
-            const dot = document.createElement('div');
-            dot.className = 'indicator';
-            if (i === 0) dot.classList.add('active');
-            dot.onclick = () => {
-                current = i;
-                update();
-            };
-            indicators.appendChild(dot);
-        }
-    }
-    
-    console.log('Carrossel iniciado com', total, 'slides');
+    // Primeira ativa
+    document.querySelector('.indicator')?.classList.add('active');
 });

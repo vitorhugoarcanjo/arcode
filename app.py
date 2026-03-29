@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template
+from flask import Flask, redirect, url_for
 from dotenv import load_dotenv
 from config.imports_blueprints import import_blueprints
 
@@ -15,7 +15,7 @@ import_blueprints(app)
 
 @app.route('/')
 def ini_app():
-    return render_template('pasta_tela_principal/tela_principal.html')
+    return redirect(url_for('inicio.ini_tela_principal'))
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5001, debug=app.config['DEBUG'])

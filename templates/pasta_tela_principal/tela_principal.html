@@ -39,7 +39,7 @@
 
             <ul class="menu-links" id="menu-links">
                 <li><a href="#inicio">Início</a></li>
-                <li><a href="#projetos">Projetos</a></li>
+                <li><a href="{{ url_for('inicio.ini_tela_projetos') }}">Projetos</a></li>
                 <li><a href="#sobre">Sobre</a></li>
                 <li><a href="#contato">Contato</a></li>
                 <li><a href="{{ url_for('manual.ini_manual', page='index_manual') }}">Manual</a></li>
@@ -50,8 +50,6 @@
             </button>
         </nav>
     </header>
-
-
 
     <main>
         <!-- ==================== BLOCO 1 - MINHA IMG E TITULO ==================== -->
@@ -72,116 +70,7 @@
             </div>
         </section>
 
-
-        <!-- ==================== BLOCO 2 - PROJETOS ==================== -->
-        <section id="projetos" class="bloco bloco-projetos">
-            <div class="container">
-                <h2 class="section-title">Meus Projetos</h2>
-                <p class="section-subtitle">Trabalhos que entregam resultados reais</p>
-                
-                <!-- Carrossel -->
-                <div class="carrossel-container">
-                    <button class="carrossel-btn prev" id="prevBtn">
-                        <i class="fas fa-chevron-left"></i>
-                    </button>
-                    
-                    <div class="carrossel-wrapper">
-                        <div class="carrossel-slides" id="carrosselSlides">
-                            <!-- Projeto 1 - SITE DE GESTÃO DE TAREFAS E FINANCEIRO -->
-                            <div class="carrossel-slide">
-                                <div class="projeto-card">
-                                    <div class="projeto-imagem">
-                                        <img src="{{ url_for('static', filename='images/projetos/site_gestao_tarefas_e_financeiro/Snipaste_2026-03-27_17-40-24.png') }}" 
-                                            alt="SITE DE GESTÃO DE TAREFAS E FINANCEIRO">
-                                        <div class="projeto-overlay">
-                                            <span class="projeto-tag">Destaque</span>
-                                        </div>
-                                    </div>
-                                    <div class="projeto-info">
-                                        <h3>📋 Gestão de Tarefas e Finanças</h3>
-                                        <p>Sistema completo para organização pessoal, combinando gestão de tarefas do dia a dia com controle financeiro pessoal.</p>
-                                        <div class="projeto-tech">
-                                            <span>ESTÁ EM DESENVOLVIMENTO</span>
-                                            <span>Python/Flask</span>
-                                            <span>SQLite</span>
-                                            <span>HTML/CSS/JS</span>
-                                        </div>
-                                        <p class="projeto-status">
-                                            <i class="fas fa-code"></i> Status: Em desenvolvimento ativo
-                                        </p>
-                                        <a href="https://vhorganiza.com.br/" target="_blank" class="btn-detalhes">
-                                            <i class="fas fa-external-link-alt"></i> Acessar Site
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <!-- Projeto 2 - ConectaPrev - Rastreamento Precoce -->
-                            <div class="carrossel-slide">
-                                <div class="projeto-card">
-                                    <div class="projeto-imagem">
-                                        <img src="{{ url_for('static', filename='images/projetos/conecta_prev/conecta_preeev.gif') }}" 
-                                            alt="ConectaPrev - Rastreamento Precoce">
-                                        <div class="projeto-overlay">
-                                            <span class="projeto-tag">Saúde & Tecnologia</span>
-                                        </div>
-                                    </div>
-                                    <div class="projeto-info">
-                                        <h3>🧠 ConectaPrev</h3>
-                                        <p>Plataforma inovadora para facilitar o <strong>rastreamento precoce do Parkinson e Alzheimer</strong>, auxiliando profissionais de saúde e familiares no diagnóstico precoce.</p>
-                                        <div class="projeto-tech">
-                                            <span>Python/Flask</span>
-                                            <span>SQLite</span>
-                                            <span>HTML/CSS/JS</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            
-                            <!-- Projeto 3 - SISTEMA DE CONSULTA ESTADUAL E FEDERAL (Privado) -->
-                            <div class="carrossel-slide">
-                                <div class="projeto-card">
-                                    <div class="projeto-imagem">
-                                        <img src="{{ url_for('static', filename='images/projetos/safa/prints_em_gif.gif') }}" 
-                                            alt="SAFA">
-                                        <div class="projeto-overlay">
-                                            <span class="projeto-tag">Destaque</span>
-                                        </div>
-                                    </div>
-                                    <div class="projeto-info">
-                                        <h3>🌿 SAFA - Sistema de Consulta Ambiental</h3>
-                                        <p>Sistema especializado para consultas ambientais, florestais e documentações nos âmbitos estadual e federal.</p>
-                                        <div class="projeto-tech">
-                                            <span>Python/Flask</span>
-                                            <span>SQLite</span>
-                                            <span>📄 PDFKit</span>
-                                            <span>HTML/CSS/JS</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                        </div>
-                    </div>
-                    
-                    <button class="carrossel-btn next" id="nextBtn">
-                        <i class="fas fa-chevron-right"></i>
-                    </button>
-                </div>
-                
-                <!-- Indicadores (bolinhas) -->
-                <div class="carrossel-indicators" id="indicators"></div>
-                
-                <!-- Info extra -->
-                <div class="carrossel-info">
-                    <p><i class="fas fa-arrows-alt-h"></i> Arraste ou clique nas setas para navegar</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- ==================== BLOCO 3 - SOBRE ==================== -->
+        <!-- ==================== BLOCO 2 - SOBRE ==================== -->
         <section id="sobre" class="bloco bloco-sobre">
             <div class="container sobre-grid">
                 <div class="sobre-texto">
@@ -218,7 +107,7 @@
             </div>
         </section>
 
-        <!-- ==================== BLOCO 4 - CONTATO/REDES ==================== -->
+        <!-- ==================== BLOCO 3 - CONTATO/REDES ==================== -->
         <section id="contato" class="bloco bloco-contato">
             <div class="container">
                 <h2 class="section-title">Vamos Conversar?</h2>
