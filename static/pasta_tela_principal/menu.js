@@ -1,127 +1,78 @@
-// Aguarda o DOM carregar completamente
+// ==================== MENU.JS COMPLETO ====================
 document.addEventListener('DOMContentLoaded', function() {
     
-    // ==================== TEMA ESCURO/CLARO ====================
-    const themeToggle = document.getElementById('theme-toggle');
-    const themeIcon = themeToggle?.querySelector('i');
-
-    const getPreferredTheme = () => {
-        const savedTheme = localStorage.getItem('theme');
-        if (savedTheme) return savedTheme;
-        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-            return 'dark';
-        }
-        return 'light';
-    };
-
-    const setTheme = (theme) => {
-        if (theme === 'dark') {
-            document.documentElement.setAttribute('data-theme', 'dark');
-            themeIcon?.classList.remove('fa-moon');
-            themeIcon?.classList.add('fa-sun');
-        } else {
-            document.documentElement.removeAttribute('data-theme');
-            themeIcon?.classList.remove('fa-sun');
-            themeIcon?.classList.add('fa-moon');
-        }
-        localStorage.setItem('theme', theme);
-    };
-
-    const toggleTheme = () => {
-        const currentTheme = document.documentElement.getAttribute('data-theme');
-        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-        setTheme(newTheme);
-    };
-
-    if (themeToggle) {
-        themeToggle.addEventListener('click', toggleTheme);
-        const savedTheme = getPreferredTheme();
-        setTheme(savedTheme);
-    }
-
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-        if (!localStorage.getItem('theme')) {
-            setTheme(e.matches ? 'dark' : 'light');
-        }
-    });
-
     // ==================== MENU HAMBURGER ====================
     const menuHamburger = document.getElementById('menu-hamburger');
     const menuLinks = document.getElementById('menu-links');
-
+    const body = document.body;
+    
     if (menuHamburger && menuLinks) {
-        menuHamburger.addEventListener('click', () => {
+        // Abrir/fechar menu
+        menuHamburger.addEventListener('click', function(e) {
+            e.stopPropagation();
             menuLinks.classList.toggle('active');
+            body.classList.toggle('menu-open');
         });
-
-        document.querySelectorAll('.menu-links a').forEach(link => {
-            link.addEventListener('click', () => {
+        
+        // Fechar menu ao clicar em um link
+        const links = menuLinks.querySelectorAll('a');
+        links.forEach(link => {
+            link.addEventListener('click', function() {
                 menuLinks.classList.remove('active');
+                body.classList.remove('menu-open');
             });
         });
-    }
-
-    // ==================== SCROLL SUAVE ====================
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }
-        });
-    });
-
-    // ==================== SCROLL INDICATOR ====================
-    const scrollIndicator = document.querySelector('.scroll-indicator');
-    if (scrollIndicator) {
-        scrollIndicator.addEventListener('click', () => {
-            const projetosSection = document.querySelector('#projetos');
-            if (projetosSection) {
-                projetosSection.scrollIntoView({
-                    behavior: 'smooth'
-                });
+        
+        // Fechar menu ao clicar fora (opcional)
+        document.addEventListener('click', function(e) {
+            if (!menuHamburger.contains(e.target) && !menuLinks.contains(e.target)) {
+                menuLinks.classList.remove('active');
+                body.classList.remove('menu-open');
             }
         });
     }
-
-    // ==================== CARROSSEL ====================
-    const slides = document.querySelectorAll('.carrossel-slide');
-    const total = slides.length;
     
-    if (total > 0) {
-        let slide = 0;
-        const slidesContainer = document.querySelector('.carrossel-slides');
-        const prevBtn = document.getElementById('prevBtn');
-        const nextBtn = document.getElementById('nextBtn');
-        let autoPlayInterval;
-
-        function mudarSlide(direcao) {
-            slide = (slide + direcao + total) % total;
-            slidesContainer.style.transform = `translateX(-${slide * 100}%)`;
+    // ==================== TEMA CLARO/ESCURO ====================
+    const themeToggle = document.getElementById('theme-toggle');
+    const htmlElement = document.documentElement;
+    
+    // Verifica tema salvo no localStorage
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+        htmlElement.setAttribute('data-theme', 'dark');
+        if (themeToggle) {
+            themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
         }
-
-        function startAutoPlay() {
-            if (autoPlayInterval) clearInterval(autoPlayInterval);
-            autoPlayInterval = setInterval(() => mudarSlide(1), 4000);
-        }
-
-        if (prevBtn) prevBtn.addEventListener('click', () => mudarSlide(-1));
-        if (nextBtn) nextBtn.addEventListener('click', () => mudarSlide(1));
-
-        startAutoPlay();
-
-        const carrosselContainer = document.querySelector('.carrossel-container');
-        if (carrosselContainer) {
-            carrosselContainer.addEventListener('mouseenter', () => {
-                if (autoPlayInterval) clearInterval(autoPlayInterval);
-            });
-            carrosselContainer.addEventListener('mouseleave', startAutoPlay);
+    } else {
+        if (themeToggle) {
+            themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
         }
     }
     
-    console.log("✅ Site carregado com sucesso!");
+    // Alternar tema ao clicar
+    if (themeToggle) {
+        themeToggle.addEventListener('click', function() {
+            if (htmlElement.getAttribute('data-theme') === 'dark') {
+                htmlElement.removeAttribute('data-theme');
+                localStorage.setItem('theme', 'light');
+                themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+            } else {
+                htmlElement.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+                themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+            }
+        });
+    }
+    
+    // ==================== FIX: Ajuste do padding-top para o menu fixo ====================
+    function adjustBodyPadding() {
+        const menu = document.querySelector('.bloco-menu');
+        if (menu) {
+            const menuHeight = menu.offsetHeight;
+            document.body.style.paddingTop = menuHeight + 'px';
+        }
+    }
+    
+    adjustBodyPadding();
+    window.addEventListener('resize', adjustBodyPadding);
 });
