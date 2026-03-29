@@ -1,103 +1,190 @@
-/* ==================== BLOCO_2.CSS - VERSÃO SIMPLIFICADA ==================== */
-.bloco-projetos {
-    padding: 60px 0;
-    background: var(--bg-secondary);
-}
-
+/* ==================== CARROSSEL ==================== */
 .carrossel-container {
     position: relative;
-    max-width: 900px;
+    width: 100%;
+    max-width: 1200px;
     margin: 0 auto;
+    padding: 0 40px;
+    box-sizing: border-box;
 }
 
 .carrossel-wrapper {
+    width: 100%;
     overflow: hidden;
-    border-radius: 20px;
+    border-radius: 16px;
 }
 
 .carrossel-slides {
     display: flex;
-    transition: transform 0.5s ease;
+    transition: transform 0.5s ease-in-out;
+    will-change: transform;
 }
 
 .carrossel-slide {
-    min-width: 100%;
-    padding: 10px;
+    flex: 0 0 100%;
+    width: 100%;
+    padding: 0 15px;
+    box-sizing: border-box;
 }
 
+/* Cards de projeto */
 .projeto-card {
-    background: var(--bg-card);
+    background: var(--card-bg, #ffffff);
     border-radius: 20px;
     overflow: hidden;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.projeto-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
 }
 
 .projeto-imagem {
-    height: 200px;
+    position: relative;
+    width: 100%;
+    height: 250px;
     overflow: hidden;
+    background: #f5f5f5;
 }
 
 .projeto-imagem img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.projeto-card:hover .projeto-imagem img {
+    transform: scale(1.05);
+}
+
+.projeto-overlay {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+}
+
+.projeto-tag {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 .projeto-info {
-    padding: 20px;
+    padding: 1.5rem;
 }
 
 .projeto-info h3 {
-    margin-bottom: 10px;
-    font-size: 1.2rem;
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+    color: var(--text-color, #333);
+}
+
+.projeto-info p {
+    color: var(--text-secondary, #666);
+    line-height: 1.5;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
 }
 
 .projeto-tech {
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
-    margin: 15px 0;
+    margin: 1rem 0;
 }
 
 .projeto-tech span {
-    background: #f0f0f0;
+    background: var(--tech-bg, #f0f0f0);
+    color: var(--tech-color, #555);
     padding: 4px 12px;
     border-radius: 20px;
     font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.projeto-status {
+    font-size: 0.85rem;
+    color: #667eea;
+    margin: 0.75rem 0;
 }
 
 .btn-detalhes {
-    display: inline-block;
-    padding: 8px 20px;
-    background: #6c5ce7;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;
+    padding: 10px 20px;
+    border-radius: 10px;
     text-decoration: none;
-    border-radius: 25px;
-    font-size: 0.85rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
 }
 
+.btn-detalhes:hover {
+    transform: translateX(5px);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+}
+
+/* Botões de navegação */
 .carrossel-btn {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: #6c5ce7;
-    color: white;
-    border: none;
-    width: 40px;
-    height: 40px;
+    width: 44px;
+    height: 44px;
     border-radius: 50%;
+    background: white;
+    border: none;
     cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
     z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.prev { left: -20px; }
-.next { right: -20px; }
+.carrossel-btn:hover {
+    background: #667eea;
+    transform: translateY(-50%) scale(1.1);
+}
 
+.carrossel-btn:hover i {
+    color: white;
+}
+
+.carrossel-btn i {
+    font-size: 1.2rem;
+    color: #333;
+    transition: color 0.3s ease;
+}
+
+.prev {
+    left: 0;
+}
+
+.next {
+    right: 0;
+}
+
+/* Indicadores (bolinhas) */
 .carrossel-indicators {
     display: flex;
     justify-content: center;
-    gap: 10px;
-    margin-top: 20px;
+    gap: 12px;
+    margin-top: 30px;
 }
 
 .indicator {
@@ -106,19 +193,181 @@
     border-radius: 50%;
     background: #ccc;
     cursor: pointer;
+    transition: all 0.3s ease;
 }
 
 .indicator.active {
-    background: #6c5ce7;
-    width: 25px;
-    border-radius: 10px;
+    width: 28px;
+    border-radius: 5px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 }
 
-@media (max-width: 768px) {
-    .carrossel-btn {
-        width: 30px;
-        height: 30px;
+.indicator:hover {
+    background: #667eea;
+}
+
+/* Info extra */
+.carrossel-info {
+    text-align: center;
+    margin-top: 20px;
+    color: var(--text-secondary, #666);
+    font-size: 0.85rem;
+}
+
+.carrossel-info i {
+    margin-right: 5px;
+    color: #667eea;
+}
+
+/* ==================== MOBILE FIRST ==================== */
+/* Tablet e Desktop pequeno (768px - 1024px) */
+@media (min-width: 768px) {
+    .carrossel-container {
+        padding: 0 50px;
     }
-    .prev { left: 5px; }
-    .next { right: 5px; }
+    
+    .carrossel-slide {
+        flex: 0 0 100%;
+    }
+    
+    .projeto-imagem {
+        height: 300px;
+    }
+    
+    .projeto-info h3 {
+        font-size: 1.35rem;
+    }
+    
+    .projeto-info p {
+        font-size: 0.95rem;
+    }
+}
+
+/* Desktop grande (1024px+) */
+@media (min-width: 1024px) {
+    .carrossel-container {
+        padding: 0 60px;
+    }
+    
+    .carrossel-slide {
+        padding: 0 20px;
+    }
+    
+    .projeto-imagem {
+        height: 350px;
+    }
+    
+    .carrossel-btn {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .carrossel-btn i {
+        font-size: 1.3rem;
+    }
+}
+
+/* Mobile pequeno (até 480px) */
+@media (max-width: 480px) {
+    .carrossel-container {
+        padding: 0 30px;
+    }
+    
+    .carrossel-slide {
+        padding: 0 10px;
+    }
+    
+    .projeto-imagem {
+        height: 200px;
+    }
+    
+    .projeto-info {
+        padding: 1rem;
+    }
+    
+    .projeto-info h3 {
+        font-size: 1.1rem;
+    }
+    
+    .projeto-info p {
+        font-size: 0.85rem;
+    }
+    
+    .projeto-tech span {
+        font-size: 0.7rem;
+        padding: 3px 10px;
+    }
+    
+    .btn-detalhes {
+        padding: 8px 16px;
+        font-size: 0.85rem;
+    }
+    
+    .carrossel-btn {
+        width: 36px;
+        height: 36px;
+    }
+    
+    .carrossel-btn i {
+        font-size: 1rem;
+    }
+    
+    .indicator {
+        width: 8px;
+        height: 8px;
+    }
+    
+    .indicator.active {
+        width: 24px;
+    }
+}
+
+/* Suporte para touch (melhor experiência mobile) */
+@media (hover: none) and (pointer: coarse) {
+    .carrossel-btn {
+        background: rgba(255, 255, 255, 0.95);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    }
+    
+    .projeto-card:hover {
+        transform: none;
+    }
+    
+    .projeto-card:hover .projeto-imagem img {
+        transform: none;
+    }
+}
+
+/* Tema escuro (caso você tenha) */
+[data-theme="dark"] .projeto-card {
+    background: #1e1e2e;
+}
+
+[data-theme="dark"] .projeto-info h3 {
+    color: #fff;
+}
+
+[data-theme="dark"] .projeto-info p {
+    color: #aaa;
+}
+
+[data-theme="dark"] .projeto-tech span {
+    background: #2a2a3a;
+    color: #ccc;
+}
+
+[data-theme="dark"] .carrossel-btn {
+    background: #2a2a3a;
+}
+
+[data-theme="dark"] .carrossel-btn i {
+    color: #fff;
+}
+
+[data-theme="dark"] .indicator {
+    background: #444;
+}
+
+[data-theme="dark"] .carrossel-info {
+    color: #aaa;
 }

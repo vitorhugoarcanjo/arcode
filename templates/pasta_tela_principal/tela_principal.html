@@ -6,747 +6,28 @@
     <meta name="description" content="Portfólio de Vitor Hugo - Desenvolvedor Full Stack especializado em Flask, Python e soluções digitais.">
     <meta name="author" content="Vitor Hugo Arcanjo Dias Pereira">
     <title>Vitor Hugo | Desenvolvedor Full Stack</title>
-    
-    <!-- FONT AWESOME -->
+
+
+        <!-- FONT AWESOME - OBRIGATÓRIO PARA OS ÍCONES -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
-    <style>
-        /* ==================== RESET E VARIÁVEIS ==================== */
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        html {
-            scroll-behavior: smooth;
-            overflow-x: hidden;
-        }
-        
-        body {
-            font-family: 'Poppins', sans-serif;
-            line-height: 1.6;
-            background: #ffffff;
-            color: #2d3436;
-            overflow-x: hidden;
-            width: 100%;
-            padding-top: 70px;
-            transition: background 0.3s ease, color 0.3s ease;
-        }
-        
-        /* TEMA CLARO (PADRÃO) */
-        :root {
-            --bg-primary: #ffffff;
-            --bg-secondary: #f8f9fa;
-            --bg-card: #ffffff;
-            --text-primary: #2d3436;
-            --text-secondary: #636e72;
-            --accent-primary: #6c5ce7;
-            --accent-secondary: #a8e6cf;
-            --accent-hover: #5b4bc4;
-            --border-color: #e1e8ed;
-            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            --shadow-hover: 0 15px 40px rgba(108, 92, 231, 0.15);
-        }
-        
-        /* TEMA ESCURO */
-        [data-theme="dark"] {
-            --bg-primary: #1a1a2e;
-            --bg-secondary: #16213e;
-            --bg-card: #0f3460;
-            --text-primary: #ffffff;
-            --text-secondary: #b8c1ec;
-            --accent-primary: #a8e6cf;
-            --accent-secondary: #6c5ce7;
-            --accent-hover: #8b7ae6;
-            --border-color: #2c3e50;
-            --shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        }
-        
-        body {
-            background: var(--bg-primary);
-            color: var(--text-primary);
-        }
-        
-        /* UTILITÁRIOS */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-            width: 100%;
-        }
-        
-        .section-title {
-            font-size: 2.5rem;
-            text-align: center;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .section-subtitle {
-            text-align: center;
-            color: var(--text-secondary);
-            margin-bottom: 3rem;
-            font-size: 1.1rem;
-        }
-        
-        /* ==================== MENU (BLOCO 0) ==================== */
-        .bloco-menu {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background: var(--bg-primary);
-            box-shadow: var(--shadow);
-            z-index: 1000;
-            transition: all 0.3s ease;
-        }
-        
-        .bloco-menu .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 20px;
-            gap: 1rem;
-        }
-        
-        .logo img {
-            height: 40px;
-            width: auto;
-            display: block;
-        }
-        
-        .menu-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
-        
-        .menu-links li a {
-            text-decoration: none;
-            color: var(--text-primary);
-            font-weight: 500;
-            transition: color 0.3s ease;
-            position: relative;
-        }
-        
-        .menu-links li a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--accent-primary);
-            transition: width 0.3s ease;
-        }
-        
-        .menu-links li a:hover::after {
-            width: 100%;
-        }
-        
-        .menu-links li a:hover {
-            color: var(--accent-primary);
-        }
-        
-        .theme-toggle {
-            background: var(--bg-secondary);
-            border: none;
-            cursor: pointer;
-            font-size: 1.2rem;
-            color: var(--text-primary);
-            padding: 0.5rem;
-            border-radius: 50%;
-            transition: all 0.3s ease;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .theme-toggle:hover {
-            background: var(--accent-primary);
-            color: white;
-            transform: rotate(15deg);
-        }
-        
-        .menu-hamburger {
-            display: none;
-            cursor: pointer;
-            font-size: 1.5rem;
-            color: var(--text-primary);
-            background: none;
-            border: none;
-            width: 40px;
-            height: 40px;
-        }
-        
-        /* ==================== HERO (BLOCO 1) ==================== */
-        .bloco-hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            position: relative;
-            padding: 80px 0 60px;
-            background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
-        }
-        
-        .hero-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-        
-        .hero-texto h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            line-height: 1.2;
-        }
-        
-        .hero-texto h1 span {
-            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .hero-texto p {
-            color: var(--text-secondary);
-            margin-bottom: 1.5rem;
-        }
-        
-        .hero-texto p:first-of-type {
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-        }
-        
-        .btn-primary {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 1rem 2rem;
-            background: var(--accent-primary);
-            color: white;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-        
-        .btn-primary:hover {
-            background: var(--accent-hover);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-hover);
-        }
-        
-        .hero-imagem img {
-            width: 100%;
-            max-width: 400px;
-            border-radius: 50%;
-            animation: float 3s ease-in-out infinite;
-        }
-        
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
-        }
-        
-        .scroll-indicator {
-            position: absolute;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            animation: bounce 2s infinite;
-            color: var(--accent-primary);
-            font-size: 1.5rem;
-        }
-        
-        @keyframes bounce {
-            0%, 100% { transform: translateX(-50%) translateY(0); }
-            50% { transform: translateX(-50%) translateY(10px); }
-        }
-        
-        /* ==================== PROJETOS (BLOCO 2) ==================== */
-        .bloco-projetos {
-            padding: 80px 0;
-            background: var(--bg-secondary);
-        }
-        
-        .carrossel-container {
-            position: relative;
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 0 50px;
-        }
-        
-        .carrossel-wrapper {
-            overflow: hidden;
-            border-radius: 20px;
-        }
-        
-        .carrossel-slides {
-            display: flex;
-            transition: transform 0.5s ease-in-out;
-        }
-        
-        .carrossel-slide {
-            min-width: 100%;
-            padding: 10px;
-        }
-        
-        .projeto-card {
-            background: var(--bg-card);
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: all 0.3s ease;
-        }
-        
-        .projeto-card:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow-hover);
-        }
-        
-        .projeto-imagem {
-            position: relative;
-            overflow: hidden;
-            height: 250px;
-        }
-        
-        .projeto-imagem img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-        
-        .projeto-card:hover .projeto-imagem img {
-            transform: scale(1.1);
-        }
-        
-        .projeto-overlay {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-        }
-        
-        .projeto-tag {
-            background: var(--accent-primary);
-            color: white;
-            padding: 0.3rem 1rem;
-            border-radius: 50px;
-            font-size: 0.8rem;
-            font-weight: 600;
-        }
-        
-        .projeto-info {
-            padding: 1.5rem;
-        }
-        
-        .projeto-info h3 {
-            font-size: 1.3rem;
-            margin-bottom: 0.8rem;
-        }
-        
-        .projeto-info p {
-            color: var(--text-secondary);
-            margin-bottom: 1rem;
-        }
-        
-        .projeto-tech {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin: 1rem 0;
-        }
-        
-        .projeto-tech span {
-            background: var(--bg-secondary);
-            color: var(--accent-primary);
-            padding: 0.3rem 0.8rem;
-            border-radius: 50px;
-            font-size: 0.75rem;
-            font-weight: 500;
-        }
-        
-        .projeto-status {
-            margin: 1rem 0;
-            color: var(--text-secondary);
-            font-size: 0.85rem;
-        }
-        
-        .btn-detalhes {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.6rem 1.2rem;
-            background: transparent;
-            color: var(--accent-primary);
-            text-decoration: none;
-            border: 2px solid var(--accent-primary);
-            border-radius: 50px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-        
-        .btn-detalhes:hover {
-            background: var(--accent-primary);
-            color: white;
-        }
-        
-        .carrossel-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: var(--accent-primary);
-            color: white;
-            border: none;
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            z-index: 10;
-        }
-        
-        .carrossel-btn:hover {
-            background: var(--accent-hover);
-            transform: translateY(-50%) scale(1.1);
-        }
-        
-        .prev { left: 0; }
-        .next { right: 0; }
-        
-        .carrossel-indicators {
-            display: flex;
-            justify-content: center;
-            gap: 0.8rem;
-            margin-top: 2rem;
-        }
-        
-        .indicator {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: var(--text-secondary);
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .indicator.active {
-            width: 30px;
-            border-radius: 10px;
-            background: var(--accent-primary);
-        }
-        
-        .carrossel-info {
-            text-align: center;
-            margin-top: 1.5rem;
-            color: var(--text-secondary);
-            font-size: 0.85rem;
-        }
-        
-        /* ==================== SOBRE (BLOCO 3) ==================== */
-        .bloco-sobre {
-            padding: 80px 0;
-            background: var(--bg-primary);
-        }
-        
-        .sobre-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-        
-        .sobre-texto p {
-            color: var(--text-secondary);
-            margin-bottom: 1rem;
-            line-height: 1.8;
-        }
-        
-        .skills {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.8rem;
-            margin-top: 2rem;
-        }
-        
-        .skills span {
-            background: var(--bg-secondary);
-            color: var(--accent-primary);
-            padding: 0.5rem 1.2rem;
-            border-radius: 50px;
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
-        
-        .skills span:hover {
-            background: var(--accent-primary);
-            color: white;
-            transform: translateY(-3px);
-        }
-        
-        .sobre-stats {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
-            text-align: center;
-        }
-        
-        .stat {
-            background: var(--bg-secondary);
-            padding: 2rem 1rem;
-            border-radius: 20px;
-            transition: all 0.3s ease;
-        }
-        
-        .stat:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--shadow);
-        }
-        
-        .stat h3 {
-            font-size: 2.5rem;
-            color: var(--accent-primary);
-            margin-bottom: 0.5rem;
-        }
-        
-        .stat p {
-            color: var(--text-secondary);
-            font-weight: 500;
-        }
-        
-        /* ==================== CONTATO (BLOCO 4) ==================== */
-        .bloco-contato {
-            padding: 80px 0;
-            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
-        }
-        
-        .contato-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-        
-        .redes-sociais h3, .contato-info h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1.5rem;
-            color: var(--accent-primary);
-        }
-        
-        .redes-links {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-        
-        .rede-link {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            padding: 1rem;
-            background: var(--bg-card);
-            color: var(--text-primary);
-            text-decoration: none;
-            border-radius: 12px;
-            transition: all 0.3s ease;
-            border: 1px solid var(--border-color);
-        }
-        
-        .rede-link:hover {
-            transform: translateX(8px);
-            background: var(--accent-primary);
-            color: white;
-        }
-        
-        .rede-link i {
-            font-size: 1.3rem;
-            width: 30px;
-        }
-        
-        .contato-info p {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1rem;
-            padding: 1rem;
-            background: var(--bg-card);
-            border-radius: 12px;
-            color: var(--text-secondary);
-        }
-        
-        .contato-info i {
-            width: 30px;
-            color: var(--accent-primary);
-            font-size: 1.2rem;
-        }
-        
-        /* ==================== FOOTER ==================== */
-        .footer {
-            background: var(--bg-secondary);
-            padding: 2rem 0;
-            text-align: center;
-            border-top: 1px solid var(--border-color);
-        }
-        
-        .footer p {
-            color: var(--text-secondary);
-            margin: 0.3rem 0;
-        }
-        
-        .version {
-            display: inline-block;
-            background: var(--accent-primary);
-            color: white;
-            font-size: 0.65rem;
-            padding: 2px 8px;
-            border-radius: 20px;
-            margin-left: 6px;
-        }
+        <!-- SEUS CSS -->
+    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='pasta_tela_principal/estrutura.css') }}"> -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='pasta_tela_principal/bloco_0.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='pasta_tela_principal/bloco_1.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='pasta_tela_principal/bloco_2.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='pasta_tela_principal/bloco_3.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='pasta_tela_principal/bloco_4.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='pasta_tela_principal/footer.css') }}">
 
 
-        .logo {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: visible; /* Impede o corte da imagem */
-        }
-
-        .logo img {
-            height: auto; /* Altura automática */
-            width: auto; /* Largura automática */
-            max-height: 45px; /* Altura máxima no desktop */
-            max-width: 150px; /* Largura máxima */
-            object-fit: contain; /* Mantém a proporção sem cortar */
-            display: block;
-        }
-        
-        /* ==================== RESPONSIVIDADE ==================== */
-        @media (max-width: 768px) {
-            .logo {
-                max-width: 120px; /* Limita a largura do container no mobile */
-            }
-            
-            .logo img {
-                max-height: 35px; /* Altura máxima menor no mobile */
-                max-width: 110px; /* Largura máxima menor */
-                width: auto;
-                height: auto;
-            }
-
-            body {
-                padding-top: 60px;
-            }
-            
-            .menu-hamburger {
-                display: block;
-            }
-            
-            .menu-links {
-                position: fixed;
-                top: 60px;
-                left: -100%;
-                width: 100%;
-                height: calc(100vh - 60px);
-                background: var(--bg-primary);
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                gap: 2rem;
-                transition: left 0.3s ease;
-                z-index: 999;
-            }
-            
-            .menu-links.active {
-                left: 0;
-            }
-            
-            .hero-grid {
-                grid-template-columns: 1fr;
-                text-align: center;
-                gap: 2rem;
-            }
-            
-            .hero-texto h1 {
-                font-size: 2rem;
-            }
-            
-            .hero-imagem img {
-                max-width: 250px;
-            }
-            
-            .sobre-grid {
-                grid-template-columns: 1fr;
-                text-align: center;
-                gap: 2rem;
-            }
-            
-            .skills {
-                justify-content: center;
-            }
-            
-            .contato-grid {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-            
-            .section-title {
-                font-size: 2rem;
-            }
-            
-            .carrossel-container {
-                padding: 0 40px;
-            }
-            
-            .carrossel-btn {
-                width: 35px;
-                height: 35px;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .logo {
-                max-width: 100px;
-            }
-            
-            .logo img {
-                max-height: 30px;
-                max-width: 90px;
-            }
-
-            .hero-texto h1 {
-                font-size: 1.6rem;
-            }
-            
-            .sobre-stats {
-                grid-template-columns: 1fr;
-            }
-            
-            .carrossel-container {
-                padding: 0 30px;
-            }
-        }
-    </style>
+    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='pasta_tela_principal/import_css.css') }}"> -->
 </head>
 <body>
-
-    <!-- ==================== MENU ==================== -->
+    <!-- ==================== BLOCO 0 - MENU ==================== -->
     <header class="bloco bloco-menu">
         <nav class="container">
             <div class="logo">
-                <img src="{{ url_for('static', filename='pasta_tela_principal/images/logo_svg.svg') }}" 
-                    alt="ArCode"
-                    style="height: auto; width: auto; max-height: 40px;">
+                <img src="{{ url_for('static', filename='pasta_tela_principal/images/logo_svg.svg') }}" alt="ArCode">
             </div>
             
             <div class="menu-hamburger" id="menu-hamburger">
@@ -761,19 +42,22 @@
                 <li><a href="{{ url_for('manual.ini_manual', page='index_manual') }}">Manual</a></li>
             </ul>
             
+            <!-- ✅ BOTÃO DE TEMA - ADICIONE AQUI -->
             <button id="theme-toggle" class="theme-toggle" aria-label="Alternar tema">
                 <i class="fas fa-moon"></i>
             </button>
         </nav>
     </header>
 
+
+
     <main>
-        <!-- ==================== HERO ==================== -->
+        <!-- ==================== BLOCO 1 - MINHA IMG E TITULO ==================== -->
         <section id="inicio" class="bloco bloco-hero">
             <div class="container hero-grid">
                 <div class="hero-texto">
                     <h1>Olá, eu me chamo <span>Vitor Hugo</span></h1>
-                    <p>Desenvolvedor Full Stack</p>
+                    <p style="font-size: 1.5rem; margin-bottom: 0.5rem;">Desenvolvedor Full Stack</p>
                     <p>Transformo ideias em soluções digitais que fazem a diferença. Especialista em Flask, Python e criação de experiências web memoráveis.</p>
                     <a href="#projetos" class="btn-primary">Ver Meus Trabalhos <i class="fas fa-arrow-down"></i></a>
                 </div>
@@ -786,12 +70,14 @@
             </div>
         </section>
 
-        <!-- ==================== PROJETOS ==================== -->
+
+        <!-- ==================== BLOCO 2 - PROJETOS ==================== -->
         <section id="projetos" class="bloco bloco-projetos">
             <div class="container">
                 <h2 class="section-title">Meus Projetos</h2>
                 <p class="section-subtitle">Trabalhos que entregam resultados reais</p>
                 
+                <!-- Carrossel -->
                 <div class="carrossel-container">
                     <button class="carrossel-btn prev" id="prevBtn">
                         <i class="fas fa-chevron-left"></i>
@@ -799,11 +85,12 @@
                     
                     <div class="carrossel-wrapper">
                         <div class="carrossel-slides" id="carrosselSlides">
-                            <!-- Projeto 1 -->
+                            <!-- Projeto 1 - SITE DE GESTÃO DE TAREFAS E FINANCEIRO -->
                             <div class="carrossel-slide">
                                 <div class="projeto-card">
                                     <div class="projeto-imagem">
-                                        <img src="{{ url_for('static', filename='images/projetos/site_gestao_tarefas_e_financeiro/Snipaste_2026-03-27_17-40-24.png') }}" alt="Gestão de Tarefas e Finanças">
+                                        <img src="{{ url_for('static', filename='images/projetos/site_gestao_tarefas_e_financeiro/Snipaste_2026-03-27_17-40-24.png') }}" 
+                                            alt="SITE DE GESTÃO DE TAREFAS E FINANCEIRO">
                                         <div class="projeto-overlay">
                                             <span class="projeto-tag">Destaque</span>
                                         </div>
@@ -812,28 +99,34 @@
                                         <h3>📋 Gestão de Tarefas e Finanças</h3>
                                         <p>Sistema completo para organização pessoal, combinando gestão de tarefas do dia a dia com controle financeiro pessoal.</p>
                                         <div class="projeto-tech">
+                                            <span>ESTÁ EM DESENVOLVIMENTO</span>
                                             <span>Python/Flask</span>
                                             <span>SQLite</span>
                                             <span>HTML/CSS/JS</span>
                                         </div>
-                                        <p class="projeto-status"><i class="fas fa-code"></i> Status: Em desenvolvimento ativo</p>
-                                        <a href="https://vhorganiza.com.br/" target="_blank" class="btn-detalhes"><i class="fas fa-external-link-alt"></i> Acessar Site</a>
+                                        <p class="projeto-status">
+                                            <i class="fas fa-code"></i> Status: Em desenvolvimento ativo
+                                        </p>
+                                        <a href="https://vhorganiza.com.br/" target="_blank" class="btn-detalhes">
+                                            <i class="fas fa-external-link-alt"></i> Acessar Site
+                                        </a>
                                     </div>
                                 </div>
                             </div>
                             
-                            <!-- Projeto 2 -->
+                            <!-- Projeto 2 - ConectaPrev - Rastreamento Precoce -->
                             <div class="carrossel-slide">
                                 <div class="projeto-card">
                                     <div class="projeto-imagem">
-                                        <img src="{{ url_for('static', filename='images/projetos/conecta_prev/conecta_preeev.gif') }}" alt="ConectaPrev">
+                                        <img src="{{ url_for('static', filename='images/projetos/conecta_prev/conecta_preeev.gif') }}" 
+                                            alt="ConectaPrev - Rastreamento Precoce">
                                         <div class="projeto-overlay">
                                             <span class="projeto-tag">Saúde & Tecnologia</span>
                                         </div>
                                     </div>
                                     <div class="projeto-info">
                                         <h3>🧠 ConectaPrev</h3>
-                                        <p>Plataforma inovadora para facilitar o <strong>rastreamento precoce do Parkinson e Alzheimer</strong>.</p>
+                                        <p>Plataforma inovadora para facilitar o <strong>rastreamento precoce do Parkinson e Alzheimer</strong>, auxiliando profissionais de saúde e familiares no diagnóstico precoce.</p>
                                         <div class="projeto-tech">
                                             <span>Python/Flask</span>
                                             <span>SQLite</span>
@@ -843,11 +136,13 @@
                                 </div>
                             </div>
                             
-                            <!-- Projeto 3 -->
+                            
+                            <!-- Projeto 3 - SISTEMA DE CONSULTA ESTADUAL E FEDERAL (Privado) -->
                             <div class="carrossel-slide">
                                 <div class="projeto-card">
                                     <div class="projeto-imagem">
-                                        <img src="{{ url_for('static', filename='images/projetos/safa/prints_em_gif.gif') }}" alt="SAFA">
+                                        <img src="{{ url_for('static', filename='images/projetos/safa/prints_em_gif.gif') }}" 
+                                            alt="SAFA">
                                         <div class="projeto-overlay">
                                             <span class="projeto-tag">Destaque</span>
                                         </div>
@@ -858,12 +153,14 @@
                                         <div class="projeto-tech">
                                             <span>Python/Flask</span>
                                             <span>SQLite</span>
-                                            <span>PDFKit</span>
+                                            <span>📄 PDFKit</span>
                                             <span>HTML/CSS/JS</span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+
+
                         </div>
                     </div>
                     
@@ -872,21 +169,27 @@
                     </button>
                 </div>
                 
+                <!-- Indicadores (bolinhas) -->
                 <div class="carrossel-indicators" id="indicators"></div>
+                
+                <!-- Info extra -->
                 <div class="carrossel-info">
                     <p><i class="fas fa-arrows-alt-h"></i> Arraste ou clique nas setas para navegar</p>
                 </div>
             </div>
         </section>
 
-        <!-- ==================== SOBRE ==================== -->
+        <!-- ==================== BLOCO 3 - SOBRE ==================== -->
         <section id="sobre" class="bloco bloco-sobre">
             <div class="container sobre-grid">
                 <div class="sobre-texto">
                     <h2 class="section-title">Quem sou eu</h2>
                     <p>Sou Vitor, desenvolvedor em constante evolução. Desde <strong>janeiro de 2025</strong>, venho construindo minha trajetória na tecnologia com <strong>5 projetos reais entregues</strong>, sendo <strong>3 com integração de banco de dados</strong>.</p>
+
                     <p>Meu portfólio inclui desde landing pages até sistemas com consulta de dados para clientes reais. Cada projeto é uma oportunidade de aprender algo novo e superar desafios.</p>
-                    <p><strong>Estou em busca de novos desafios e projetos</strong> que me permitam aplicar meus conhecimentos. Se você tem uma ideia ou precisa de ajuda, bora conversar!</p>
+                    
+                    <p><strong>Estou em busca de novos desafios e projetos</strong> que me permitam aplicar meus conhecimentos, aprender com problemas reais e contribuir com soluções que realmente fazem a diferença. Se você tem uma ideia ou precisa de ajuda, bora conversar!</p>
+                    
                     <div class="skills">
                         <span>Python/Flask</span>
                         <span>HTML/CSS/JS</span>
@@ -895,8 +198,9 @@
                         <span>Banco de Dados</span>
                     </div>
                 </div>
+
                 <div class="sobre-stats">
-                    <div class="stat">
+                    <div class="stat">''
                         <h3>5</h3>
                         <p>Projetos Entregues</p>
                     </div>
@@ -912,7 +216,7 @@
             </div>
         </section>
 
-        <!-- ==================== CONTATO ==================== -->
+        <!-- ==================== BLOCO 4 - CONTATO/REDES ==================== -->
         <section id="contato" class="bloco bloco-contato">
             <div class="container">
                 <h2 class="section-title">Vamos Conversar?</h2>
@@ -922,12 +226,21 @@
                     <div class="redes-sociais">
                         <h3>Redes Sociais</h3>
                         <div class="redes-links">
-                            <a href="https://github.com/vitorhugoarcanjo" target="_blank" class="rede-link"><i class="fab fa-github"></i> GitHub</a>
-                            <a href="https://linkedin.com/in/vitor-hugo-arcanjo-dias-pereira-5919b5334" target="_blank" class="rede-link"><i class="fab fa-linkedin"></i> LinkedIn</a>
-                            <a href="https://instagram.com/vitor.hadp" target="_blank" class="rede-link"><i class="fab fa-instagram"></i> Instagram</a>
-                            <a href="https://wa.me/5565999757941" target="_blank" class="rede-link"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                            <a href="https://github.com/vitorhugoarcanjo" target="_blank" class="rede-link">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                            <a href="https://linkedin.com/in/vitor-hugo-arcanjo-dias-pereira-5919b5334" target="_blank" class="rede-link">
+                                <i class="fab fa-linkedin"></i> LinkedIn
+                            </a>
+                            <a href="https://instagram.com/vitor.hadp" target="_blank" class="rede-link">
+                                <i class="fab fa-instagram"></i> Instagram
+                            </a>
+                            <a href="https://wa.me/5565999757941" target="_blank" class="rede-link whatsapp">
+                                <i class="fab fa-whatsapp"></i> WhatsApp
+                            </a>
                         </div>
                     </div>
+                    
                     <div class="contato-info">
                         <h3>Contato Direto</h3>
                         <p><i class="fas fa-envelope"></i> dias.vitorhd@gmail.com</p>
@@ -939,125 +252,19 @@
         </section>
     </main>
 
-    <!-- ==================== FOOTER ==================== -->
+    <!-- ==================== RODAPÉ ==================== -->
     <footer class="footer">
         <div class="container">
             <p>© 2025 <strong>Vitor Hugo</strong> | Desenvolvedor Full Stack</p>
-            <p>Desenvolvido com <i class="fas fa-heart"></i> por <strong>Vitor Hugo</strong> <span class="version">v1.0.0</span></p>
+            <p>
+                Desenvolvido com <i class="fas fa-heart"></i> por <strong>Vitor Hugo</strong> 
+                <span class="version">v1.0.0</span>
+            </p>
         </div>
     </footer>
 
-    <script>
-        // ==================== MENU HAMBURGER ====================
-        const menuHamburger = document.getElementById('menu-hamburger');
-        const menuLinks = document.getElementById('menu-links');
-        
-        if (menuHamburger && menuLinks) {
-            menuHamburger.addEventListener('click', function() {
-                menuLinks.classList.toggle('active');
-            });
-            
-            menuLinks.querySelectorAll('a').forEach(link => {
-                link.addEventListener('click', () => {
-                    menuLinks.classList.remove('active');
-                });
-            });
-        }
-        
-        // ==================== TEMA CLARO/ESCURO ====================
-        const themeToggle = document.getElementById('theme-toggle');
-        const htmlElement = document.documentElement;
-        
-        const savedTheme = localStorage.getItem('theme');
-        if (savedTheme === 'dark') {
-            htmlElement.setAttribute('data-theme', 'dark');
-            if (themeToggle) themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
-        }
-        
-        if (themeToggle) {
-            themeToggle.addEventListener('click', () => {
-                if (htmlElement.getAttribute('data-theme') === 'dark') {
-                    htmlElement.removeAttribute('data-theme');
-                    localStorage.setItem('theme', 'light');
-                    themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
-                } else {
-                    htmlElement.setAttribute('data-theme', 'dark');
-                    localStorage.setItem('theme', 'dark');
-                    themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
-                }
-            });
-        }
-        
-        // ==================== CARROSSEL ====================
-        const slides = document.getElementById('carrosselSlides');
-        const prevBtn = document.getElementById('prevBtn');
-        const nextBtn = document.getElementById('nextBtn');
-        const indicators = document.getElementById('indicators');
-        
-        if (slides && prevBtn && nextBtn) {
-            const totalSlides = slides.children.length;
-            let currentIndex = 0;
-            
-            function updateCarrossel() {
-                slides.style.transform = `translateX(-${currentIndex * 100}%)`;
-                
-                if (indicators) {
-                    const dots = indicators.querySelectorAll('.indicator');
-                    dots.forEach((dot, i) => {
-                        dot.classList.toggle('active', i === currentIndex);
-                    });
-                }
-            }
-            
-            function nextSlide() {
-                currentIndex = (currentIndex + 1) % totalSlides;
-                updateCarrossel();
-            }
-            
-            function prevSlide() {
-                currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
-                updateCarrossel();
-            }
-            
-            prevBtn.addEventListener('click', prevSlide);
-            nextBtn.addEventListener('click', nextSlide);
-            
-            // Criar indicadores
-            if (indicators) {
-                indicators.innerHTML = '';
-                for (let i = 0; i < totalSlides; i++) {
-                    const dot = document.createElement('div');
-                    dot.classList.add('indicator');
-                    if (i === 0) dot.classList.add('active');
-                    dot.addEventListener('click', () => {
-                        currentIndex = i;
-                        updateCarrossel();
-                    });
-                    indicators.appendChild(dot);
-                }
-            }
-            
-            // Autoplay
-            let autoplay = setInterval(nextSlide, 5000);
-            
-            const carrosselContainer = document.querySelector('.carrossel-container');
-            if (carrosselContainer) {
-                carrosselContainer.addEventListener('mouseenter', () => clearInterval(autoplay));
-                carrosselContainer.addEventListener('mouseleave', () => {
-                    autoplay = setInterval(nextSlide, 5000);
-                });
-            }
-        }
-        
-        // Ajuste do padding do body para o menu fixo
-        function adjustPadding() {
-            const menu = document.querySelector('.bloco-menu');
-            if (menu) {
-                document.body.style.paddingTop = menu.offsetHeight + 'px';
-            }
-        }
-        adjustPadding();
-        window.addEventListener('resize', adjustPadding);
-    </script>
+    <script src="{{ url_for('static', filename='pasta_tela_principal/menu.js') }}"></script>
+    <script src="{{ url_for('static', filename='pasta_tela_principal/carrossel.js') }}"></script>
+
 </body>
 </html>
