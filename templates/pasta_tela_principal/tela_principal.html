@@ -613,53 +613,40 @@
             border-radius: 20px;
             margin-left: 6px;
         }
+
+
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: visible; /* Impede o corte da imagem */
+        }
+
+        .logo img {
+            height: auto; /* Altura automática */
+            width: auto; /* Largura automática */
+            max-height: 45px; /* Altura máxima no desktop */
+            max-width: 150px; /* Largura máxima */
+            object-fit: contain; /* Mantém a proporção sem cortar */
+            display: block;
+        }
         
         /* ==================== RESPONSIVIDADE ==================== */
         @media (max-width: 768px) {
-            body {
-                padding-top: 55px; /* Reduz um pouco o padding-top no mobile */
-            }
-            
-            .bloco-menu .container {
-                padding: 0.7rem 15px; /* Reduz o padding vertical */
+            .logo {
+                max-width: 120px; /* Limita a largura do container no mobile */
             }
             
             .logo img {
-                height: 32px; /* Reduz a altura da logo no mobile */
-                max-height: 32px;
+                max-height: 35px; /* Altura máxima menor no mobile */
+                max-width: 110px; /* Largura máxima menor */
                 width: auto;
+                height: auto;
             }
-            
-            .menu-hamburger {
-                display: block;
-                order: 2;
+
+            body {
+                padding-top: 60px;
             }
-            
-            .theme-toggle {
-                order: 1;
-                margin-right: auto;
-                width: 35px;
-                height: 35px;
-                font-size: 1rem;
-            }
-            
-            .menu-links {
-                position: fixed;
-                top: 55px; /* Alinha com a altura do menu no mobile */
-                left: -100%;
-                width: 100%;
-                height: calc(100vh - 55px);
-                background: var(--bg-primary);
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                gap: 2rem;
-                transition: left 0.3s ease;
-                z-index: 999;
-            }
-            
-            /* ... resto do código ... */
-        }
             
             .menu-hamburger {
                 display: block;
@@ -728,6 +715,15 @@
         }
         
         @media (max-width: 480px) {
+            .logo {
+                max-width: 100px;
+            }
+            
+            .logo img {
+                max-height: 30px;
+                max-width: 90px;
+            }
+
             .hero-texto h1 {
                 font-size: 1.6rem;
             }
