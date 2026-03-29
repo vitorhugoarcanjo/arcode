@@ -242,3 +242,15 @@
 body.menu-open {
     overflow: hidden;
 }
+
+
+/* Fallback para qualquer corte de SVG */
+.logo img {
+    object-fit: contain;
+    object-position: left center;
+}
+
+/* Garante que o container do logo nunca corte */
+.logo {
+    overflow: visible;
+}
