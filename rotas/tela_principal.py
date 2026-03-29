@@ -10,3 +10,7 @@ def ini_tela_principal():
 @bp_tela_principal.route('/projetos')
 def ini_tela_projetos():
     return render_template('pasta_tela_principal/projetos.html')
+
+@bp_tela_principal.route('/menu_links')
+def ini_menu_links():
+    return render_template('pasta_menu_links/menu_links.html')
