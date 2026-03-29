@@ -1,10 +1,12 @@
 /* ==================== ESTRUTURA.CSS ==================== */
-/* APENAS ESTRUTURA BASE - SEM ESTILOS DE BLOCOS/MOBILE */
+/* BASE GLOBAL APENAS: RESET + VARIÁVEIS + UTILITÁRIOS */
 
-/* 1. IMPORTAÇÕES DE FONTES */
+
+/* 1. FONTE */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
 
-/* 2. RESET GLOBAL */
+
+/* 2. RESET */
 * {
     margin: 0;
     padding: 0;
@@ -18,39 +20,55 @@ html {
 body {
     font-family: 'Poppins', sans-serif;
     line-height: 1.6;
+    background: var(--bg-primary);
+    color: var(--text-primary);
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* 3. VARIÁVEIS DE CORES */
+
+/* 3. VARIÁVEIS */
 :root {
-    /* Tema Claro */
     --bg-primary: #ffffff;
     --bg-secondary: #f8f9fa;
     --bg-card: #ffffff;
+
     --text-primary: #2d3436;
     --text-secondary: #636e72;
+
     --accent-primary: #6c5ce7;
     --accent-secondary: #a8e6cf;
     --accent-hover: #5b4bc4;
+
     --border-color: #e1e8ed;
+
     --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     --shadow-hover: 0 15px 40px rgba(108, 92, 231, 0.15);
+
+    --radius-sm: 10px;
+    --radius-md: 16px;
+    --radius-lg: 24px;
+
+    --container-width: 1200px;
 }
 
-/* Tema Escuro */
 [data-theme="dark"] {
     --bg-primary: #1a1a2e;
     --bg-secondary: #16213e;
     --bg-card: #0f3460;
+
     --text-primary: #ffffff;
     --text-secondary: #b8c1ec;
+
     --accent-primary: #a8e6cf;
     --accent-secondary: #6c5ce7;
     --accent-hover: #8b7ae6;
+
     --border-color: #2c3e50;
+
     --shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     --shadow-hover: 0 15px 40px rgba(168, 230, 207, 0.2);
 }
+
 
 /* 4. ELEMENTOS GLOBAIS */
 a {
@@ -64,7 +82,8 @@ img {
     display: block;
 }
 
-ul, ol {
+ul,
+ol {
     list-style: none;
 }
 
@@ -75,21 +94,19 @@ button {
     font-family: inherit;
 }
 
-/* 5. UTILITÁRIOS DE ESTRUTURA */
+
+/* 5. UTILITÁRIOS */
 .container {
-    max-width: 1200px;
+    width: min(var(--container-width), calc(100% - 40px));
     margin: 0 auto;
-    padding: 0 20px;
 }
 
-/* Bloco base */
 .bloco {
     width: 100%;
 }
 
-/* Títulos */
 .section-title {
-    font-size: 2.5rem;
+    font-size: clamp(2rem, 4vw, 2.8rem);
     text-align: center;
     margin-bottom: 1rem;
     background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
@@ -102,21 +119,20 @@ button {
     text-align: center;
     color: var(--text-secondary);
     margin-bottom: 3rem;
-    font-size: 1.1rem;
+    font-size: 1.05rem;
 }
 
-/* Botão principal */
 .btn-primary {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 0.5rem;
     padding: 1rem 2rem;
     background: var(--accent-primary);
-    color: white;
-    border-radius: 50px;
+    color: #ffffff;
+    border-radius: 999px;
     font-weight: 600;
     transition: all 0.3s ease;
-    cursor: pointer;
 }
 
 .btn-primary:hover {
@@ -124,6 +140,7 @@ button {
     transform: translateY(-2px);
     box-shadow: var(--shadow-hover);
 }
+
 
 /* 6. SCROLLBAR */
 ::-webkit-scrollbar {
@@ -136,18 +153,20 @@ button {
 
 ::-webkit-scrollbar-thumb {
     background: var(--accent-primary);
-    border-radius: 5px;
+    border-radius: 999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
     background: var(--accent-hover);
 }
 
-/* 7. SELEÇÃO DE TEXTO */
+
+/* 7. SELEÇÃO */
 ::selection {
     background: var(--accent-primary);
-    color: white;
+    color: #ffffff;
 }
+
 
 /* 8. ANIMAÇÕES GLOBAIS */
 @keyframes fadeInUp {
@@ -193,156 +212,23 @@ button {
 }
 
 
+/* 9. RESPONSIVO GLOBAL */
+@media (max-width: 768px) {
+    .container {
+        width: min(var(--container-width), calc(100% - 32px));
+    }
 
-/* ==================== MOBILE FIRST ==================== */
-/* Tablet e Desktop pequeno (768px - 1024px) */
-@media (min-width: 768px) {
-    .carrossel-container {
-        padding: 0 50px;
+    .section-title {
+        font-size: clamp(1.8rem, 6vw, 2.3rem);
     }
-    
-    .carrossel-slide {
-        flex: 0 0 100%;
+
+    .section-subtitle {
+        font-size: 1rem;
+        margin-bottom: 2rem;
     }
-    
-    .projeto-imagem {
-        height: 300px;
-    }
-    
-    .projeto-info h3 {
-        font-size: 1.35rem;
-    }
-    
-    .projeto-info p {
+
+    .btn-primary {
+        padding: 0.9rem 1.4rem;
         font-size: 0.95rem;
     }
-}
-
-/* Desktop grande (1024px+) */
-@media (min-width: 1024px) {
-    .carrossel-container {
-        padding: 0 60px;
-    }
-    
-    .carrossel-slide {
-        padding: 0 20px;
-    }
-    
-    .projeto-imagem {
-        height: 350px;
-    }
-    
-    .carrossel-btn {
-        width: 50px;
-        height: 50px;
-    }
-    
-    .carrossel-btn i {
-        font-size: 1.3rem;
-    }
-}
-
-/* Mobile pequeno (até 480px) */
-@media (max-width: 480px) {
-    .carrossel-container {
-        padding: 0 30px;
-    }
-    
-    .carrossel-slide {
-        padding: 0 10px;
-    }
-    
-    .projeto-imagem {
-        height: 200px;
-    }
-    
-    .projeto-info {
-        padding: 1rem;
-    }
-    
-    .projeto-info h3 {
-        font-size: 1.1rem;
-    }
-    
-    .projeto-info p {
-        font-size: 0.85rem;
-    }
-    
-    .projeto-tech span {
-        font-size: 0.7rem;
-        padding: 3px 10px;
-    }
-    
-    .btn-detalhes {
-        padding: 8px 16px;
-        font-size: 0.85rem;
-    }
-    
-    .carrossel-btn {
-        width: 36px;
-        height: 36px;
-    }
-    
-    .carrossel-btn i {
-        font-size: 1rem;
-    }
-    
-    .indicator {
-        width: 8px;
-        height: 8px;
-    }
-    
-    .indicator.active {
-        width: 24px;
-    }
-}
-
-/* Suporte para touch (melhor experiência mobile) */
-@media (hover: none) and (pointer: coarse) {
-    .carrossel-btn {
-        background: rgba(255, 255, 255, 0.95);
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-    }
-    
-    .projeto-card:hover {
-        transform: none;
-    }
-    
-    .projeto-card:hover .projeto-imagem img {
-        transform: none;
-    }
-}
-
-/* Tema escuro (caso você tenha) */
-[data-theme="dark"] .projeto-card {
-    background: #1e1e2e;
-}
-
-[data-theme="dark"] .projeto-info h3 {
-    color: #fff;
-}
-
-[data-theme="dark"] .projeto-info p {
-    color: #aaa;
-}
-
-[data-theme="dark"] .projeto-tech span {
-    background: #2a2a3a;
-    color: #ccc;
-}
-
-[data-theme="dark"] .carrossel-btn {
-    background: #2a2a3a;
-}
-
-[data-theme="dark"] .carrossel-btn i {
-    color: #fff;
-}
-
-[data-theme="dark"] .indicator {
-    background: #444;
-}
-
-[data-theme="dark"] .carrossel-info {
-    color: #aaa;
 }

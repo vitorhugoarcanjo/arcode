@@ -1,152 +1,115 @@
-/* ==================== BLOCO_4.CSS ==================== */
-/* Este arquivo contém: Seção Contato e Redes Sociais */
-/* Deve ser o SEXTO arquivo CSS importado */
-
-/* ==================== 1. SEÇÃO CONTATO ==================== */
-.bloco-contato {
-    padding: 80px 0;
-    background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
-    overflow-x: hidden;
+/* =========================
+   BLOCO SOBRE
+========================= */
+.bloco-sobre {
+    padding: 4rem 0;
+    background: var(--bg-secondary, #f8fafc);
 }
 
-/* Grid do contato */
-.contato-grid {
+.sobre-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    max-width: 900px;
-    margin: 0 auto;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    align-items: start;
 }
 
-/* ==================== 2. REDES SOCIAIS ==================== */
-.redes-sociais h3 {
-    font-size: 1.5rem;
-    margin-bottom: 1.5rem;
-    color: var(--accent-primary);
-    position: relative;
-    display: inline-block;
-}
-
-.redes-sociais h3::after {
-    content: '';
-    position: absolute;
-    bottom: -8px;
-    left: 0;
-    width: 50%;
-    height: 3px;
-    background: var(--accent-primary);
-    border-radius: 3px;
-}
-
-.redes-links {
+.sobre-texto {
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    margin-top: 1.5rem;
 }
 
-.rede-link {
+.sobre-texto .section-title {
+    margin-bottom: 0.5rem;
+    text-align: left;
+}
+
+.sobre-texto p {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--text-secondary, #475569);
+    margin: 0;
+}
+
+.skills {
     display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 0.5rem;
+}
+
+.skills span {
+    display: inline-flex;
     align-items: center;
-    gap: 1rem;
-    padding: 1rem 1.2rem;
-    background: var(--bg-card);
-    color: var(--text-primary);
-    text-decoration: none;
-    border-radius: 12px;
-    transition: all 0.3s ease;
-    border: 1px solid var(--border-color);
+    justify-content: center;
+    padding: 0.65rem 1rem;
+    background: var(--card-bg, #ffffff);
+    color: var(--text-primary, #0f172a);
+    border: 1px solid var(--border-color, #e2e8f0);
+    border-radius: 999px;
+    font-size: 0.95rem;
     font-weight: 500;
+    transition: 0.25s ease;
 }
 
-.rede-link i {
-    font-size: 1.3rem;
-    width: 30px;
-    transition: all 0.3s ease;
+.skills span:hover {
+    transform: translateY(-2px);
+    border-color: var(--accent-primary, #2563eb);
+    color: var(--accent-primary, #2563eb);
 }
 
-.rede-link:hover {
-    transform: translateX(8px);
-    background: var(--accent-primary);
-    color: white;
-    border-color: var(--accent-primary);
+.sobre-stats {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
 }
 
-.rede-link:hover i {
-    transform: scale(1.1);
+.stat {
+    background: var(--card-bg, #ffffff);
+    border: 1px solid var(--border-color, #e2e8f0);
+    border-radius: 18px;
+    padding: 1.4rem 1.2rem;
+    text-align: center;
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+    transition: 0.25s ease;
 }
 
-/* Cores específicas para cada rede (opcional) */
-.rede-link.github:hover { background: #333; }
-.rede-link.linkedin:hover { background: #0077b5; }
-.rede-link.instagram:hover { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
-.rede-link.whatsapp:hover { background: #25d366; }
+.stat:hover {
+    transform: translateY(-4px);
+}
 
-/* ==================== 4. RESPONSIVIDADE ==================== */
-@media (max-width: 768px) {
-    .bloco-contato {
-        padding: 50px 0;
-    }
-    
-    .contato-grid {
-        grid-template-columns: 1fr;
-        gap: 2.5rem;
-    }
-    
-    .redes-sociais h3,
-    .contato-info h3 {
-        font-size: 1.3rem;
-        text-align: center;
-        display: block;
-    }
-    
-    .redes-sociais h3::after,
-    .contato-info h3::after {
-        left: 50%;
-        transform: translateX(-50%);
-        width: 60px;
-    }
-    
-    .redes-links {
-        align-items: center;
-    }
-    
-    .rede-link {
-        width: 100%;
-        max-width: 300px;
-        justify-content: center;
-    }
-    
-    .contato-info p {
-        justify-content: center;
-        max-width: 300px;
-        margin-left: auto;
-        margin-right: auto;
-    }
-    
-    .contato-info p:hover {
-        transform: translateX(0) scale(1.02);
+.stat h3 {
+    font-size: 2rem;
+    margin-bottom: 0.4rem;
+    color: var(--accent-primary, #2563eb);
+    line-height: 1;
+}
+
+.stat p {
+    margin: 0;
+    color: var(--text-secondary, #64748b);
+    font-size: 0.95rem;
+}
+
+/* TABLET */
+@media (min-width: 768px) {
+    .sobre-stats {
+        grid-template-columns: repeat(3, 1fr);
     }
 }
 
-@media (max-width: 480px) {
-    .rede-link {
-        padding: 0.8rem 1rem;
-        font-size: 0.9rem;
+/* DESKTOP */
+@media (min-width: 992px) {
+    .bloco-sobre {
+        padding: 5.5rem 0;
     }
-    
-    .rede-link i {
-        font-size: 1.1rem;
-        width: 25px;
+
+    .sobre-grid {
+        grid-template-columns: 1.4fr 1fr;
+        gap: 3rem;
     }
-    
-    .contato-info p {
-        padding: 0.8rem;
-        font-size: 0.85rem;
-    }
-    
-    .contato-info i {
-        width: 25px;
-        font-size: 1rem;
+
+    .sobre-texto p {
+        font-size: 1.05rem;
     }
 }
