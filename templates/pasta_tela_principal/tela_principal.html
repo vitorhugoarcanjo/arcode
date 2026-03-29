@@ -59,7 +59,7 @@
                     <h1>Olá, eu me chamo <span>Vitor Hugo</span></h1>
                     <p style="font-size: 1.5rem; margin-bottom: 0.5rem;">Desenvolvedor Full Stack</p>
                     <p>Transformo ideias em soluções digitais que fazem a diferença. Especialista em Flask, Python e criação de experiências web memoráveis.</p>
-                    <a href="#projetos" class="btn-primary">Ver Meus Trabalhos <i class="fas fa-arrow-down"></i></a>
+                    <a href="{{ url_for('inicio.ini_tela_projetos') }}" class="btn-primary">Ver Meus Trabalhos</a>
                 </div>
                 <div class="hero-imagem">
                     <img src="{{ url_for('static', filename='images/bloco_1/imagem_3.png') }}" alt="Desenvolvedor">

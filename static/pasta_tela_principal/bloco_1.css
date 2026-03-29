@@ -1,34 +1,33 @@
-/* ==================== BLOCO_1.CSS ==================== */
-/* Este arquivo contém: Seção Hero (imagem e texto) */
-/* Deve ser o TERCEIRO arquivo CSS importado (depois do menu) */
-
-/* ==================== 1. SEÇÃO HERO ==================== */
+/* ==================== BLOCO_1.CSS - MOBILE FIRST ==================== */
 .bloco-hero {
     min-height: 100vh;
     display: flex;
     align-items: center;
     position: relative;
-    padding: 80px 0 60px;
+    padding: 120px 0 80px; /* Espaço pro menu fixo */
     background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
     overflow-x: hidden;
 }
 
-/* Grid que organiza texto e imagem lado a lado */
+/* Grid que organiza texto e imagem */
 .hero-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
+    grid-template-columns: 1fr;
+    gap: 3rem;
     align-items: center;
-    justify-items: center;
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
 }
 
-/* ==================== 2. TEXTO DO HERO ==================== */
+/* ==================== TEXTO DO HERO ==================== */
 .hero-texto {
     width: 100%;
+    padding: 0 10px;
 }
 
 .hero-texto h1 {
-    font-size: 3rem;
+    font-size: clamp(1.8rem, 6vw, 3.2rem);
     margin-bottom: 1rem;
     line-height: 1.2;
     color: var(--text-primary);
@@ -44,18 +43,21 @@
 .hero-texto p {
     color: var(--text-secondary);
     margin-bottom: 1.5rem;
-    font-size: 1rem;
+    font-size: clamp(0.95rem, 3vw, 1.1rem);
     line-height: 1.6;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-/* Estilo específico para o parágrafo de "Desenvolvedor Full Stack" */
-.hero-texto p:first-of-type {
-    font-size: 1.5rem;
-    margin-bottom: 0.5rem;
-    font-weight: 500;
+/* "Desenvolvedor Full Stack" - destaque */
+.hero-texto p[style*="1.5rem"] {
+    font-size: clamp(1.2rem, 4vw, 1.6rem) !important;
+    font-weight: 600;
+    margin-bottom: 1rem !important;
 }
 
-/* ==================== 3. IMAGEM DO HERO ==================== */
+/* ==================== IMAGEM DO HERO ==================== */
 .hero-imagem {
     display: flex;
     justify-content: center;
@@ -63,26 +65,26 @@
 }
 
 .hero-imagem img {
-    width: 100%;
-    max-width: 400px;
+    width: clamp(180px, 40vw, 380px);
     height: auto;
     border-radius: 50%;
     object-fit: cover;
     animation: float 3s ease-in-out infinite;
     box-shadow: var(--shadow);
     transition: transform 0.3s ease;
+    max-width: 100%;
 }
 
 .hero-imagem img:hover {
     transform: scale(1.02);
 }
 
-/* ==================== 4. BOTÃO ==================== */
+/* ==================== BOTÃO ==================== */
 .btn-primary {
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
-    padding: 1rem 2rem;
+    gap: 0.75rem;
+    padding: clamp(0.9rem, 2.5vw, 1.2rem) clamp(1.5rem, 4vw, 2.5rem);
     background: var(--accent-primary);
     color: white;
     text-decoration: none;
@@ -91,12 +93,13 @@
     transition: all 0.3s ease;
     border: none;
     cursor: pointer;
-    font-size: 1rem;
+    font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+    box-shadow: var(--shadow);
 }
 
 .btn-primary:hover {
     background: var(--accent-hover);
-    transform: translateY(-2px);
+    transform: translateY(-3px);
     box-shadow: var(--shadow-hover);
 }
 
@@ -108,7 +111,7 @@
     transform: translateY(3px);
 }
 
-/* ==================== 5. INDICADOR DE SCROLL ==================== */
+/* ==================== INDICADOR DE SCROLL ==================== */
 .scroll-indicator {
     position: absolute;
     bottom: 30px;
@@ -116,7 +119,7 @@
     transform: translateX(-50%);
     animation: bounce 2s infinite;
     color: var(--accent-primary);
-    font-size: 1.5rem;
+    font-size: clamp(1.2rem, 4vw, 1.6rem);
     cursor: pointer;
     transition: all 0.3s ease;
 }
@@ -126,111 +129,58 @@
     transform: translateX(-50%) translateY(5px);
 }
 
-/* ==================== 6. ANIMAÇÕES ==================== */
+/* ==================== ANIMAÇÕES ==================== */
 @keyframes float {
-    0%, 100% {
-        transform: translateY(0px);
-    }
-    50% {
-        transform: translateY(-20px);
-    }
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
 }
 
 @keyframes bounce {
-    0%, 100% {
-        transform: translateX(-50%) translateY(0);
-    }
-    50% {
-        transform: translateX(-50%) translateY(10px);
-    }
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(10px); }
 }
 
-/* ==================== 7. RESPONSIVIDADE ==================== */
-@media (max-width: 992px) {
-    .hero-texto h1 {
-        font-size: 2.5rem;
-    }
-    
+/* ==================== DESKTOP - LADO A LADO ==================== */
+@media (min-width: 900px) {
     .hero-grid {
-        gap: 3rem;
-    }
-    
-    .hero-imagem img {
-        max-width: 350px;
-    }
-}
-
-@media (max-width: 768px) {
-    .bloco-hero {
-        min-height: auto;
-        padding: 100px 0 50px;
-    }
-    
-    /* Muda para coluna no mobile */
-    .hero-grid {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-        text-align: center;
+        grid-template-columns: 1fr 1fr;
+        gap: 5rem;
+        text-align: left;
+        max-width: 1200px;
     }
     
     .hero-texto {
-        order: 2;
-    }
-    
-    .hero-imagem {
-        order: 1;
-    }
-    
-    .hero-texto h1 {
-        font-size: 2rem;
-    }
-    
-    .hero-texto p:first-of-type {
-        font-size: 1.2rem;
+        text-align: left;
+        padding: 0;
     }
     
     .hero-texto p {
-        font-size: 0.95rem;
-    }
-    
-    .hero-imagem img {
-        max-width: 250px;
-    }
-    
-    .btn-primary {
-        padding: 0.8rem 1.5rem;
-        font-size: 0.9rem;
+        margin-left: 0;
+        margin-right: 0;
     }
     
     .scroll-indicator {
-        bottom: 20px;
-        font-size: 1.2rem;
+        display: block;
     }
 }
 
-@media (max-width: 480px) {
+/* ==================== TABLET ==================== */
+@media (min-width: 768px) and (max-width: 899px) {
     .bloco-hero {
-        padding: 80px 0 40px;
+        padding: 140px 0 80px;
     }
     
-    .hero-texto h1 {
-        font-size: 1.6rem;
+    .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 4rem;
     }
-    
-    .hero-texto p:first-of-type {
-        font-size: 1.1rem;
-    }
-    
-    .hero-texto p {
-        font-size: 0.9rem;
-    }
-    
-    .hero-imagem img {
-        max-width: 200px;
-    }
-    
-    .btn-primary {
-        padding: 0.7rem 1.3rem;
-        font-size: 0.85rem;
+}
+
+/* ==================== REDUCED MOTION ==================== */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
     }
 }
