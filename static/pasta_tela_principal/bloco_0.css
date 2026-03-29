@@ -102,6 +102,12 @@
     transform: rotate(15deg);
 }
 
+/* Ícones do botão tema - serão trocados pelo JS */
+.theme-toggle .fa-moon,
+.theme-toggle .fa-sun {
+    pointer-events: none;
+}
+
 /* ==================== 5. MENU HAMBURGER (MOBILE) ==================== */
 .menu-hamburger {
     display: none;
@@ -111,17 +117,28 @@
     padding: 0.5rem;
     transition: all 0.3s ease;
     flex-shrink: 0;
+    background: none;
+    border: none;
+    width: 40px;
+    height: 40px;
+    display: none; /* Inicialmente escondido no desktop */
+    align-items: center;
+    justify-content: center;
 }
 
 .menu-hamburger:hover {
     color: var(--accent-primary);
 }
 
+.menu-hamburger i {
+    pointer-events: none;
+}
+
 /* ==================== 6. RESPONSIVIDADE ==================== */
 @media (max-width: 768px) {
-    /* Esconde os links do menu no desktop e mostra o hamburger */
+    /* Mostra o hamburger no mobile */
     .menu-hamburger {
-        display: block;
+        display: flex;
         order: 2;
     }
     
@@ -197,6 +214,8 @@
     }
     
     .menu-hamburger {
+        width: 35px;
+        height: 35px;
         font-size: 1.3rem;
     }
     

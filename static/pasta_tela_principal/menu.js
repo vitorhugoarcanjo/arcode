@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
         
-        // Fechar menu ao clicar fora (opcional)
+        // Fechar menu ao clicar fora
         document.addEventListener('click', function(e) {
             if (!menuHamburger.contains(e.target) && !menuLinks.contains(e.target)) {
                 menuLinks.classList.remove('active');
@@ -32,21 +32,29 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // ==================== TEMA CLARO/ESCURO ====================
+    // ==================== TEMA CLARO/ESCURO COM ÍCONES ====================
     const themeToggle = document.getElementById('theme-toggle');
     const htmlElement = document.documentElement;
+    
+    // Função para atualizar o ícone do botão de tema
+    function updateThemeIcon(theme) {
+        if (themeToggle) {
+            if (theme === 'dark') {
+                themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+            } else {
+                themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+            }
+        }
+    }
     
     // Verifica tema salvo no localStorage
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme === 'dark') {
         htmlElement.setAttribute('data-theme', 'dark');
-        if (themeToggle) {
-            themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
-        }
+        updateThemeIcon('dark');
     } else {
-        if (themeToggle) {
-            themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
-        }
+        htmlElement.removeAttribute('data-theme');
+        updateThemeIcon('light');
     }
     
     // Alternar tema ao clicar
@@ -55,11 +63,11 @@ document.addEventListener('DOMContentLoaded', function() {
             if (htmlElement.getAttribute('data-theme') === 'dark') {
                 htmlElement.removeAttribute('data-theme');
                 localStorage.setItem('theme', 'light');
-                themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+                updateThemeIcon('light');
             } else {
                 htmlElement.setAttribute('data-theme', 'dark');
                 localStorage.setItem('theme', 'dark');
-                themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+                updateThemeIcon('dark');
             }
         });
     }
@@ -75,4 +83,9 @@ document.addEventListener('DOMContentLoaded', function() {
     
     adjustBodyPadding();
     window.addEventListener('resize', adjustBodyPadding);
+    
+    // ==================== VERIFICA SE OS ÍCONES ESTÃO CARREGANDO ====================
+    console.log('Menu.js carregado!');
+    console.log('Botão tema:', themeToggle);
+    console.log('Menu hamburger:', menuHamburger);
 });
