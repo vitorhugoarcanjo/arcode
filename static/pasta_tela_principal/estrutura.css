@@ -1,11 +1,10 @@
 /* ==================== ESTRUTURA.CSS ==================== */
-/* Este arquivo contém: Reset, Variáveis, Configurações Globais e Utilitários Básicos */
-/* Deve ser o PRIMEIRO arquivo CSS importado */
+/* APENAS ESTRUTURA BASE - SEM ESTILOS DE BLOCOS/MOBILE */
 
-/* ==================== 1. IMPORTAÇÕES DE FONTES ==================== */
+/* 1. IMPORTAÇÕES DE FONTES */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
 
-/* ==================== 2. RESET GLOBAL ==================== */
+/* 2. RESET GLOBAL */
 * {
     margin: 0;
     padding: 0;
@@ -14,20 +13,17 @@
 
 html {
     scroll-behavior: smooth;
-    overflow-x: hidden;
 }
 
 body {
     font-family: 'Poppins', sans-serif;
     line-height: 1.6;
-    overflow-x: hidden;
-    width: 100%;
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* ==================== 3. VARIÁVEIS DE CORES (TEMA) ==================== */
+/* 3. VARIÁVEIS DE CORES */
 :root {
-    /* Tema Claro (Padrão) */
+    /* Tema Claro */
     --bg-primary: #ffffff;
     --bg-secondary: #f8f9fa;
     --bg-card: #ffffff;
@@ -39,9 +35,6 @@ body {
     --border-color: #e1e8ed;
     --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     --shadow-hover: 0 15px 40px rgba(108, 92, 231, 0.15);
-    --success: #00b894;
-    --warning: #fdcb6e;
-    --danger: #d63031;
 }
 
 /* Tema Escuro */
@@ -59,7 +52,7 @@ body {
     --shadow-hover: 0 15px 40px rgba(168, 230, 207, 0.2);
 }
 
-/* ==================== 4. CONFIGURAÇÕES GLOBAIS ==================== */
+/* 4. ELEMENTOS GLOBAIS */
 a {
     text-decoration: none;
     color: inherit;
@@ -82,15 +75,19 @@ button {
     font-family: inherit;
 }
 
-/* ==================== 5. UTILITÁRIOS GLOBAIS ==================== */
+/* 5. UTILITÁRIOS DE ESTRUTURA */
 .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
+}
+
+/* Bloco base */
+.bloco {
     width: 100%;
 }
 
-/* Títulos Globais */
+/* Títulos */
 .section-title {
     font-size: 2.5rem;
     text-align: center;
@@ -108,7 +105,7 @@ button {
     font-size: 1.1rem;
 }
 
-/* Botão Principal */
+/* Botão principal */
 .btn-primary {
     display: inline-flex;
     align-items: center;
@@ -116,11 +113,9 @@ button {
     padding: 1rem 2rem;
     background: var(--accent-primary);
     color: white;
-    text-decoration: none;
     border-radius: 50px;
     font-weight: 600;
     transition: all 0.3s ease;
-    border: none;
     cursor: pointer;
 }
 
@@ -130,7 +125,7 @@ button {
     box-shadow: var(--shadow-hover);
 }
 
-/* ==================== 6. SCROLLBAR PERSONALIZADA ==================== */
+/* 6. SCROLLBAR */
 ::-webkit-scrollbar {
     width: 10px;
 }
@@ -148,18 +143,13 @@ button {
     background: var(--accent-hover);
 }
 
-/* ==================== 7. SELEÇÃO DE TEXTO ==================== */
+/* 7. SELEÇÃO DE TEXTO */
 ::selection {
     background: var(--accent-primary);
     color: white;
 }
 
-::-moz-selection {
-    background: var(--accent-primary);
-    color: white;
-}
-
-/* ==================== 8. ANIMAÇÕES GLOBAIS ==================== */
+/* 8. ANIMAÇÕES GLOBAIS */
 @keyframes fadeInUp {
     from {
         opacity: 0;
@@ -198,29 +188,6 @@ button {
     }
 }
 
-/* Classe para animação de entrada */
 .fade-in-up {
     animation: fadeInUp 0.6s ease-out;
-}
-
-/* ==================== 9. RESPONSIVIDADE BASE ==================== */
-@media (max-width: 768px) {
-    .section-title {
-        font-size: 2rem;
-    }
-    
-    .section-subtitle {
-        font-size: 1rem;
-        margin-bottom: 2rem;
-    }
-    
-    .container {
-        padding: 0 15px;
-    }
-}
-
-@media (max-width: 480px) {
-    .section-title {
-        font-size: 1.6rem;
-    }
 }
