@@ -26,14 +26,17 @@
     <!-- ==================== BLOCO 0 - MENU ==================== -->
     <header class="bloco bloco-menu">
         <nav class="container">
-            <div class="logo">
-                <img src="{{ url_for('static', filename='pasta_tela_principal/images/logo_svg.svg') }}" alt="ArCode">
-            </div>
-            
-            <div class="menu-hamburger" id="menu-hamburger">
+            <button 
+                class="menu-hamburger" 
+                id="menu-hamburger"
+                aria-label="Abrir menu"
+                aria-expanded="false"
+                aria-controls="menu-links"
+                type="button"
+            >
                 <i class="fas fa-bars"></i>
-            </div>
-            
+            </button>
+
             <ul class="menu-links" id="menu-links">
                 <li><a href="#inicio">Início</a></li>
                 <li><a href="#projetos">Projetos</a></li>
@@ -41,9 +44,8 @@
                 <li><a href="#contato">Contato</a></li>
                 <li><a href="{{ url_for('manual.ini_manual', page='index_manual') }}">Manual</a></li>
             </ul>
-            
-            <!-- ✅ BOTÃO DE TEMA - ADICIONE AQUI -->
-            <button id="theme-toggle" class="theme-toggle" aria-label="Alternar tema">
+
+            <button id="theme-toggle" class="theme-toggle" aria-label="Alternar tema" type="button">
                 <i class="fas fa-moon"></i>
             </button>
         </nav>
