@@ -1,0 +1,382 @@
+{% extends 'tela_base_pos_login/base.html.jinja' %}
+
+{% block titulo %}Playbook 2099 — Documentação técnica{% endblock %}
+
+{% block descricao %}Documentação técnica completa do Padrão 2099 — arquitetura modular para Flask + HTMX.{% endblock %}
+
+{% block css_extra %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/modules/pasta_arquitetura/playbook.min.css') }}">
+{% endblock %}
+
+{% block conteudo %}
+
+<article class="playbook container">
+
+    <header class="playbook-header">
+        <a href="{{ url_for('arquitetura.ini_arquitetura') }}" class="playbook-voltar">
+            <i class="fas fa-arrow-left"></i> Voltar pra Arquitetura 2099
+        </a>
+        <h1>Playbook 2099</h1>
+        <p class="playbook-sub">
+            Documentação técnica completa — Padrão 2099
+        </p>
+    </header>
+
+    <!-- ==================== SEÇÃO 1 ==================== -->
+    <section class="playbook-secao">
+        <h2>1. Stack técnica</h2>
+        <table class="arq-tabela">
+            <thead><tr><th>Camada</th><th>Tecnologia</th></tr></thead>
+            <tbody>
+                <tr><td>Backend</td><td>Flask + PostgreSQL / SQLite</td></tr>
+                <tr><td>Frontend</td><td>HTMX + JS vanilla modular</td></tr>
+                <tr><td>Templates</td><td>Jinja2</td></tr>
+                <tr><td>PDF</td><td>WeasyPrint</td></tr>
+                <tr><td>Build</td><td>Scripts Python</td></tr>
+                <tr><td>Deploy</td><td>Git → VPS (systemd)</td></tr>
+            </tbody>
+        </table>
+    </section>
+
+    <!-- ==================== SEÇÃO 2 ==================== -->
+    <section class="playbook-secao">
+        <h2>2. Estrutura de um módulo (Backend)</h2>
+        <pre class="arq-code"><code class="language-plaintext">rotas/pasta_[modulo]/
+├── __init__.py
+├── [modulo].py
+├── queries.py
+├── filters.py
+├── formatters.py
+├── services/
+├── crud/
+│   ├── pasta_insert/
+│   ├── pasta_edit/
+│   ├── pasta_delete/
+│   └── pasta_reativar/
+└── tabelas/</code></pre>
+
+        <h3>Blueprint principal</h3>
+        <pre class="arq-code"><code class="language-python">from flask import Blueprint
+
+bp_modulo = Blueprint('modulo', __name__)
+
+from .modulo import ini_modulo, limpar_filtros
+from .crud.pasta_insert import bp_insert
+from .crud.pasta_edit import bp_edit
+from .crud.pasta_delete import bp_delete
+
+bp_modulo.add_url_rule('/', view_func=ini_modulo, methods=['GET', 'POST'])
+bp_modulo.add_url_rule('/limpar_filtros', view_func=limpar_filtros)
+
+bp_modulo.register_blueprint(bp_insert, url_prefix='/nova')
+bp_modulo.register_blueprint(bp_edit, url_prefix='/edit')
+bp_modulo.register_blueprint(bp_delete, url_prefix='/excluir')</code></pre>
+    </section>
+
+    <!-- ==================== SEÇÃO 3 ==================== -->
+    <section class="playbook-secao">
+        <h2>3. Filtros: read vs write</h2>
+        <pre class="arq-code"><code class="language-python">class ModuloFilters:
+    PREFIXO = 'modulo'
+
+    @classmethod
+    def recuperar_filtros(cls, session):
+        """SÓ LÊ da sessão — nunca sobrescreve."""
+        return {
+            'status': session.get(f'{cls.PREFIXO}_status', ''),
+        }
+
+    @classmethod
+    def salvar_filtros_post(cls, request, session):
+        """SÓ SALVA — chamado apenas pela view principal."""
+        session[f'{cls.PREFIXO}_status'] = request.form.get('status', '')</code></pre>
+
+        <div class="playbook-warning">
+            <strong>⚠️ Regra crítica:</strong> só a view principal chama
+            <code>salvar_filtros_post</code>. CRUDs só chamam <code>recuperar_filtros</code>.
+        </div>
+    </section>
+
+    <!-- ==================== SEÇÃO 4 ==================== -->
+    <section class="playbook-secao">
+        <h2>4. Auditoria transacional</h2>
+        <p>Toda operação de escrita registra auditoria na mesma transação.</p>
+
+        <pre class="arq-code"><code class="language-python">AuditoriaService.registrar(
+    id=resultado['id'],
+    acao='editada',
+    campo_alterado='multiplos',
+    valor_novo=json.dumps([
+        {'campo': 'Status', 'antes': 'pendente', 'depois': 'concluido'},
+    ], ensure_ascii=False),
+    conexao=conexao,
+)</code></pre>
+
+        <p>Se a operação falhar, a auditoria também é desfeita.</p>
+    </section>
+
+    <!-- ==================== SEÇÃO 5 ==================== -->
+    <section class="playbook-secao">
+        <h2>5. CSS e JS: 3 camadas</h2>
+        <table class="arq-tabela">
+            <thead><tr><th>Camada</th><th>CSS</th><th>JS</th><th>Função</th></tr></thead>
+            <tbody>
+                <tr><td>1</td><td>core/</td><td>core/</td><td>Tokens, reset, api</td></tr>
+                <tr><td>2</td><td>components/</td><td>components/</td><td>Compartilhado</td></tr>
+                <tr><td>3</td><td>modules/</td><td>modules/</td><td>Por módulo</td></tr>
+            </tbody>
+        </table>
+    </section>
+
+    <!-- ==================== SEÇÃO 6 ==================== -->
+    <section class="playbook-secao">
+        <h2>6. Roadmap de melhorias</h2>
+        <table class="arq-tabela">
+            <thead><tr><th>Prioridade</th><th>Melhoria</th><th>Ganho</th></tr></thead>
+            <tbody>
+                <tr><td>⭐ Alta</td><td>Migrations versionadas</td><td>Histórico + rollback</td></tr>
+                <tr><td>⭐ Alta</td><td>.env.example versionado</td><td>Onboarding</td></tr>
+                <tr><td>⭐ Alta</td><td>Backup automático</td><td>Recuperação</td></tr>
+                <tr><td>🟡 Média</td><td>Testes automatizados</td><td>Confiança</td></tr>
+                <tr><td>🟡 Média</td><td>Logs estruturados</td><td>Observabilidade</td></tr>
+                <tr><td>🔵 Baixa</td><td>Docker Compose</td><td>Ambiente padronizado</td></tr>
+            </tbody>
+        </table>
+    </section>
+
+    <!-- ==================== SEÇÃO 7 ==================== -->
+    <section class="playbook-secao">
+        <h2>7. Os 20 princípios</h2>
+
+        <h3>Backend</h3>
+        <ol>
+            <li>View magra — regra de negócio vai pra service</li>
+            <li>Service não faz commit — quem faz é a view</li>
+            <li>Validação no backend sempre</li>
+            <li>Sequência visual por usuário</li>
+            <li>Numeração formatada única</li>
+            <li>Soft delete sempre</li>
+            <li>Colunas explícitas em queries</li>
+        </ol>
+
+        <h3>Frontend</h3>
+        <ol start="8">
+            <li>HTMX puro — front abre, backend devolve HTML</li>
+            <li>1 arquivo = 1 responsabilidade</li>
+            <li>Pós-insert via HTMX, nunca reload</li>
+            <li>Sem <code>setTimeout</code> fixo</li>
+            <li>Sem handlers inline — usa <code>data-*</code></li>
+            <li>Validação campo-a-campo no front</li>
+        </ol>
+
+        <h3>Auditoria</h3>
+        <ol start="14">
+            <li>Auditoria transacional</li>
+            <li>Referência por chave interna</li>
+            <li>Diff estruturado <code>[{campo, antes, depois}]</code></li>
+        </ol>
+
+        <h3>Geral</h3>
+        <ol start="17">
+            <li>CSS compartilhado em <code>components/</code></li>
+            <li>Respostas sempre 200 (HTMX)</li>
+            <li>JS compartilhado em <code>components/</code></li>
+            <li>Prefixos CSS por módulo</li>
+        </ol>
+    </section>
+
+    <!-- ==================== SEÇÃO 8 ==================== -->
+    <section class="playbook-secao">
+        <h2>8. A árvore completa</h2>
+        <pre class="arq-code"><code class="language-plaintext">projeto/
+├── app.py
+├── config/
+├── rotas/
+│   ├── middleware/
+│   ├── exceptions/
+│   ├── auth/
+│   ├── [modulo]/
+│   │   ├── view.py
+│   │   ├── queries.py
+│   │   ├── filters.py
+│   │   ├── formatters.py
+│   │   ├── services/
+│   │   ├── crud/
+│   │   ├── tabelas/
+│   │   └── pdf/
+│   ├── auditoria/
+│   └── paineis/
+├── templates/
+│   ├── base/
+│   ├── components/
+│   └── [modulo]/
+├── static/
+│   ├── css/
+│   │   ├── core/
+│   │   ├── components/
+│   │   └── modules/
+│   └── js/
+│       ├── core/
+│       ├── components/
+│       └── modules/
+├── scripts/
+├── utils/
+├── instance/
+├── output/
+├── anexos/
+├── logs/
+├── tests/
+└── docs/</code></pre>
+    </section>
+
+    <!-- ==================== SEÇÃO 9 ==================== -->
+    <section class="playbook-secao">
+        <h2>9. Anatomia do módulo (Frontend)</h2>
+
+        <h3>Templates</h3>
+        <pre class="arq-code"><code class="language-plaintext">templates/pasta_[modulo]/
+├── tela_[modulo].html.jinja
+├── _tabela_[modulo].html.jinja
+├── partials/
+│   ├── _tbody_[modulo].html.jinja
+│   ├── _linha_[x].html.jinja
+│   └── form_[x].html.jinja
+└── modais/
+    ├── modal_nova_[x].html.jinja
+    ├── modal_editar_[x].html.jinja
+    └── modal_excluir_[x].html.jinja</code></pre>
+
+        <h3>JavaScript</h3>
+        <pre class="arq-code"><code class="language-plaintext">static/js/modules/pasta_[modulo]/
+├── [modulo].js
+├── core/
+│   └── [X]Form.js
+├── modals/
+│   ├── [x]-nova.js
+│   └── [x]-editar.js
+└── acoes_e_modais/
+    ├── pasta_excluir/excluir_[x].js
+    ├── pasta_reativar/reativar_[x].js
+    └── pasta_auditoria/auditoria_[modulo].js</code></pre>
+
+        <h3>CSS</h3>
+        <pre class="arq-code"><code class="language-plaintext">static/css/modules/pasta_[modulo]/
+└── [modulo].css</code></pre>
+    </section>
+
+    <!-- ==================== SEÇÃO 10 ==================== -->
+    <section class="playbook-secao">
+        <h2>10. Checklist — Novo módulo</h2>
+
+        <h3>Backend</h3>
+        <ul>
+            <li>Pasta do módulo + blueprint registrado</li>
+            <li>View principal + <code>_renderizar_htmx</code></li>
+            <li>Camadas: <code>queries</code>, <code>filters</code>, <code>formatters</code>, <code>services</code></li>
+            <li>CRUD completo (insert / edit / delete / reactivate)</li>
+            <li>Todas as views com <code>logger.exception()</code> + <code>rollback()</code></li>
+            <li>Filtros separados em <code>recuperar</code> e <code>salvar</code></li>
+        </ul>
+
+        <h3>Banco</h3>
+        <ul>
+            <li>Tabela principal + índices</li>
+            <li>Tabela de auditoria</li>
+            <li>Registrar em <code>config/</code></li>
+        </ul>
+
+        <h3>Frontend</h3>
+        <ul>
+            <li>Formulário base (<code>[X]Form.js</code>)</li>
+            <li>Modais (nova / editar / excluir)</li>
+            <li>Orquestrador do módulo</li>
+            <li>Validação campo-a-campo</li>
+            <li>Zero <code>setTimeout</code> fixo</li>
+            <li>Zero <code>window.location.reload()</code></li>
+        </ul>
+
+        <h3>Build</h3>
+        <ul>
+            <li>Script de combinação do módulo</li>
+            <li>Zero avisos de arquivo não encontrado</li>
+        </ul>
+
+        <h3>Antes de subir</h3>
+        <ul>
+            <li>Criar / Editar / Excluir / Reativar funcionam</li>
+            <li>Auditoria abre</li>
+            <li>Toasts verdes</li>
+            <li>Filtros preservam</li>
+            <li>Console sem erro</li>
+        </ul>
+    </section>
+
+    <!-- ==================== SEÇÃO 11 ==================== -->
+    <section class="playbook-secao">
+        <h2>11. Checklist — Novo projeto</h2>
+
+        <h3>Setup inicial</h3>
+        <ul>
+            <li><code>venv</code> + <code>requirements.txt</code></li>
+            <li><code>.env</code> + <code>.env.example</code></li>
+            <li><code>.gitignore</code> cobrindo <code>.env</code>, <code>__pycache__</code>, <code>venv</code></li>
+        </ul>
+
+        <h3>Estrutura base</h3>
+        <ul>
+            <li>Copiar <code>config/</code>, <code>utils/</code>, <code>middleware/</code></li>
+            <li>Copiar <code>templates/base/</code></li>
+            <li>Copiar <code>static/css/core/</code> e <code>components/</code></li>
+            <li>Copiar <code>static/js/core/</code> e <code>components/</code></li>
+            <li>Copiar <code>scripts/combine_all.py</code></li>
+        </ul>
+
+        <h3>Primeiro módulo</h3>
+        <ul>
+            <li>Seguir checklist de novo módulo</li>
+            <li>Testar de ponta a ponta</li>
+            <li>Documentar no <code>docs/</code></li>
+        </ul>
+
+        <h3>Deploy</h3>
+        <ul>
+            <li>VPS (Ubuntu + PostgreSQL + Nginx)</li>
+            <li>systemd + Gunicorn</li>
+            <li>SSL (Let's Encrypt)</li>
+            <li>Backup automático (cron)</li>
+        </ul>
+    </section>
+
+    <!-- ==================== SEÇÃO 12 ==================== -->
+    <section class="playbook-secao">
+        <h2>12. Como usar o Padrão</h2>
+
+        <ol>
+            <li><strong>Copie a estrutura</strong> — o esqueleto de pastas.</li>
+            <li><strong>Siga os princípios</strong> — os 20 são regra.</li>
+            <li><strong>Crie módulo por módulo</strong> — use o checklist.</li>
+            <li><strong>Separe filtros read/write</strong> — regra crítica.</li>
+            <li><strong>Auditoria transacional sempre</strong> — nunca sem rastro.</li>
+            <li><strong>Rode o build</strong> — <code>python scripts/combine_all.py</code>.</li>
+            <li><strong>Deploy com backup</strong> — antes de subir, backup.</li>
+        </ol>
+
+        <div class="playbook-warning">
+            <strong>💡 Dica:</strong> o padrão funciona melhor se você
+            <strong>não quebrar as convenções</strong>. Se for mudar algo,
+            documente o porquê.
+        </div>
+    </section>
+
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="playbook-footer">
+        <p>Documentação oficial do <strong>Padrão 2099</strong>.</p>
+        <p>
+            <a href="{{ url_for('arquitetura.ini_arquitetura') }}">← Voltar</a>
+        </p>
+    </footer>
+
+</article>
+
+{% endblock %}

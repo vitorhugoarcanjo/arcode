@@ -1,0 +1,57 @@
+{% extends 'tela_base_pos_login/base.html.jinja' %}
+
+{% block titulo %}Projetos | Vitor Hugo{% endblock %}
+
+{% block descricao %}Projetos reais desenvolvidos com Flask, PostgreSQL, SQLite e HTMX. Sistemas web sob medida em produção.{% endblock %}
+
+{% block css_extra %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/modules/pasta_projetos/projetos.min.css') }}">
+{% endblock %}
+
+{% block conteudo %}
+
+<!-- ==================== HERO ==================== -->
+<section class="bloco bloco-proj-hero">
+    <div class="container">
+        <span class="proj-tag">Portfólio</span>
+        <h1 class="proj-titulo">Meus projetos<span class="proj-ponto">.</span></h1>
+        <p class="proj-subtitulo">
+            Sistemas reais que unem <strong>desenvolvimento web</strong>,
+            <strong>arquitetura modular</strong> e soluções práticas.
+        </p>
+    </div>
+</section>
+
+<!-- ==================== GRID ==================== -->
+<section class="bloco bloco-proj-lista">
+    <div class="container">
+
+        <div id="proj-grid-wrap">
+            {% include 'pasta_projetos/partials/_grid_projetos.html.jinja' %}
+        </div>
+
+        <!-- ==================== CTA FINAL ==================== -->
+        <div class="proj-cta">
+            <p>Tem um projeto em mente?</p>
+            <a href="https://wa.me/5565999757941" target="_blank" rel="noopener noreferrer" class="btn-primary">
+                <i class="fab fa-whatsapp"></i> Falar comigo
+            </a>
+        </div>
+
+    </div>
+</section>
+
+{% endblock %}
+
+{% block js_extra %}
+<script>
+    // Atualiza botão ativo ao clicar (HTMX substitui o grid)
+    document.addEventListener('click', (e) => {
+        const btn = e.target.closest('.proj-filtro-btn');
+        if (!btn) return;
+
+        document.querySelectorAll('.proj-filtro-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+    });
+</script>
+{% endblock %}

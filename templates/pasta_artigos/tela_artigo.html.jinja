@@ -1,0 +1,56 @@
+{% extends 'tela_base_pos_login/base.html.jinja' %}
+
+{% block titulo %}{{ artigo.titulo }} | Vitor Hugo{% endblock %}
+{% block descricao %}{{ artigo.resumo }}{% endblock %}
+
+{% block css_extra %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/modules/pasta_artigos/artigos.min.css') }}">
+{% endblock %}
+
+{% block conteudo %}
+
+<article class="artigo container">
+
+    <header class="artigo-header">
+        <a href="{{ url_for('artigos.ini_artigos') }}" class="artigo-voltar">
+            <i class="fas fa-arrow-left"></i> Todos os artigos
+        </a>
+
+        {% if artigo.tags %}
+        <div class="artigo-tags">
+            {% for t in artigo.tags %}
+            <span>#{{ t }}</span>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <h1>{{ artigo.titulo }}</h1>
+        <p class="artigo-resumo">{{ artigo.resumo }}</p>
+
+        <div class="artigo-meta">
+            <span><i class="fas fa-calendar"></i> {{ artigo.data }}</span>
+            {% if artigo.tempo_leitura %}
+            <span><i class="fas fa-clock"></i> {{ artigo.tempo_leitura }} min de leitura</span>
+            {% endif %}
+        </div>
+    </header>
+
+    <div class="artigo-conteudo">
+        {{ artigo.conteudo_html | safe }}
+    </div>
+
+    <footer class="artigo-cta">
+        <p>Gostou do artigo?</p>
+        <div class="artigo-cta-botoes">
+            <a href="https://wa.me/5565999757941" target="_blank" rel="noopener noreferrer" class="btn-primary">
+                <i class="fab fa-whatsapp"></i> Falar comigo
+            </a>
+            <a href="{{ url_for('artigos.ini_artigos') }}" class="btn-secondary">
+                <i class="fas fa-book-open"></i> Ver outros artigos
+            </a>
+        </div>
+    </footer>
+
+</article>
+
+{% endblock %}

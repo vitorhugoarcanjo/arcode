@@ -1,0 +1,131 @@
+/* ==================== NAVBAR ==================== */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: var(--bg-color);
+    padding: 15px 0;
+    border-bottom: 1px solid var(--border-color);
+    transition: background-color var(--transition), border-color var(--transition);
+}
+
+.navbar-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.navbar-logo {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--text-color);
+    letter-spacing: -0.5px;
+}
+
+.navbar-logo span {
+    color: var(--accent-color);
+}
+
+.menu-links {
+    display: flex;
+    gap: 28px;
+    align-items: center;
+}
+
+.menu-links a {
+    color: var(--text-color);
+    font-weight: 500;
+    position: relative;
+    transition: color var(--transition);
+}
+
+.menu-links a:hover {
+    color: var(--accent-color);
+}
+
+.menu-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    background-color: var(--accent-color);
+    transition: width var(--transition);
+}
+
+.menu-links a:hover::after {
+    width: 100%;
+}
+
+.menu-hamburger, .theme-toggle {
+    background: none;
+    border: none;
+    color: var(--text-color);
+    font-size: 1.4rem;
+    padding: 5px;
+    transition: color var(--transition);
+}
+
+.menu-hamburger:hover, .theme-toggle:hover {
+    color: var(--accent-color);
+}
+
+
+/* ==================== LINK ATIVO ==================== */
+.menu-links a.active {
+    color: var(--accent-color);
+    font-weight: 700;
+}
+
+.menu-links a.active::after {
+    width: 100%;
+}
+
+/* No mobile, link ativo fica com fundo destacado */
+@media (max-width: 992px) {
+    .menu-links a.active {
+        background-color: var(--bg-secondary);
+        border-radius: var(--radius-sm);
+        padding: 8px 12px;
+    }
+}
+
+/* ==================== MOBILE ==================== */
+@media (max-width: 992px) {
+    .menu-hamburger {
+        display: block;
+        order: -1;
+    }
+
+    .menu-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: var(--bg-color);
+        flex-direction: column;
+        padding: 30px 20px;
+        text-align: center;
+        gap: 20px;
+        border-bottom: 2px solid var(--accent-color);
+        box-shadow: 0 10px 20px var(--shadow);
+    }
+
+    .menu-links.active {
+        display: flex;
+        animation: slideDown 0.3s ease-out;
+    }
+}
+
+@media (min-width: 993px) {
+    .menu-hamburger { display: none; }
+}
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}

@@ -1,0 +1,545 @@
+/* ARQUITETURA — 15/10/2026 13:03 */
+
+/* ===== arquitetura.css ===== */
+/* ==================== ARQUITETURA 2099 — MÓDULO ==================== */
+
+/* ==================== HERO ==================== */
+.bloco-arq-hero {
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+    padding-top: 120px;
+    padding-bottom: 60px;
+    text-align: center;
+    background: linear-gradient(180deg, var(--bg-color) 0%, var(--bg-secondary) 100%);
+}
+
+.arq-tag {
+    display: inline-block;
+    background-color: var(--card-bg);
+    color: var(--accent-color);
+    padding: 6px 18px;
+    border-radius: var(--radius-lg);
+    font-size: 0.8rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    border: 1px solid var(--border-color);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.arq-titulo {
+    font-size: 4.5rem;
+    line-height: 1;
+    margin-bottom: 1rem;
+    letter-spacing: -2px;
+}
+
+.arq-ponto {
+    color: var(--accent-color);
+}
+
+.arq-subtitulo {
+    font-size: 1.25rem;
+    color: var(--text-muted);
+    max-width: 700px;
+    margin: 0 auto 2rem;
+    line-height: 1.6;
+}
+
+.arq-subtitulo strong {
+    color: var(--text-color);
+}
+
+.arq-cta {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* ==================== LICENÇA ==================== */
+.bloco-arq-licenca {
+    background-color: var(--bg-color);
+}
+
+.arq-licenca-card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 40px;
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto;
+    border-top: 4px solid var(--accent-color);
+}
+
+.arq-licenca-icon {
+    font-size: 2.5rem;
+    color: var(--accent-color);
+    margin-bottom: 1rem;
+}
+
+.arq-licenca-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--text-color);
+}
+
+.arq-licenca-card p {
+    font-size: 1rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+}
+
+.arq-licenca-card strong {
+    color: var(--text-color);
+}
+
+.arq-licenca-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+}
+
+.arq-licenca-badges span {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background-color: var(--bg-secondary);
+    color: var(--text-color);
+    padding: 6px 14px;
+    border-radius: var(--radius-lg);
+    font-size: 0.85rem;
+    font-weight: 500;
+    border: 1px solid var(--border-color);
+}
+
+.arq-licenca-badges span i {
+    color: #28a745;
+    font-size: 0.9rem;
+}
+
+@media (max-width: 576px) {
+    .arq-licenca-card { padding: 25px 20px; }
+    .arq-licenca-card h3 { font-size: 1.2rem; }
+    .arq-licenca-card p { font-size: 0.9rem; }
+}
+
+/* ==================== SCROLL OFFSET ==================== */
+/* Empurra o ponto de parada das âncoras pra baixo da navbar + âncora fixa */
+#problema,
+#principios,
+#arvore,
+#modulo,
+#por-que,
+#cta-final {
+    scroll-margin-top: 150px;
+}
+
+/* Mobile: navbar é menor */
+@media (max-width: 992px) {
+    #problema,
+    #principios,
+    #arvore,
+    #modulo,
+    #por-que,
+    #cta-final {
+        scroll-margin-top: 130px;
+    }
+}
+
+/* ==================== ÂNCORAS FIXAS ==================== */
+.arq-anchor-nav {
+    position: sticky;
+    top: 70px;
+    z-index: 90;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border-color);
+    backdrop-filter: blur(12px);
+    background-color: rgba(255, 255, 255, 0.75);
+    transition: background-color var(--transition);
+}
+
+[data-theme="dark"] .arq-anchor-nav {
+    background-color: rgba(15, 15, 15, 0.75);
+}
+
+.arq-anchor-inner {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.arq-anchor-inner a {
+    padding: 8px 16px;
+    border-radius: var(--radius-lg);
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    transition: all var(--transition);
+    border: 1px solid transparent;
+    position: relative;
+}
+
+.arq-anchor-inner a:hover {
+    color: var(--accent-color);
+    background-color: var(--bg-secondary);
+}
+
+.arq-anchor-inner a.active {
+    color: #ffffff;
+    background-color: var(--accent-color);
+    border-color: var(--accent-color);
+    font-weight: 600;
+    box-shadow: 0 4px 12px var(--shadow);
+}
+
+.arq-anchor-inner a.active:hover {
+    background-color: var(--accent-hover);
+    color: #ffffff;
+}
+
+/* ==================== TÍTULOS DE SEÇÃO ==================== */
+.arq-section-title {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 0.75rem;
+    color: var(--text-color);
+}
+
+.arq-section-subtitle {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 1.05rem;
+    margin-bottom: 3rem;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* ==================== PROBLEMA ==================== */
+.bloco-arq-problema {
+    background-color: var(--bg-color);
+}
+
+.arq-problema-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-bottom: 3rem;
+}
+
+.arq-problema-card {
+    background-color: var(--card-bg);
+    padding: 30px 25px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-color);
+    text-align: center;
+    transition: transform var(--transition), border-color var(--transition);
+}
+
+.arq-problema-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent-color);
+}
+
+.arq-problema-icon {
+    font-size: 2rem;
+    color: var(--accent-color);
+    margin-bottom: 1rem;
+}
+
+.arq-problema-card h3 {
+    font-size: 1.05rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+}
+
+.arq-problema-card p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+    margin: 0;
+}
+
+.arq-solucao {
+    text-align: center;
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.arq-solucao strong {
+    color: var(--accent-color);
+}
+
+/* ==================== PRINCÍPIOS ==================== */
+.bloco-arq-principios {
+    background-color: var(--bg-secondary);
+}
+
+.arq-principios-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+}
+
+.arq-principio-grupo {
+    background-color: var(--card-bg);
+    padding: 30px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-color);
+    border-left: 4px solid var(--accent-color);
+}
+
+.arq-principio-grupo h3 {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--text-color);
+}
+
+.arq-principio-grupo h3 i {
+    color: var(--accent-color);
+}
+
+.arq-principio-grupo ol {
+    list-style: none;
+    counter-reset: principle;
+    padding: 0;
+}
+
+.arq-principio-grupo li {
+    counter-increment: principle;
+    padding: 6px 0 6px 32px;
+    position: relative;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+}
+
+.arq-principio-grupo li::before {
+    content: counter(principle);
+    position: absolute;
+    left: 0;
+    top: 6px;
+    width: 22px;
+    height: 22px;
+    background-color: var(--bg-secondary);
+    color: var(--accent-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    font-weight: 700;
+    font-family: monospace;
+}
+
+.arq-principio-grupo code {
+    background-color: var(--bg-secondary);
+    color: var(--accent-color);
+    padding: 1px 6px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-family: 'Courier New', monospace;
+}
+
+/* ==================== ÁRVORE ==================== */
+.bloco-arq-arvore {
+    background-color: var(--bg-color);
+}
+
+.arq-code {
+    background-color: #1e1e1e;
+    color: #e0e0e0;
+    padding: 30px;
+    border-radius: var(--radius-md);
+    overflow-x: auto;
+    font-family: 'Courier New', Consolas, monospace;
+    font-size: 0.85rem;
+    line-height: 1.6;
+    border: 1px solid var(--border-color);
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.arq-code code {
+    background: none;
+    color: inherit;
+    padding: 0;
+    font-family: inherit;
+}
+
+.arq-code-sm {
+    padding: 20px;
+    font-size: 0.8rem;
+    margin: 0;
+}
+
+/* ==================== MÓDULO ==================== */
+.bloco-arq-modulo {
+    background-color: var(--bg-secondary);
+}
+
+.arq-modulo-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+}
+
+.arq-modulo-bloco {
+    background-color: var(--card-bg);
+    padding: 25px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.arq-modulo-bloco h3 {
+    font-size: 1.05rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--text-color);
+    margin: 0;
+}
+
+.arq-modulo-bloco h3 i {
+    color: var(--accent-color);
+}
+
+.arq-modulo-nota {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-style: italic;
+    margin: 0;
+    padding-left: 10px;
+    border-left: 2px solid var(--border-color);
+}
+
+.arq-tabela {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85rem;
+}
+
+.arq-tabela th,
+.arq-tabela td {
+    padding: 8px 12px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-muted);
+}
+
+.arq-tabela th {
+    color: var(--text-color);
+    font-weight: 600;
+    background-color: var(--bg-secondary);
+}
+
+.arq-tabela code {
+    background-color: var(--bg-secondary);
+    color: var(--accent-color);
+    padding: 1px 6px;
+    border-radius: 4px;
+    font-family: monospace;
+    font-size: 0.8rem;
+}
+
+/* ==================== POR QUE FUNCIONA ==================== */
+.bloco-arq-porque {
+    background-color: var(--bg-color);
+}
+
+.arq-porque-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.arq-porque-card {
+    background-color: var(--card-bg);
+    padding: 35px 25px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-color);
+    text-align: center;
+    transition: transform var(--transition), border-color var(--transition);
+}
+
+.arq-porque-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent-color);
+}
+
+.arq-porque-icon {
+    font-size: 2.5rem;
+    color: var(--accent-color);
+    margin-bottom: 1.2rem;
+}
+
+.arq-porque-card h3 {
+    font-size: 1.15rem;
+    margin-bottom: 0.75rem;
+    color: var(--text-color);
+}
+
+.arq-porque-card p {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* ==================== CTA FINAL ==================== */
+.bloco-arq-cta {
+    background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-color) 100%);
+}
+
+.arq-cta-final {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* ==================== RESPONSIVO ==================== */
+@media (max-width: 992px) {
+    .arq-titulo { font-size: 3rem; }
+    .arq-subtitulo { font-size: 1.1rem; }
+
+    .arq-anchor-nav { top: 60px; }
+    .arq-anchor-inner { justify-content: flex-start; overflow-x: auto; flex-wrap: nowrap; padding-bottom: 4px; }
+    .arq-anchor-inner a { flex-shrink: 0; }
+
+    .arq-section-title { font-size: 2rem; }
+
+    .arq-problema-grid { grid-template-columns: repeat(2, 1fr); }
+    .arq-principios-grid { grid-template-columns: 1fr; }
+    .arq-modulo-grid { grid-template-columns: 1fr; }
+    .arq-porque-grid { grid-template-columns: 1fr; }
+
+    .arq-code { padding: 20px; font-size: 0.75rem; }
+}
+
+@media (max-width: 576px) {
+    .arq-titulo { font-size: 2.3rem; }
+    .arq-problema-grid { grid-template-columns: 1fr; }
+    .arq-cta { flex-direction: column; align-items: stretch; }
+    .arq-cta .btn-primary,
+    .arq-cta .btn-secondary { text-align: center; }
+    .arq-cta-final { flex-direction: column; }
+    .arq-cta-final a { text-align: center; }
+}
+

@@ -1,0 +1,114 @@
+/* ==================== PLAYBOOK 2099 — MÓDULO ==================== */
+
+.playbook {
+    padding-top: 120px;
+    padding-bottom: 80px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.playbook-header {
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.playbook-voltar {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--accent-color);
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    transition: gap var(--transition);
+}
+
+.playbook-voltar:hover {
+    gap: 12px;
+}
+
+.playbook-header h1 {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+    letter-spacing: -1px;
+}
+
+.playbook-sub {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    margin: 0;
+}
+
+.playbook-secao {
+    margin-bottom: 3.5rem;
+    scroll-margin-top: 100px;
+}
+
+.playbook-secao h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    color: var(--text-color);
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.playbook-secao h3 {
+    font-size: 1.2rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    color: var(--text-color);
+}
+
+.playbook-secao p {
+    font-size: 1rem;
+    line-height: 1.7;
+    margin-bottom: 1rem;
+}
+
+.playbook-warning {
+    background-color: rgba(255, 193, 7, 0.1);
+    border-left: 4px solid #ffc107;
+    padding: 15px 20px;
+    margin: 1.5rem 0;
+    border-radius: var(--radius-sm);
+    font-size: 0.95rem;
+    color: var(--text-color);
+}
+
+.playbook-warning strong {
+    color: #cc8800;
+}
+
+.playbook-warning code {
+    background-color: rgba(0,0,0,0.1);
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-family: monospace;
+    font-size: 0.9rem;
+}
+
+.playbook-footer {
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border-color);
+    text-align: center;
+}
+
+.playbook-footer p {
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
+}
+
+.playbook-footer a {
+    color: var(--accent-color);
+    font-weight: 600;
+}
+
+/* ==================== RESPONSIVO ==================== */
+@media (max-width: 768px) {
+    .playbook { padding-top: 100px; padding-bottom: 60px; }
+    .playbook-header h1 { font-size: 2rem; }
+    .playbook-secao h2 { font-size: 1.4rem; }
+    .playbook-secao h3 { font-size: 1.05rem; }
+}

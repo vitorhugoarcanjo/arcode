@@ -1,0 +1,361 @@
+{% extends 'tela_base_pos_login/base.html.jinja' %}
+
+{% block titulo %}Padrão 2099 — Arquitetura modular Flask + HTMX{% endblock %}
+
+{% block descricao %}Arquitetura modular para Flask + HTMX que prioriza clareza, manutenibilidade e velocidade de desenvolvimento.{% endblock %}
+
+{% block css_extra %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/modules/pasta_arquitetura/arquitetura.min.css') }}">
+{% endblock %}
+
+{% block conteudo %}
+
+<!-- ==================== HERO ==================== -->
+<section id="inicio" class="bloco bloco-arq-hero">
+    <div class="container">
+        <span class="arq-tag">Arquitetura própria</span>
+        <h1 class="arq-titulo">Padrão 2099<span class="arq-ponto">.</span></h1>
+        <p class="arq-subtitulo">
+            Arquitetura modular para <strong>Flask + HTMX</strong> que prioriza
+            clareza, manutenibilidade e velocidade de desenvolvimento.
+        </p>
+        <div class="arq-cta">
+            <a href="{{ url_for('arquitetura.playbook') }}" class="btn-primary">
+                <i class="fas fa-book"></i> Ler o Playbook
+            </a>
+            <a href="#problema" class="btn-secondary">
+                Ver como funciona
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== ÂNCORAS FIXAS ==================== -->
+<nav class="arq-anchor-nav" id="arq-anchor-nav">
+    <div class="container arq-anchor-inner">
+        <a href="#problema" data-anchor="problema">Problema</a>
+        <a href="#principios" data-anchor="principios">Princípios</a>
+        <a href="#arvore" data-anchor="arvore">Árvore</a>
+        <a href="#modulo" data-anchor="modulo">Módulo</a>
+        <a href="#por-que" data-anchor="por-que">Por que funciona</a>
+        <a href="#cta-final" data-anchor="cta-final">Aprofundar</a>
+        <a href="#licenca" data-anchor="licenca">Licença</a>
+    </div>
+</nav>
+
+<!-- ==================== O PROBLEMA ==================== -->
+<section id="problema" class="bloco bloco-arq-problema">
+    <div class="container">
+        <h2 class="arq-section-title">O problema</h2>
+        <p class="arq-section-subtitle">
+            Depois de vários projetos Flask, os mesmos problemas aparecem.
+        </p>
+
+        <div class="arq-problema-grid">
+            <div class="arq-problema-card">
+                <div class="arq-problema-icon"><i class="fas fa-folder-open"></i></div>
+                <h3>Estrutura inconsistente</h3>
+                <p>Cada projeto organiza diferente.</p>
+            </div>
+
+            <div class="arq-problema-card">
+                <div class="arq-problema-icon"><i class="fas fa-bug"></i></div>
+                <h3>Bugs recorrentes</h3>
+                <p>Validações duplicadas, tratamento frágil de dados.</p>
+            </div>
+
+            <div class="arq-problema-card">
+                <div class="arq-problema-icon"><i class="fas fa-redo"></i></div>
+                <h3>Retrabalho</h3>
+                <p>Reescrever o mesmo CRUD várias vezes.</p>
+            </div>
+
+            <div class="arq-problema-card">
+                <div class="arq-problema-icon"><i class="fas fa-brain"></i></div>
+                <h3>Carga mental</h3>
+                <p>"Onde coloco esse arquivo?" toda vez.</p>
+            </div>
+        </div>
+
+        <p class="arq-solucao">
+            O <strong>Padrão 2099</strong> resolve isso com <strong>convenções claras</strong>
+            e <strong>estrutura pré-definida</strong>.
+        </p>
+    </div>
+</section>
+
+<!-- ==================== PRINCÍPIOS ==================== -->
+<section id="principios" class="bloco bloco-arq-principios">
+    <div class="container">
+        <h2 class="arq-section-title">20 princípios invioláveis</h2>
+        <p class="arq-section-subtitle">
+            Regras que eu não quebro, nem em projeto pequeno.
+        </p>
+
+        <div class="arq-principios-grid">
+
+            <div class="arq-principio-grupo">
+                <h3><i class="fas fa-server"></i> Backend</h3>
+                <ol>
+                    <li>View magra — regra de negócio vai pra service</li>
+                    <li>Service não faz commit — quem faz é a view</li>
+                    <li>Validação no backend sempre</li>
+                    <li>Sequência visual por usuário</li>
+                    <li>Numeração formatada única</li>
+                    <li>Soft delete sempre</li>
+                    <li>Colunas explícitas em queries</li>
+                </ol>
+            </div>
+
+            <div class="arq-principio-grupo">
+                <h3><i class="fas fa-code"></i> Frontend</h3>
+                <ol start="8">
+                    <li>HTMX puro — front abre, backend devolve HTML</li>
+                    <li>1 arquivo = 1 responsabilidade</li>
+                    <li>Pós-insert via HTMX, nunca reload</li>
+                    <li>Sem <code>setTimeout</code> fixo</li>
+                    <li>Sem handlers inline — usa <code>data-*</code></li>
+                    <li>Validação campo-a-campo no front</li>
+                </ol>
+            </div>
+
+            <div class="arq-principio-grupo">
+                <h3><i class="fas fa-clipboard-list"></i> Auditoria</h3>
+                <ol start="14">
+                    <li>Auditoria transacional</li>
+                    <li>Referência por chave interna</li>
+                    <li>Diff estruturado <code>[{campo, antes, depois}]</code></li>
+                </ol>
+            </div>
+
+            <div class="arq-principio-grupo">
+                <h3><i class="fas fa-cog"></i> Geral</h3>
+                <ol start="17">
+                    <li>CSS compartilhado em <code>components/</code></li>
+                    <li>Respostas sempre 200 (HTMX)</li>
+                    <li>JS compartilhado em <code>components/</code></li>
+                    <li>Prefixos CSS por módulo</li>
+                </ol>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ==================== ÁRVORE ==================== -->
+<section id="arvore" class="bloco bloco-arq-arvore">
+    <div class="container">
+        <h2 class="arq-section-title">A árvore</h2>
+        <p class="arq-section-subtitle">
+            Estrutura conceitual de qualquer projeto que usa o padrão.
+        </p>
+
+        <pre class="arq-code"><code class="language-plaintext">projeto/
+├── app.py                  # Entry point
+├── config/                 # Ciclo de vida
+│   └── migrations/         # SQL versionado
+│
+├── rotas/                  # HTTP
+│   ├── middleware/         # Interceptadores (auth, logs, RBAC)
+│   ├── exceptions/         # Erros customizados
+│   ├── auth/               # Autenticação
+│   ├── [modulo]/           # SLICE VERTICAL
+│   │   ├── view.py         # Endpoint principal
+│   │   ├── queries.py      # Acesso a dados
+│   │   ├── filters.py      # Sessão / filtros
+│   │   ├── formatters.py   # Apresentação
+│   │   ├── services/       # Regra de negócio
+│   │   ├── crud/           # insert | edit | delete | reactivate
+│   │   ├── tabelas/        # DDL do módulo
+│   │   └── pdf/            # Geração de documentos
+│   ├── auditoria/          # Rastreabilidade
+│   └── paineis/            # Painéis de log
+│
+├── templates/              # Jinja2
+│   ├── base/               # Layout base
+│   ├── components/         # Fragmentos globais
+│   └── [modulo]/           # Templates do módulo
+│
+├── static/
+│   ├── css/
+│   │   ├── core/           # Reset, tokens, responsividade
+│   │   ├── components/     # Compartilhado
+│   │   └── modules/        # Por módulo
+│   └── js/
+│       ├── components/     # Compartilhado
+│       └── modules/        # Por módulo
+│
+├── scripts/                # Automação
+├── utils/                  # Ferramentas globais
+├── instance/               # Banco local + backups
+├── output/                 # Arquivos gerados
+├── anexos/                 # Uploads
+├── logs/                   # Arquivos .log
+├── tests/                  # Testes
+└── docs/                   # Documentação</code></pre>
+    </div>
+</section>
+
+<!-- ==================== MÓDULO ==================== -->
+<section id="modulo" class="bloco bloco-arq-modulo">
+    <div class="container">
+        <h2 class="arq-section-title">Como um módulo funciona</h2>
+        <p class="arq-section-subtitle">
+            Cada módulo é auto-contido e segue a mesma anatomia.
+        </p>
+
+        <div class="arq-modulo-grid">
+
+            <div class="arq-modulo-bloco">
+                <h3><i class="fas fa-cube"></i> Anatomia</h3>
+                <pre class="arq-code arq-code-sm"><code class="language-plaintext">[modulo]/
+├── view.py          # Endpoint
+├── queries.py       # SQL
+├── filters.py       # Sessão
+├── formatters.py    # Apresentação
+├── services/        # Negócio
+├── crud/            # insert|edit|delete
+├── tabelas/         # DDL
+└── pdf/             # Documentos</code></pre>
+            </div>
+
+            <div class="arq-modulo-bloco">
+                <h3><i class="fas fa-filter"></i> Filtros: read vs write</h3>
+                <pre class="arq-code arq-code-sm"><code class="language-python">class ModuloFilters:
+    @classmethod
+    def recuperar_filtros(cls, session):
+        """SÓ LÊ — nunca sobrescreve"""
+        ...
+
+    @classmethod
+    def salvar_filtros_post(cls, request, session):
+        """SÓ SALVA — só a view chama"""
+        ...</code></pre>
+                <p class="arq-modulo-nota">
+                    Se um CRUD chamar <code>salvar_filtros_post</code>,
+                    os filtros são apagados.
+                </p>
+            </div>
+
+            <div class="arq-modulo-bloco">
+                <h3><i class="fas fa-history"></i> Auditoria transacional</h3>
+                <pre class="arq-code arq-code-sm"><code class="language-python">AuditoriaService.registrar(
+    id=resultado['id'],
+    acao='editada',
+    alteracoes=[
+        {'campo': 'Status',
+         'antes': 'pendente',
+         'depois': 'concluido'},
+    ],
+    conexao=conexao,  # mesma transação
+)</code></pre>
+                <p class="arq-modulo-nota">
+                    Se a operação falhar, a auditoria também é desfeita.
+                </p>
+            </div>
+
+            <div class="arq-modulo-bloco">
+                <h3><i class="fas fa-paint-brush"></i> Prefixos CSS</h3>
+                <table class="arq-tabela">
+                    <thead>
+                        <tr><th>Escopo</th><th>Prefixo</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Global</td><td><code>.btn-</code>, <code>.td-</code></td></tr>
+                        <tr><td>Módulo X</td><td><code>.xx-</code></td></tr>
+                    </tbody>
+                </table>
+                <p class="arq-modulo-nota">
+                    Evita colisão entre módulos que usam classes genéricas.
+                </p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ==================== POR QUE FUNCIONA ==================== -->
+<section id="por-que" class="bloco bloco-arq-porque">
+    <div class="container">
+        <h2 class="arq-section-title">Por que funciona</h2>
+        <p class="arq-section-subtitle">
+            Três motivos técnicos.
+        </p>
+
+        <div class="arq-porque-grid">
+            <div class="arq-porque-card">
+                <div class="arq-porque-icon"><i class="fas fa-layer-group"></i></div>
+                <h3>Slice Vertical</h3>
+                <p>Cada módulo é auto-contido. Adicionar ou remover não afeta os outros.</p>
+            </div>
+
+            <div class="arq-porque-card">
+                <div class="arq-porque-icon"><i class="fas fa-sitemap"></i></div>
+                <h3>Separação de Responsabilidades</h3>
+                <p>View → Service → Repository. Cada camada tem 1 propósito.</p>
+            </div>
+
+            <div class="arq-porque-card">
+                <div class="arq-porque-icon"><i class="fas fa-compass"></i></div>
+                <h3>Convenção sobre Configuração</h3>
+                <p>Você não decide onde colocar arquivo. Já tem lugar.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== CTA FINAL ==================== -->
+<section id="cta-final" class="bloco bloco-arq-cta">
+    <div class="container">
+        <h2 class="arq-section-title">Quer se aprofundar?</h2>
+        <p class="arq-section-subtitle">
+            O Playbook completo tem todas as decisões técnicas, exemplos e checklists.
+        </p>
+
+        <div class="arq-cta-final">
+            <a href="{{ url_for('arquitetura.playbook') }}" class="btn-primary">
+                <i class="fas fa-book"></i> Ler o Playbook
+            </a>
+            <a href="https://github.com/vitorhugoarcanjo/arcode" target="_blank" rel="noopener noreferrer" class="btn-secondary">
+                <i class="fab fa-github"></i> Ver no GitHub
+            </a>
+            <a href="https://wa.me/5565999757941" target="_blank" rel="noopener noreferrer" class="btn-secondary">
+                <i class="fab fa-whatsapp"></i> Falar comigo
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== LICENÇA ==================== -->
+<section id="licenca" class="bloco bloco-arq-licenca">
+    <div class="container">
+        <div class="arq-licenca-card">
+            <div class="arq-licenca-icon">
+                <i class="fas fa-balance-scale"></i>
+            </div>
+            <h3>Licença</h3>
+            <p>
+                O <strong>Padrão 2099</strong> é aberto sob
+                <strong>Creative Commons Atribuição 4.0 (CC-BY-4.0)</strong>.
+                Use livremente em projetos pessoais ou comerciais, modifique e distribua —
+                só mantém o crédito.
+            </p>
+            <div class="arq-licenca-badges">
+                <span><i class="fas fa-check"></i> Uso pessoal</span>
+                <span><i class="fas fa-check"></i> Uso comercial</span>
+                <span><i class="fas fa-check"></i> Modificação</span>
+                <span><i class="fas fa-check"></i> Distribuição</span>
+            </div>
+            <a href="https://creativecommons.org/licenses/by/4.0/deed.pt-br"
+               target="_blank" rel="noopener noreferrer" class="btn-secondary">
+                <i class="fas fa-external-link-alt"></i> Ver licença completa
+            </a>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block js_extra %}
+<script src="{{ url_for('static', filename='js/modules/pasta_arquitetura/scroll-spy.js') }}" defer></script>
+{% endblock %}

@@ -1,0 +1,51 @@
+<header class="navbar">
+    <nav class="container navbar-inner">
+
+        <a href="{{ url_for('home.ini_home') }}" class="navbar-logo">
+            Vitor<span>Hugo</span>
+        </a>
+
+        <button
+            class="menu-hamburger"
+            id="menu-hamburger"
+            aria-label="Abrir menu"
+            aria-expanded="false"
+            aria-controls="menu-links"
+            type="button"
+        >
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <ul class="menu-links" id="menu-links">
+            <li>
+                <a href="{{ url_for('home.ini_home') }}"
+                   class="{{ 'active' if request.endpoint == 'home.ini_home' else '' }}">
+                    Início
+                </a>
+            </li>
+            <li>
+                <a href="{{ url_for('projetos.ini_projetos') }}"
+                   class="{{ 'active' if request.endpoint == 'projetos.ini_projetos' else '' }}">
+                    Projetos
+                </a>
+            </li>
+            <li>
+                <a href="{{ url_for('artigos.ini_artigos') }}"
+                   class="{{ 'active' if request.endpoint == 'artigos.ini_artigos' else '' }}">
+                    Artigos
+                </a>
+            </li>
+            <li>
+                <a href="{{ url_for('arquitetura.ini_arquitetura') }}"
+                   class="{{ 'active' if request.endpoint == 'arquitetura.ini_arquitetura' else '' }}">
+                    Arquitetura 2099
+                </a>
+            </li>
+        </ul>
+
+        <button id="theme-toggle" class="theme-toggle" aria-label="Alternar tema" type="button">
+            <i class="fas fa-moon"></i>
+        </button>
+
+    </nav>
+</header>

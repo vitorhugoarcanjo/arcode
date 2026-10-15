@@ -1,0 +1,72 @@
+{% extends 'tela_base_pos_login/base.html.jinja' %}
+
+{% block titulo %}Artigos | Vitor Hugo{% endblock %}
+
+{% block descricao %}Artigos técnicos sobre Flask, deploy em VPS, Nginx, SSL, HTMX e arquitetura modular.{% endblock %}
+
+{% block css_extra %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/modules/pasta_artigos/artigos.min.css') }}">
+{% endblock %}
+
+{% block conteudo %}
+
+<section class="bloco bloco-art-hero">
+    <div class="container">
+        <span class="art-tag">Blog técnico</span>
+        <h1 class="art-titulo">Artigos<span class="art-ponto">.</span></h1>
+        <p class="art-subtitulo">
+            Notas técnicas sobre <strong>Flask</strong>, <strong>deploy em VPS</strong>,
+            <strong>Nginx</strong>, <strong>HTMX</strong> e arquitetura modular.
+        </p>
+    </div>
+</section>
+
+<section class="bloco bloco-art-lista">
+    <div class="container">
+
+        {% if artigos %}
+        <div class="art-grid">
+            {% for a in artigos %}
+            <article class="art-card">
+                <a href="{{ url_for('artigos.ver_artigo', slug=a.slug) }}" class="art-card-link">
+
+                    <div class="art-card-meta">
+                        <time>{{ a.data }}</time>
+                        {% if a.tempo_leitura %}
+                        <span class="art-card-tempo">
+                            <i class="fas fa-clock"></i> {{ a.tempo_leitura }} min
+                        </span>
+                        {% endif %}
+                    </div>
+
+                    <h2>{{ a.titulo }}</h2>
+                    <p>{{ a.resumo }}</p>
+
+                    {% if a.tags %}
+                    <div class="art-card-tags">
+                        {% for t in a.tags %}
+                        <span>#{{ t }}</span>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+
+                    <span class="art-card-ler">
+                        Ler artigo <i class="fas fa-arrow-right"></i>
+                    </span>
+
+                </a>
+            </article>
+            {% endfor %}
+        </div>
+
+        {% else %}
+        <div class="art-vazio">
+            <i class="fas fa-book-open"></i>
+            <p>Nenhum artigo publicado ainda. Volte em breve.</p>
+        </div>
+        {% endif %}
+
+    </div>
+</section>
+
+{% endblock %}

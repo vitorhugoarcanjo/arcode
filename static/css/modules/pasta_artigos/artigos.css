@@ -1,0 +1,362 @@
+/* ==================== ARTIGOS — MÓDULO ==================== */
+
+/* ==================== HERO ==================== */
+.bloco-art-hero {
+    padding-top: 140px;
+    padding-bottom: 60px;
+    text-align: center;
+    background: linear-gradient(180deg, var(--bg-color) 0%, var(--bg-secondary) 100%);
+}
+
+.art-tag {
+    display: inline-block;
+    background-color: var(--card-bg);
+    color: var(--accent-color);
+    padding: 6px 18px;
+    border-radius: var(--radius-lg);
+    font-size: 0.8rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    border: 1px solid var(--border-color);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.art-titulo {
+    font-size: 3.5rem;
+    line-height: 1;
+    margin-bottom: 1rem;
+    letter-spacing: -2px;
+}
+
+.art-ponto { color: var(--accent-color); }
+
+.art-subtitulo {
+    font-size: 1.15rem;
+    color: var(--text-muted);
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+.art-subtitulo strong { color: var(--text-color); }
+
+/* ==================== LISTA ==================== */
+.bloco-art-lista { background-color: var(--bg-color); }
+
+.art-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 25px;
+}
+
+.art-card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition);
+    overflow: hidden;
+}
+
+.art-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent-color);
+    box-shadow: 0 15px 40px var(--shadow-hover);
+}
+
+.art-card-link {
+    display: flex;
+    flex-direction: column;
+    padding: 28px;
+    height: 100%;
+    color: inherit;
+}
+
+.art-card-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.art-card-tempo {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.art-card h2 {
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+    color: var(--text-color);
+    line-height: 1.3;
+}
+
+.art-card p {
+    font-size: 0.92rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 1.2rem;
+    flex: 1;
+}
+
+.art-card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 1.25rem;
+}
+
+.art-card-tags span {
+    color: var(--accent-color);
+    font-size: 0.78rem;
+    font-weight: 500;
+}
+
+.art-card-ler {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--accent-color);
+    font-weight: 600;
+    font-size: 0.88rem;
+    transition: gap var(--transition);
+    margin-top: auto;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.art-card:hover .art-card-ler { gap: 12px; }
+
+/* ==================== VAZIO ==================== */
+.art-vazio {
+    text-align: center;
+    padding: 5rem 2rem;
+    color: var(--text-muted);
+}
+
+.art-vazio i {
+    font-size: 3rem;
+    color: var(--accent-color);
+    opacity: 0.4;
+    margin-bottom: 1rem;
+}
+
+.art-vazio p { font-size: 1.05rem; }
+
+/* ==================== ARTIGO INDIVIDUAL ==================== */
+.artigo {
+    padding-top: 120px;
+    padding-bottom: 80px;
+    max-width: 780px;
+    margin: 0 auto;
+}
+
+.artigo-header {
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.artigo-voltar {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--accent-color);
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    transition: gap var(--transition);
+}
+
+.artigo-voltar:hover { gap: 12px; }
+
+.artigo-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 1rem;
+}
+
+.artigo-tags span {
+    color: var(--accent-color);
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.artigo-header h1 {
+    font-size: 2.5rem;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+    letter-spacing: -1px;
+}
+
+.artigo-resumo {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.artigo-meta {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    font-size: 0.88rem;
+    color: var(--text-muted);
+}
+
+.artigo-meta span {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* ==================== CONTEÚDO DO ARTIGO ==================== */
+.artigo-conteudo {
+    font-size: 1.05rem;
+    line-height: 1.75;
+    color: var(--text-color);
+}
+
+.artigo-conteudo h2 {
+    font-size: 1.75rem;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--text-color);
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border-color);
+    scroll-margin-top: 100px;
+}
+
+.artigo-conteudo h3 {
+    font-size: 1.3rem;
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+    color: var(--text-color);
+}
+
+.artigo-conteudo p { margin-bottom: 1.2rem; }
+
+.artigo-conteudo ul,
+.artigo-conteudo ol {
+    margin-bottom: 1.5rem;
+    padding-left: 1.5rem;
+}
+
+.artigo-conteudo li {
+    margin-bottom: 0.5rem;
+    line-height: 1.7;
+}
+
+.artigo-conteudo a {
+    color: var(--accent-color);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.artigo-conteudo strong { color: var(--text-color); font-weight: 700; }
+
+.artigo-conteudo code {
+    background-color: var(--bg-secondary);
+    color: var(--accent-color);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9em;
+}
+
+.artigo-conteudo pre {
+    background-color: #1e1e1e;
+    color: #e0e0e0;
+    padding: 20px;
+    border-radius: var(--radius-md);
+    overflow-x: auto;
+    margin: 1.5rem 0;
+    font-family: 'Courier New', Consolas, monospace;
+    font-size: 0.88rem;
+    line-height: 1.6;
+    border: 1px solid var(--border-color);
+}
+
+.artigo-conteudo pre code {
+    background: none;
+    color: inherit;
+    padding: 0;
+}
+
+.artigo-conteudo blockquote {
+    border-left: 4px solid var(--accent-color);
+    background-color: var(--bg-secondary);
+    padding: 15px 20px;
+    margin: 1.5rem 0;
+    border-radius: var(--radius-sm);
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+.artigo-conteudo table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+}
+
+.artigo-conteudo th,
+.artigo-conteudo td {
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.artigo-conteudo th {
+    background-color: var(--bg-secondary);
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+/* ==================== CTA FINAL ==================== */
+.artigo-cta {
+    margin-top: 4rem;
+    padding: 3rem 2rem;
+    background-color: var(--bg-secondary);
+    border-radius: var(--radius-md);
+    text-align: center;
+    border: 1px solid var(--border-color);
+}
+
+.artigo-cta p {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--text-color);
+    margin-bottom: 1.5rem;
+}
+
+.artigo-cta-botoes {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* ==================== RESPONSIVO ==================== */
+@media (max-width: 768px) {
+    .art-titulo { font-size: 2.5rem; }
+    .art-subtitulo { font-size: 1rem; }
+    .art-grid { grid-template-columns: 1fr; gap: 20px; }
+    .art-card-link { padding: 22px; }
+
+    .artigo { padding-top: 100px; padding-bottom: 60px; }
+    .artigo-header h1 { font-size: 1.8rem; }
+    .artigo-resumo { font-size: 1rem; }
+    .artigo-conteudo { font-size: 1rem; }
+    .artigo-conteudo h2 { font-size: 1.4rem; }
+    .artigo-conteudo h3 { font-size: 1.15rem; }
+    .artigo-conteudo pre { padding: 15px; font-size: 0.8rem; }
+    .artigo-cta-botoes { flex-direction: column; }
+    .artigo-cta-botoes a { text-align: center; }
+}

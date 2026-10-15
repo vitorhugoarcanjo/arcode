@@ -1,0 +1,274 @@
+{% extends 'tela_base_pos_login/base.html.jinja' %}
+
+{% block titulo %}Vitor Hugo | Desenvolvedor Python/Flask{% endblock %}
+
+{% block descricao %}Portfólio de Vitor Hugo — Desenvolvedor Python/Flask. Criador do Padrão 2099, arquitetura modular para sistemas web sob medida.{% endblock %}
+
+{% block css_extra %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/modules/pasta_home/home.min.css') }}">
+{% endblock %}
+
+{% block conteudo %}
+
+<!-- ==================== HERO ==================== -->
+<section id="inicio" class="bloco bloco-hero">
+    <div class="container hero-grid">
+        <div class="hero-texto">
+            <span class="hero-tag">Desenvolvedor Python/Flask</span>
+            <h1>Vitor Hugo<span class="hero-ponto">.</span></h1>
+            <p class="hero-descricao">
+                Construo <strong>sistemas web sob medida</strong> com Flask, Jinja2 e HTMX.
+                Código limpo, arquitetura documentada e deploy próprio — do zero à produção.
+            </p>
+            <p class="hero-destaque">
+                Criador do <a href="{{ url_for('arquitetura.ini_arquitetura') }}">Padrão 2099</a>,
+                arquitetura modular que aplico em todos os meus projetos.
+            </p>
+            <div class="hero-cta">
+                <a href="{{ url_for('projetos.ini_projetos') }}" class="btn-primary">
+                    Ver meus projetos
+                </a>
+                <a href="https://wa.me/5565999757941" target="_blank" rel="noopener noreferrer" class="btn-secondary">
+                    <i class="fab fa-whatsapp"></i> Falar comigo
+                </a>
+            </div>
+        </div>
+        <div class="hero-imagem">
+            <img src="{{ url_for('static', filename='images/pasta_home/home.png') }}" alt="Vitor Hugo Arcanjo Dias Pereira">
+        </div>
+    </div>
+    <div class="scroll-indicator">
+        <i class="fas fa-chevron-down"></i>
+    </div>
+</section>
+
+<!-- ==================== ÂNCORAS FIXAS ==================== -->
+<nav class="home-anchor-nav" id="home-anchor-nav">
+    <div class="container home-anchor-inner">
+        <a href="#sobre" data-anchor="sobre">Sobre</a>
+        <a href="#stack" data-anchor="stack">Stack</a>
+        <a href="#projetos" data-anchor="projetos">Projetos</a>
+        <a href="#contato" data-anchor="contato">Contato</a>
+    </div>
+</nav>
+
+<!-- ==================== SOBRE ==================== -->
+<section id="sobre" class="bloco bloco-sobre">
+    <div class="container sobre-grid">
+        <div class="sobre-texto">
+            <h2 class="section-title-left">Quem sou eu</h2>
+            <p>
+                Sou <strong>Vitor Hugo</strong>, desenvolvedor Python com foco em <strong>Flask</strong>.
+                Desde janeiro de 2025 construí <strong>5 projetos reais</strong>, sendo
+                <strong>3 em produção</strong> com banco de dados e usuários ativos.
+            </p>
+            <p>
+                Trabalho com arquitetura modular (<strong>Padrão 2099</strong>),
+                desenvolvimento backend, integração com banco de dados e deploy completo em VPS
+                com Nginx + Gunicorn + SSL.
+            </p>
+            <p>
+                <strong>Disponível para freelas remotos</strong> e aberto a
+                <strong>oportunidades CLT</strong> em desenvolvimento full stack Python.
+            </p>
+
+            <div class="o-que-trago">
+                <h3>O que eu trago pra mesa</h3>
+                <ul>
+                    <li><i class="fas fa-check-circle"></i> Sistemas sob medida, do zero ao deploy</li>
+                    <li><i class="fas fa-check-circle"></i> Arquitetura documentada (Padrão 2099)</li>
+                    <li><i class="fas fa-check-circle"></i> Código limpo, modular e testável</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="sobre-stats">
+            <div class="stat">
+                <h3>5</h3>
+                <p>Projetos entregues</p>
+            </div>
+            <div class="stat">
+                <h3>3</h3>
+                <p>Em produção</p>
+            </div>
+            <div class="stat">
+                <h3>2+</h3>
+                <p>Anos codando</p>
+            </div>
+            <div class="stat">
+                <h3>100%</h3>
+                <p>Código autoral</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== STACK ==================== -->
+<section id="stack" class="bloco bloco-stack">
+    <div class="container">
+        <h2 class="section-title">Stack</h2>
+        <p class="section-subtitle">Ferramentas que uso no dia a dia</p>
+
+        <div class="stack-grid">
+            <div class="stack-grupo">
+                <h4><i class="fas fa-server"></i> Backend</h4>
+                <div class="stack-tags">
+                    <span>Python</span>
+                    <span>Flask</span>
+                    <span>Jinja2</span>
+                    <span>HTMX</span>
+                </div>
+            </div>
+
+            <div class="stack-grupo">
+                <h4><i class="fas fa-database"></i> Dados</h4>
+                <div class="stack-tags">
+                    <span>SQL</span>
+                    <span>PostgreSQL</span>
+                    <span>SQLite</span>
+                </div>
+            </div>
+
+            <div class="stack-grupo">
+                <h4><i class="fas fa-code"></i> Frontend</h4>
+                <div class="stack-tags">
+                    <span>HTML5</span>
+                    <span>CSS3</span>
+                    <span>JavaScript</span>
+                </div>
+            </div>
+
+            <div class="stack-grupo">
+                <h4><i class="fas fa-cloud"></i> Deploy & Ferramentas</h4>
+                <div class="stack-tags">
+                    <span>Git</span>
+                    <span>GitHub</span>
+                    <span>Nginx</span>
+                    <span>Gunicorn</span>
+                    <span>VPS Linux</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== PROJETOS DESTAQUE ==================== -->
+<section id="projetos" class="bloco bloco-projetos-destaque">
+    <div class="container">
+        <h2 class="section-title">Projetos em destaque</h2>
+        <p class="section-subtitle">Alguns dos sistemas que construí</p>
+
+        <div class="projetos-destaque-grid">
+
+            <!-- VHORGANIZA -->
+            <article class="projeto-destaque-card">
+                <div class="projeto-destaque-header">
+                    <span class="projeto-destaque-badge">Em produção</span>
+                    <h3>VHORGANIZA</h3>
+                </div>
+                <p class="projeto-destaque-desc">
+                    Sistema de gestão de tarefas e finanças pessoais.
+                    Backend Flask, banco PostgreSQL, autenticação e auditoria completa.
+                </p>
+                <div class="projeto-destaque-tech">
+                    <span>Flask</span>
+                    <span>PostgreSQL</span>
+                    <span>HTMX</span>
+                </div>
+                <a href="https://vhorganiza.com.br" target="_blank" rel="noopener noreferrer" class="projeto-destaque-link">
+                    Acessar <i class="fas fa-external-link-alt"></i>
+                </a>
+            </article>
+
+            <!-- SAFA -->
+            <article class="projeto-destaque-card">
+                <div class="projeto-destaque-header">
+                    <span class="projeto-destaque-badge">Em produção</span>
+                    <h3>SAFA</h3>
+                </div>
+                <p class="projeto-destaque-desc">
+                    Sistema de consulta ambiental, florestal e documental.
+                    Centraliza consultas estaduais e federais em uma única plataforma.
+                </p>
+                <div class="projeto-destaque-tech">
+                    <span>Flask</span>
+                    <span>SQLite</span>
+                    <span>PDFKit</span>
+                </div>
+                <a href="https://safapf.com.br" target="_blank" rel="noopener noreferrer" class="projeto-destaque-link">
+                    Acessar <i class="fas fa-external-link-alt"></i>
+                </a>
+            </article>
+
+            <!-- Laudo Pericial -->
+            <article class="projeto-destaque-card">
+                <div class="projeto-destaque-header">
+                    <span class="projeto-destaque-badge cliente">Cliente</span>
+                    <h3>Laudo Pericial</h3>
+                </div>
+                <p class="projeto-destaque-desc">
+                    Sistema forense usado por peritos oficiais. Gera documentos com 90+ páginas:
+                    análise de vestígios, cálculos de velocidade e assinatura eletrônica.
+                </p>
+                <div class="projeto-destaque-tech">
+                    <span>Flask</span>
+                    <span>SQLite</span>
+                    <span>WeasyPrint</span>
+                </div>
+                <span class="projeto-destaque-link disabled">
+                    Projeto privado
+                </span>
+            </article>
+
+        </div>
+
+        <div class="projetos-destaque-cta">
+            <a href="{{ url_for('projetos.ini_projetos') }}" class="btn-primary">
+                Ver todos os projetos
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== CONTATO ==================== -->
+<section id="contato" class="bloco bloco-contato">
+    <div class="container">
+        <h2 class="section-title">Tem um projeto em mente?</h2>
+        <p class="section-subtitle">
+            Vamos tirar do papel. Me chama no WhatsApp ou manda um e-mail.
+        </p>
+
+        <div class="contato-grid">
+            <div class="redes-sociais">
+                <h3>Redes</h3>
+                <div class="redes-links">
+                    <a href="https://github.com/vitorhugoarcanjo" target="_blank" rel="noopener noreferrer" class="rede-link">
+                        <i class="fab fa-github"></i> GitHub
+                    </a>
+                    <a href="https://linkedin.com/in/vitor-hugo-arcanjo-dias-pereira-5919b5334" target="_blank" rel="noopener noreferrer" class="rede-link">
+                        <i class="fab fa-linkedin"></i> LinkedIn
+                    </a>
+                    <a href="https://instagram.com/vitor.hadp" target="_blank" rel="noopener noreferrer" class="rede-link">
+                        <i class="fab fa-instagram"></i> Instagram
+                    </a>
+                    <a href="https://wa.me/5565999757941" target="_blank" rel="noopener noreferrer" class="rede-link whatsapp">
+                        <i class="fab fa-whatsapp"></i> WhatsApp
+                    </a>
+                </div>
+            </div>
+
+            <div class="contato-info">
+                <h3>Contato direto</h3>
+                <p><i class="fas fa-envelope"></i> dias.vitorhd@gmail.com</p>
+                <p><i class="fas fa-phone"></i> (65) 9 9975-7941</p>
+                <p><i class="fas fa-map-marker-alt"></i> Cuiabá - MT · Remoto</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block js_extra %}
+<script src="{{ url_for('static', filename='js/modules/pasta_home/home.min.js') }}" defer></script>
+{% endblock %}

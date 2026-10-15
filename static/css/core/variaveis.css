@@ -1,0 +1,43 @@
+/* ==================== DESIGN TOKENS ==================== */
+:root {
+    /* MODO CLARO (default) */
+    --bg-color: #ffffff;
+    --bg-secondary: #f4f7f6;
+    --text-color: #1a1a1a;
+    --text-muted: #666666;
+    --accent-color: #007bff;
+    --accent-hover: #0066d6;
+    --card-bg: #ffffff;
+    --border-color: #e0e0e0;
+    --shadow: rgba(0, 0, 0, 0.08);
+    --shadow-hover: rgba(0, 0, 0, 0.15);
+}
+
+[data-theme="dark"] {
+    /* MODO ESCURO */
+    --bg-color: #0f0f0f;
+    --bg-secondary: #1a1a1a;
+    --text-color: #f0f0f0;
+    --text-muted: #a0a0a0;
+    --accent-color: #3793ff;
+    --accent-hover: #5aa8ff;
+    --card-bg: #1e1e1e;
+    --border-color: #2a2a2a;
+    --shadow: rgba(0, 0, 0, 0.4);
+    --shadow-hover: rgba(0, 0, 0, 0.6);
+}
+
+/* Tokens de espaçamento */
+:root {
+    --space-xs: 0.5rem;
+    --space-sm: 1rem;
+    --space-md: 2rem;
+    --space-lg: 4rem;
+    --space-xl: 6rem;
+
+    --radius-sm: 8px;
+    --radius-md: 15px;
+    --radius-lg: 50px;
+
+    --transition: 0.3s ease;
+}

@@ -1,0 +1,68 @@
+/**
+ * Scroll Spy — Home
+ * Marca o item da âncora conforme você rola a página.
+ */
+
+document.addEventListener('DOMContentLoaded', () => {
+    const anchorNav = document.getElementById('home-anchor-nav');
+    if (!anchorNav) return;
+
+    const links = anchorNav.querySelectorAll('a[data-anchor]');
+    const sections = Array.from(links)
+        .map(link => document.getElementById(link.dataset.anchor))
+        .filter(Boolean);
+
+    if (!sections.length) return;
+
+    // Clique: marca imediatamente
+    links.forEach(link => {
+        link.addEventListener('click', () => {
+            links.forEach(l => l.classList.remove('active'));
+            link.classList.add('active');
+        });
+    });
+
+    // Scroll: atualiza conforme a seção visível
+    function atualizarAtivo() {
+        const offset = 150;
+        const scrollY = window.scrollY + offset;
+
+        // Se chegou no fim da página, marca a última seção
+        const chegouNoFim = window.innerHeight + window.scrollY >=
+                            document.body.offsetHeight - 5;
+
+        if (chegouNoFim) {
+            links.forEach(link => {
+                const ativa = link.dataset.anchor === sections[sections.length - 1].id;
+                link.classList.toggle('active', ativa);
+            });
+            return;
+        }
+
+        let secaoAtual = sections[0];
+
+        for (const secao of sections) {
+            if (secao.offsetTop <= scrollY) {
+                secaoAtual = secao;
+            } else {
+                break;
+            }
+        }
+
+        links.forEach(link => {
+            const ativa = link.dataset.anchor === secaoAtual.id;
+            link.classList.toggle('active', ativa);
+        });
+    }
+
+    let scrollTimeout;
+    window.addEventListener('scroll', () => {
+        if (scrollTimeout) return;
+        scrollTimeout = setTimeout(() => {
+            atualizarAtivo();
+            scrollTimeout = null;
+        }, 60);
+    }, { passive: true });
+
+    atualizarAtivo();
+});

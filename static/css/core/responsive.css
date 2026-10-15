@@ -1,0 +1,21 @@
+/* ==================== RESPONSIVIDADE GLOBAL ==================== */
+
+@media (max-width: 992px) {
+    .section-title {
+        font-size: 2.2rem;
+    }
+}
+
+@media (max-width: 576px) {
+    html {
+        font-size: 15px;
+    }
+
+    .section-title {
+        font-size: 1.9rem;
+    }
+
+    .container {
+        padding: 0 16px;
+    }
+}

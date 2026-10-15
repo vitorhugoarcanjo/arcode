@@ -1,0 +1,44 @@
+{% if projetos %}
+<div class="proj-grid">
+    {% for p in projetos %}
+    <article class="proj-card">
+
+        <div class="proj-card-header">
+            <div class="proj-card-header-top">
+                <span class="proj-badge proj-badge-{{ p.badge_tipo }}">{{ p.badge }}</span>
+                <span class="proj-card-ano">{{ p.ano }}</span>
+            </div>
+            <h2>{{ p.nome }}</h2>
+            <span class="proj-card-categoria">{{ p.categoria }}</span>
+        </div>
+
+        <p class="proj-card-desc">{{ p.descricao }}</p>
+
+        <div class="proj-card-tech">
+            {% for t in p.tech %}
+            <span>{{ t }}</span>
+            {% endfor %}
+        </div>
+
+        <div class="proj-card-rodape">
+            {% if p.link %}
+            <a href="{{ p.link }}" target="_blank" rel="noopener noreferrer" class="btn-primary proj-btn">
+                {{ p.link_texto }} <i class="fas fa-external-link-alt"></i>
+            </a>
+            {% else %}
+            <span class="proj-btn-disabled">
+                <i class="fas fa-lock"></i> {{ p.link_texto }}
+            </span>
+            {% endif %}
+        </div>
+
+    </article>
+    {% endfor %}
+</div>
+
+{% else %}
+<div class="proj-vazio">
+    <i class="fas fa-search"></i>
+    <p>Nenhum projeto com essa stack.</p>
+</div>
+{% endif %}
