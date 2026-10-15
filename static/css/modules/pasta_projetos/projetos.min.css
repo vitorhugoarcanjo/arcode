@@ -1,4 +1,4 @@
-/* PROJETOS — 15/10/2026 13:03 */
+/* PROJETOS — 15/10/2026 15:23 */
 
 /* ===== projetos.css ===== */
 /* ==================== PROJETOS — MÓDULO ==================== */
@@ -6,7 +6,7 @@
 /* ==================== HERO ==================== */
 .bloco-proj-hero {
     padding-top: 140px;
-    padding-bottom: 40px;
+    padding-bottom: 60px;
     text-align: center;
     background: linear-gradient(180deg, var(--bg-color) 0%, var(--bg-secondary) 100%);
 }
@@ -44,71 +44,7 @@
 
 .proj-subtitulo strong { color: var(--text-color); }
 
-/* ==================== FILTRO ==================== */
-.bloco-proj-filtro {
-    padding: 30px 0;
-    background-color: var(--bg-secondary);
-    border-top: 1px solid var(--border-color);
-    border-bottom: 1px solid var(--border-color);
-    position: sticky;
-    top: 70px;
-    z-index: 50;
-    backdrop-filter: blur(10px);
-}
-
-.proj-filtro-wrap {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-.proj-filtro-label {
-    font-size: 0.9rem;
-    color: var(--text-muted);
-    font-weight: 500;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-}
-
-.proj-filtro-label i { color: var(--accent-color); }
-
-.proj-filtro-botoes {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    justify-content: center;
-}
-
-.proj-filtro-btn {
-    background-color: var(--card-bg);
-    color: var(--text-color);
-    border: 1px solid var(--border-color);
-    padding: 8px 16px;
-    border-radius: var(--radius-lg);
-    font-size: 0.85rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all var(--transition);
-    font-family: inherit;
-}
-
-.proj-filtro-btn:hover {
-    border-color: var(--accent-color);
-    color: var(--accent-color);
-    transform: translateY(-2px);
-}
-
-.proj-filtro-btn.active {
-    background-color: var(--accent-color);
-    color: #ffffff;
-    border-color: var(--accent-color);
-    box-shadow: 0 4px 12px var(--shadow);
-}
-
-/* ==================== GRID ==================== */
+/* ==================== LISTA ==================== */
 .bloco-proj-lista {
     background-color: var(--bg-color);
     padding-top: 40px;
@@ -116,8 +52,8 @@
 
 .proj-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-    gap: 25px;
+    grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+    gap: 30px;
     margin-bottom: 3rem;
 }
 
@@ -126,7 +62,7 @@
     background-color: var(--card-bg);
     border: 1px solid var(--border-color);
     border-radius: var(--radius-md);
-    padding: 28px;
+    overflow: hidden;
     display: flex;
     flex-direction: column;
     transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition);
@@ -136,6 +72,110 @@
     transform: translateY(-5px);
     border-color: var(--accent-color);
     box-shadow: 0 15px 40px var(--shadow-hover);
+}
+
+/* ==================== CARROSSEL ==================== */
+.proj-card-carrossel {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    background-color: var(--bg-secondary);
+    overflow: hidden;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.proj-carrossel-imagens {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.proj-carrossel-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+}
+
+.proj-carrossel-img.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Botões prev/next */
+.proj-carrossel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.55);
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity var(--transition), background-color var(--transition);
+    z-index: 2;
+    font-size: 1rem;
+}
+
+.proj-card:hover .proj-carrossel-btn { opacity: 1; }
+
+.proj-carrossel-btn:hover {
+    background-color: var(--accent-color);
+}
+
+.proj-carrossel-btn.prev { left: 12px; }
+.proj-carrossel-btn.next { right: 12px; }
+
+/* Dots */
+.proj-carrossel-dots {
+    position: absolute;
+    bottom: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 6px;
+    z-index: 2;
+    background-color: rgba(0, 0, 0, 0.4);
+    padding: 6px 10px;
+    border-radius: var(--radius-lg);
+    backdrop-filter: blur(4px);
+}
+
+.proj-carrossel-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    transition: background-color var(--transition), transform var(--transition);
+}
+
+.proj-carrossel-dot.active {
+    background-color: #ffffff;
+    transform: scale(1.2);
+}
+
+.proj-carrossel-dot:hover {
+    background-color: #ffffff;
+}
+
+/* ==================== CONTEÚDO ==================== */
+.proj-card-conteudo {
+    padding: 24px 28px 28px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
 }
 
 .proj-card-header {
@@ -271,20 +311,6 @@
 
 .proj-btn-disabled i { font-size: 0.8rem; }
 
-/* ==================== VAZIO ==================== */
-.proj-vazio {
-    text-align: center;
-    padding: 4rem 2rem;
-    color: var(--text-muted);
-}
-
-.proj-vazio i {
-    font-size: 2.5rem;
-    color: var(--accent-color);
-    opacity: 0.4;
-    margin-bottom: 1rem;
-}
-
 /* ==================== CTA FINAL ==================== */
 .proj-cta {
     text-align: center;
@@ -302,22 +328,131 @@
     margin-bottom: 1.5rem;
 }
 
-/* ==================== RESPONSIVO ==================== */
-@media (max-width: 992px) {
-    .proj-filtro-wrap {
-        flex-direction: column;
-        gap: 10px;
-    }
+
+/* ==================== MODAL DE IMAGEM ==================== */
+.proj-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background-color: rgba(0, 0, 0, 0.92);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 80px;
+    backdrop-filter: blur(6px);
+    animation: fadeIn 0.2s ease;
 }
 
+.proj-modal.active {
+    display: flex;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.proj-modal-content {
+    max-width: 100%;
+    max-height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.proj-modal-content img {
+    max-width: 100%;
+    max-height: calc(100vh - 160px);
+    object-fit: contain;
+    border-radius: var(--radius-md);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    user-select: none;
+}
+
+.proj-modal-caption {
+    color: #ffffff;
+    font-size: 0.95rem;
+    text-align: center;
+    max-width: 800px;
+    margin: 0;
+    opacity: 0.85;
+}
+
+.proj-modal-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    font-size: 1.3rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition);
+    z-index: 2;
+}
+
+.proj-modal-close:hover {
+    background-color: rgba(255, 255, 255, 0.25);
+    transform: rotate(90deg);
+}
+
+.proj-modal-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    font-size: 1.3rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition);
+    z-index: 2;
+}
+
+.proj-modal-nav:hover {
+    background-color: var(--accent-color);
+    border-color: var(--accent-color);
+}
+
+.proj-modal-nav.prev { left: 20px; }
+.proj-modal-nav.next { right: 20px; }
+
+/* Imagem clicável no carrossel */
+.proj-carrossel-img.active {
+    cursor: zoom-in;
+}
+
+/* ==================== RESPONSIVO ==================== */
+@media (max-width: 768px) {
+    .proj-modal { padding: 60px 15px; }
+    .proj-modal-nav { width: 44px; height: 44px; font-size: 1.1rem; }
+    .proj-modal-nav.prev { left: 8px; }
+    .proj-modal-nav.next { right: 8px; }
+    .proj-modal-close { top: 12px; right: 12px; width: 42px; height: 42px; }
+    .proj-modal-caption { font-size: 0.85rem; }
+}
+
+/* ==================== RESPONSIVO ==================== */
 @media (max-width: 768px) {
     .proj-titulo { font-size: 2.5rem; }
     .proj-subtitulo { font-size: 1rem; }
-    .proj-grid { grid-template-columns: 1fr; gap: 20px; }
-    .proj-card { padding: 22px; }
+    .proj-grid { grid-template-columns: 1fr; gap: 22px; }
+    .proj-card-conteudo { padding: 20px; }
     .proj-card-header h2 { font-size: 1.2rem; }
     .proj-card-header-top { flex-direction: column; align-items: flex-start; gap: 6px; }
-    .proj-filtro-btn { font-size: 0.8rem; padding: 6px 12px; }
-    .bloco-proj-filtro { position: relative; top: 0; }
+    .proj-carrossel-btn { opacity: 1; }
 }
 
